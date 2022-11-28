@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./assets/css/App.css";
 import UserBoards from "./components/UserBoards";
 import { AppWrapper } from "./context/keys.js";
 

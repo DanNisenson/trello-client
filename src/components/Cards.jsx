@@ -1,19 +1,20 @@
+import "../assets/css/Cards.css";
+
 const Cards = (props) => {
   return (
     <div className="cards">
       {/* iterate all cards on board */}
-      {props.currentCards.map((e, i) => {
-      // could use filter
-        if (e.idList === props.listId) {
+      {props.currentCards.filter(e => e.idList === props.listId).map((e, i) => {
           return (
-            <div className="card" key={i}>
+            <div className="cards__card" key={i}>
+              <div className="cards__name">
               {e.name}
+              </div>
             </div>
+
           );
-        } else {
-          return null;
-        }
-      })}
+        } 
+      )}
     </div>
   );
 };
