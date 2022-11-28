@@ -1,3 +1,4 @@
+// import "../assets/css/Boards.css";
 
 const Board = (props) => {
 

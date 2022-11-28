@@ -1,0 +1,12 @@
+.lists {
+  display: flex;
+  gap:10px;
+}
+
+.lists__list {
+  background-color: rgb(229, 229, 229);
+  border-radius: 20px;
+  width: 200px;
+  padding: 10px;
+}
+

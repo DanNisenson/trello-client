@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Board from "./Board";
 import Lists from "./Lists";
 import { useAppContext } from "../context/keys";
+import "../assets/css/UserBoards.css";
 
 const UserBoards = () => {
   const context = useAppContext();

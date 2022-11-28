@@ -1,0 +1,7 @@
+.cards__card {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid rgb(67, 67, 67);
+  border-radius: 20px;
+  background-color: rgb(244, 244, 244);
+}
