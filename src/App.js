@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import UserBoards from "./components/UserBoards";
+import { AppWrapper } from "./context/keys.js";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // context variables
+    <AppWrapper>
+      <div className="App">
+        <UserBoards />
+      </div>
+    </AppWrapper>
   );
 }
 
 export default App;
+
+// Personal Key:
+// 1a9b6e88add0383f3d5cdc6764833c2a
+
+// Token
+// c3ca793d64d00d0f3759b6c148fa44f7567cff71a7ebf1d585247d00a2d49f11
