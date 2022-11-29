@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
-import "./assets/css/App.css";
-import UserBoards from "./components/UserBoards";
 import { AppWrapper } from "./context/keys.js";
+import Board from "./components/Board";
+import "./assets/css/App.css";
 
 function App() {
-
   return (
     // context variables
     <AppWrapper>
       <div className="App">
-        <UserBoards />
+        {/* main view */}
+        <Board />
       </div>
     </AppWrapper>
   );
