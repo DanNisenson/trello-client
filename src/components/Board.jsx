@@ -4,7 +4,7 @@ import axios from "axios";
 import Lists from "./Lists";
 import "../assets/css/UserBoards.css";
 
-const UserBoards = () => {
+const Boards = () => {
   // context.keys -> apiKey & token
   const context = useAppContext();
   // all boards. is it user? workspace? app?
@@ -46,4 +46,4 @@ const UserBoards = () => {
   );
 };
 
-export default UserBoards;
+export default Boards;
