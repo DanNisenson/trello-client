@@ -1,19 +1,43 @@
+import axios from "axios";
+import { useAppContext } from "../context/keys";
 import "../assets/css/Cards.css";
 
 const Cards = (props) => {
+  const context = useAppContext();
+
+  const deleteCard = (id) => {
+    const request = async () => {
+      await axios.delete(
+        `https://api.trello.com/1/cards/${id}?&key=${context.keys.apiKey}&token=${context.keys.token}`
+      );
+    };
+    request();
+    // has to refresh after request
+  };
+
   return (
     // filter cards by list id. render each card
     <div className="cards">
       {/* iterate all cards on board */}
       {props.currentCards
-        .filter((e) => e.idList === props.listId)
-        .map((e, i) => {
+        .filter((each) => each.idList === props.listId)
+        .map((each, i) => {
           return (
+            // each card
             <div className="cards__card" key={i}>
-              <div className="cards__name">{e.name}</div>
+              {/* card name */}
+              <div className="cards__name">{each.name}</div>
+              {/* card action icons */}
               <div className="cards__action-icons">
-                <i className="fa-solid fa-pencil"></i>
-                <i className="fa-solid fa-trash"></i>
+                <button className="cards__edit-btn">
+                  <i className="fa-solid fa-pencil"></i>
+                </button>
+                <button
+                  className="cards__delete-btn"
+                  onClick={() => deleteCard(each.id)}
+                >
+                  <i className="fa-solid fa-trash"></i>
+                </button>
               </div>
             </div>
           );

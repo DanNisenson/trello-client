@@ -1,3 +1,31 @@
-.create-card__close {
+.create-card__title-input {
+  height: 4rem;
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 0 0;
+  border: none;
+  border-bottom: 1px solid #b4b9c5;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+}
+
+.create-card__btns-container {
+  display: flex;
+  align-items: center;
+  margin: 5px 0 0 0;
+}
+
+.create-card__add-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  color: #FFF;
+  background-color: #0279C0;
+}
+
+.create-card__close-btn {
+  color: #77787b;
+  padding: 0 .5rem;
+  font-size: 1.5rem;
   transform: rotate(45deg);
 }

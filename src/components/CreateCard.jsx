@@ -1,20 +1,42 @@
 import axios from "axios";
+import { useAppContext } from "../context/keys";
 import "../assets/css/CreateCard.css";
+import "../assets/css/Cards.css";
 
 const CreateCard = (props) => {
-  
-  const postNewCard = () => {
-    const resp = 0;
+  const context = useAppContext();
+
+  const postNewCard = (e) => {
+    // get user title input
+    const title = document.getElementById("new-card-title-input").value;
+    // send post request
+    const request = async () => {
+      await axios.post(`https://api.trello.com/1/cards?name=${title}&idList=${props.idList}&key=${context.keys.apiKey}&token=${context.keys.token}`);
+    }
+    request();
+    // close card creation component
+    props.setListId(0);
   };
 
   return (
     <div className="create-card">
-      <input type="text" />
-      <button onClick={postNewCard()}>Add</button>
-      <i
-        className="fa-solid fa-plus create-card__close"
-        onClick={() => props.setListId(0)}
-      ></i>
+        {/* title user input */}
+        <textarea
+          type="text"
+          id="new-card-title-input"
+          className="create-card__title-input"
+          placeholder="Enter a title for this card..."
+        />
+        {/* "add card" & close buttons */}
+        <div className="create-card__btns-container">
+          <button className="create-card__add-btn" onClick={postNewCard}>
+            Add card
+          </button>
+          <i
+            className="fa-solid fa-plus create-card__close-btn"
+            onClick={() => props.setListId(0)}
+          ></i>
+        </div>
     </div>
   );
 };
