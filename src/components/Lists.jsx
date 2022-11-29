@@ -38,10 +38,8 @@ const Lists = (props) => {
   return (
     // all lists container
     <div className="lists">
-
       {/* iterate lists on selected board and render each one */}
       {props.currentLists.map((each, i) => {
-
         return (
           // single list
           <div className="lists__list" key={i}>
@@ -52,12 +50,15 @@ const Lists = (props) => {
 
             {/* if listId falsy -> render "add card icon". else render create card component */}
             {listId === each.id ? (
-              <CreateCard setListId={setListId} />
+              <CreateCard setListId={setListId} idList={each.id} />
             ) : (
-              <i
-                className="fa-solid fa-plus lists__create-card-icon"
+              <button
+                className="lists__add-card"
                 onClick={() => setListId(each.id)}
-              ></i>
+              >
+                <i className="fa-solid fa-plus lists__plus-icon "></i>
+                <span>Add a card</span>
+              </button>
             )}
           </div>
         );
