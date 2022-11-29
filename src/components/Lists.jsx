@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "../context/keys";
 import axios from "axios";
 import Cards from "./Cards";
+import axios from "axios";
+import { useState } from "react";
 import "../assets/css/Lists.css";
+import Cards from "./Cards";
+import CreateCard from "./CreateCard";
 
 const Lists = (props) => {
   const context = useAppContext();
@@ -29,14 +33,32 @@ const Lists = (props) => {
     getCards();
   }, [props]);
 
+  const [listId, setListId] = useState(0);
+
   return (
-    // iterate lists on selected board and render
+    // all lists container
     <div className="lists">
-      {currentLists.map((e, i) => {
+
+      {/* iterate lists on selected board and render each one */}
+      {props.currentLists.map((each, i) => {
+
         return (
+          // single list
           <div className="lists__list" key={i}>
-            {e.name}
-            <Cards currentCards={currentCards} listId={e.id} />
+            {/* list title */}
+            <h3>{each.name}</h3>
+            {/* card components */}
+            <Cards currentCards={props.currentCards} listId={each.id} />
+
+            {/* if listId falsy -> render "add card icon". else render create card component */}
+            {listId === each.id ? (
+              <CreateCard setListId={setListId} />
+            ) : (
+              <i
+                className="fa-solid fa-plus lists__create-card-icon"
+                onClick={() => setListId(each.id)}
+              ></i>
+            )}
           </div>
         );
       })}

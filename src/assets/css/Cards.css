@@ -5,3 +5,10 @@
   border-radius: 20px;
   background-color: rgb(244, 244, 244);
 }
+
+.cards__action-icons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  font-size: .7rem;
+}
