@@ -49,13 +49,8 @@ const UserBoards = () => {
       <h1>Boards</h1>
         {userBoards
           .map((e, i) => (
-            <Board
-              id={e.id}
-              name={e.name}
-              url={e.url}
-              showLists={(id) => showLists(id)}
-              key={i}
-            />
+            <div className="board-link" onClick={() => showLists(e.id)}>{e.name}</div>
+
           ))
           .reverse()}
       </div>
