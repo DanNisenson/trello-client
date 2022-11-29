@@ -32,7 +32,7 @@ const Board = () => {
           .map((e, i) => (
             <div
               className="board-link"
-              onClick={() => setCurrentBoard({...e})}
+              onClick={() => setCurrentBoard(e)}
               key={i}
             >
               {e.name}
