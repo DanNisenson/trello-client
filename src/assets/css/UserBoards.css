@@ -1,0 +1,12 @@
+.boards {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  padding: 20px 30px;
+}
+
+.board-link {
+  min-width: 100px;
+  cursor: pointer;
+}
+
