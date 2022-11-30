@@ -16,12 +16,10 @@ const Cards = (props) => {
   };
 
   return (
-    // filter cards by list id. render each card
     <div className="cards">
       {/* iterate all cards on board */}
       {props.currentCards
-        .filter((each) => each.idList === props.listId)
-        .map((each, i) => {
+        .map((e) => {
           return (
             // each card
             <div className="cards__card" key={i}>
