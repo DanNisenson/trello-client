@@ -22,7 +22,7 @@ const Cards = (props) => {
         .map((e) => {
           return (
             // each card
-            <div className="cards__card" key={i}>
+            <div className="cards__card" key={e.id} onClick={()=>props.showCard(e)}>
               {/* card name */}
               <div className="cards__name">{each.name}</div>
               {/* card action icons */}
@@ -32,7 +32,7 @@ const Cards = (props) => {
                 </button>
                 <button
                   className="cards__delete-btn"
-                  onClick={() => deleteCard(each.id)}
+                  onClick={()=>deleteCard(each)}
                 >
                   <i className="fa-solid fa-trash"></i>
                 </button>
