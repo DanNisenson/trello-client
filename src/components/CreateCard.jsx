@@ -7,6 +7,7 @@ const CreateCard = (props) => {
   const context = useAppContext();
 
   const postNewCard = (e) => {
+    console.log('first')
     // get user title input
     const title = document.getElementById("new-card-title-input").value;
     // send post request

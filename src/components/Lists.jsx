@@ -2,19 +2,22 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "../context/keys";
 import axios from "axios";
 import Cards from "./Cards";
-import axios from "axios";
-import { useState } from "react";
 import "../assets/css/Lists.css";
-import Cards from "./Cards";
 import CreateCard from "./CreateCard";
 
 const Lists = (props) => {
   const context = useAppContext();
   const [currentLists, setCurrentLists] = useState([]);
   const [currentCards, setCurrentCards] = useState([]);
+  const [listId, setListId] = useState(0);
 
+  // listId not changing when creatting cardddd
+  // check useEffect dependencies
+
+  console.log(listId)
   // get board's lists & cards on props(board selection) change.
   useEffect(() => {
+    console.log('list refresh')
     //get lists
     const getLists = async () => {
       const resp = await axios.get(
@@ -33,20 +36,19 @@ const Lists = (props) => {
     getCards();
   }, [props]);
 
-  const [listId, setListId] = useState(0);
 
   return (
     // all lists container
     <div className="lists">
       {/* iterate lists on selected board and render each one */}
-      {props.currentLists.map((each, i) => {
+      {currentLists.map((each, i) => {
         return (
           // single list
           <div className="lists__list" key={i}>
             {/* list title */}
             <h3>{each.name}</h3>
             {/* card components */}
-            <Cards currentCards={props.currentCards} listId={each.id} />
+            <Cards currentCards={currentCards} listId={each.id} />
 
             {/* if listId falsy -> render "add card icon". else render create card component */}
             {listId === each.id ? (
