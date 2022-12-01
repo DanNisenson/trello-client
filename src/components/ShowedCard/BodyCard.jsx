@@ -15,7 +15,6 @@ const BodyCard = (props)=> {
                 `https://api.trello.com/1/cards/${payload.id}//actions?filter=commentCard&key=${context.keys.apiKey}&token=${context.keys.token}`
             );
             setComments(resp.data);
-            console.log(resp.data);
         }
         getComments()
         }
@@ -34,8 +33,8 @@ const BodyCard = (props)=> {
                 <textarea className="options__text" placeholder="Escriba un comentario..." ></textarea>
 
             <div className="card__comments">
-                {comments?.map(a=>
-                    <div key={a.data.id}>
+                {comments?.map((a,i)=>
+                    <div key={i}>
                         <span>{a.memberCreator.fullName}</span>
                         <span>{a.date.slice(0,10)}</span>  
                         <textarea className="options__text" value={a.data.text} readOnly></textarea>

@@ -16,9 +16,9 @@ const SingleList = (props) => {
             <div className="lists__list">
                 {props.name}
                 <button>DELETE LIST</button>
-                <Cards currentCards={props.currentCards} listId={props.id} showCard={(i)=>setCurrentCard(i)} />
+                <Cards currentCards={props.currentCards} listId={props.id} showCard={setCurrentCard} />
             </div>
-            {currentCard ? <div className="card"> <Card currentCards={props.currentCards} currentCard={currentCard} showCard={() => setCurrentCard()} /> </div> : null}          
+            {currentCard ? <div className="card"> <Card currentCard={currentCard} showCard={setCurrentCard} /> </div> : null}          
         </>
     );
 }
