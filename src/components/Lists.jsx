@@ -31,7 +31,6 @@ const Lists = (props) => {
             const resp = await axios.get(
                 `https://api.trello.com/1/boards/${props.boardId}/cards?&key=${context.keys.apiKey}&token=${context.keys.token}`
             );
-            console.log(resp.data);
             setCurrentCards(resp.data);
         }
 
@@ -44,7 +43,7 @@ const Lists = (props) => {
           {currentLists
               .map(list => 
                   <SingleList key={list.id} name={list.name} currentCards={currentCards.filter(c => c.idList === list.id)} />
-                  );
+                  )
                 }
     </div>
   );

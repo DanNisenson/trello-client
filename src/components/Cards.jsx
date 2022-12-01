@@ -19,10 +19,10 @@ const Cards = (props) => {
     <div className="cards">
       {/* iterate all cards on board */}
       {props.currentCards
-        .map((e) => {
+        .map((each) => {
           return (
             // each card
-            <div className="cards__card" key={e.id} onClick={()=>props.showCard(e)}>
+            <div className="cards__card" key={each.id} onClick={()=>props.showCard(each)}>
               {/* card name */}
               <div className="cards__name">{each.name}</div>
               {/* card action icons */}
