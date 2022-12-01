@@ -6,7 +6,7 @@ const Cards = (props) => {
       {props.currentCards
         .map((e) => {
           return (
-            <div className="cards__card" key={e.id}>
+            <div className="cards__card" key={e.id} onClick={()=>props.showCard(e)} >
               <div className="cards__name">{e.name}</div>
             </div>
           );

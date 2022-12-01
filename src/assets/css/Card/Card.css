@@ -1,0 +1,92 @@
+.card{
+    position: absolute;
+    padding-top: 100px;
+    background-color: rgba(245, 245, 245, 0.356);
+    width: 100%;
+}
+
+.card__total{
+    margin-top: 100px;
+    margin: auto;
+    border-radius: 15px;
+    background-image: linear-gradient( to right, rgba(152, 141, 141, 0.866), rgb(199, 199, 199) );
+    width: 500px;
+    display: flexbox;
+    flex-direction: column;
+}
+.card__title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+}
+.card__main{
+    display: flex;
+    flex-direction: row;
+}
+.card__body{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+.card__aside{
+    margin: 10px;
+}
+
+.XButton:hover{
+    cursor: pointer;
+}
+
+.card__section{
+    padding: 20px;
+    border-top: 2px solid black ;
+}
+
+.card__comments__options{
+    width: auto;
+    display: flex;
+    justify-content: left;
+}
+
+.options__element{
+    font-size: small;
+    font-style: italic;
+    margin: 10px;
+    font-weight: bold;
+    color: rgb(75, 75, 234)
+    
+}
+
+.options__element:hover{
+    cursor:pointer
+}
+
+.card__aside__options{
+    width: 110px;
+    padding: 5px;
+    margin:5px;
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: rgba(53, 107, 245, 0.345);
+    font-weight: bold;
+    font-size: medium;
+}
+.card__aside__options:hover {
+    cursor: pointer;
+}
+.card__section__title{
+    font-size: larger;
+    font-weight: bolder;
+    font-style: italic;
+}
+.options__text{
+    width: 100%;
+    margin: 5px;
+    background-color: rgba(186, 183, 183, 0.395);
+    overflow: hidden; 
+    overflow-wrap: break-word;
+    height: 50px;
+}
+textarea{
+    resize: none;
+}
