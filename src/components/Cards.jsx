@@ -6,7 +6,6 @@ const Cards = (props) => {
   const context = useAppContext();
 
   const deleteCard = (id) => {
-    console.log('first')
     const request = async () => {
       await axios.delete(
         `https://api.trello.com/1/cards/${id}?&key=${context.keys.apiKey}&token=${context.keys.token}`
