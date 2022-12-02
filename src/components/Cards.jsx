@@ -32,7 +32,7 @@ const Cards = (props) => {
                 </button>
                 <button
                   className="cards__delete-btn"
-                  onClick={()=>deleteCard(each)}
+                  onClick={()=>deleteCard(each.id)}
                 >
                   <i className="fa-solid fa-trash"></i>
                 </button>
