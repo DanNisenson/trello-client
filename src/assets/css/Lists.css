@@ -1,12 +1,28 @@
 .lists {
   display: flex;
   gap:10px;
+  overflow: scroll;
 }
 
 .lists__list {
-  background-color: rgb(229, 229, 229);
-  border-radius: 20px;
-  width: 200px;
+  background-color: #EBECF0;
+  border-radius: 4px;
+  min-width: 270px;
   padding: 10px;
 }
 
+.lists__add-card {
+  display: flex;
+  justify-content: flex-start;
+  gap: .3rem;
+  width: 100%;
+  padding: 5px 15px;
+  margin: 10px 0 0 0;
+  border-radius: 4px;
+  color: #77787b;
+}
+
+.lists__add-card:hover {
+  color: #4f5053;
+  background-color: #e3e3e7;
+}
