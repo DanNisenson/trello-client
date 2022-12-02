@@ -38,9 +38,9 @@ const Lists = (props) => {
         <div className="lists">
             {currentLists
                 .map(list => 
-                    <SingleList key={list.id} name={list.name} currentCards={currentCards.filter(c => c.idList === list.id)} />
+                    <SingleList key={list.id} list={list} currentCards={currentCards.filter(c => c.idList === list.id)} />
             )}
-            <button>ADD A LIST</button>
+            <i className="fa-solid fa-plus fa-1x">ADD</i>
         </div>
     );
 };
