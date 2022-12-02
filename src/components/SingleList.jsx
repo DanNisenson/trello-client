@@ -8,6 +8,7 @@ import "../assets/css/Card/Card.css";
 import CreateCard from "./CreateCard";
 
 const SingleList = (props) => {
+    const context = useAppContext();
     //state and function to show a card
     const [currentCard, setCurrentCard] = useState(null)
     const [addCard, setAddCard] = useState(false);

@@ -1,14 +1,14 @@
 .lists {
     display: flex;
-    gap:10px;
+    gap: 10px;
     overflow: scroll;
 }
 
 .lists__list {
-  background-color: #EBECF0;
-  border-radius: 4px;
-  min-width: 270px;
-  padding: 10px;
+    background-color: #EBECF0;
+    border-radius: 4px;
+    min-width: 270px;
+    padding: 10px;
 }
 
 .lists__name {
@@ -22,19 +22,36 @@
 }
 
 .lists__add-card {
-  display: flex;
-  justify-content: flex-start;
-  gap: .3rem;
-  width: 100%;
-  padding: 5px 15px;
-  margin: 10px 0 0 0;
-  border-radius: 4px;
-  color: #77787b;
+    display: flex;
+    justify-content: flex-start;
+    gap: .3rem;
+    width: 100%;
+    padding: 5px 15px;
+    margin: 10px 0 0 0;
+    border-radius: 4px;
+    color: #77787b;
 }
 
 .lists__add-card:hover {
-  color: #4f5053;
-  background-color: #e3e3e7;
+    color: #4f5053;
+    background-color: #e3e3e7;
+}
+
+.lists__add-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .3rem;
+    min-width: 200px;
+    height: 100%;
+    padding: 5px 15px;
+    border-radius: 4px;
+    color: #ffffff;
+    background-color: #2b2c2e79;
+}
+
+.lists__add-list:hover {
+    background-color: #858992ba;
 }
 
 i {
