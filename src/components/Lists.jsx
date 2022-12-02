@@ -3,13 +3,11 @@ import { useAppContext } from "../context/keys";
 import axios from "axios";
 import SingleList from "./SingleList";
 import "../assets/css/Lists.css";
-import CreateCard from "./CreateCard";
 
 const Lists = (props) => {
   const context = useAppContext();
   const [currentLists, setCurrentLists] = useState([]);
   const [currentCards, setCurrentCards] = useState([]);
-  const [listId, setListId] = useState(0);
 
   // listId not changing when creatting cardddd
   // check useEffect dependencies
@@ -21,10 +19,8 @@ const Lists = (props) => {
             const resp = await axios.get(
                 `https://api.trello.com/1/boards/${props.boardId}/lists?&key=${context.keys.apiKey}&token=${context.keys.token}`
             );
-            console.log(resp.data);
             setCurrentLists(resp.data);
         }
-
         getLists();
         // get cards
         const getCards = async () => {
@@ -42,7 +38,7 @@ const Lists = (props) => {
       <div className="lists">
           {currentLists
               .map(list => 
-                  <SingleList key={list.id} name={list.name} currentCards={currentCards.filter(c => c.idList === list.id)} />
+                  <SingleList key={list.id} id={list.id} name={list.name} currentCards={currentCards.filter(c => c.idList === list.id)} />
                   )
                 }
     </div>
