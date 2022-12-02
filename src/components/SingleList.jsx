@@ -16,7 +16,7 @@ const SingleList = (props) => {
     const [toggleEdit, setToggleEdit] = useState(false);
 
     const updateListName = async () => {
-        if (!listName || listName === props.list.name)
+        if (!listName)
             return ;
         try {
             const URI = `https://api.trello.com/1/lists/${props.list.id}/name?value=${listName}&key=${context.keys.apiKey}&token=${context.keys.token}`;
@@ -41,12 +41,12 @@ const SingleList = (props) => {
                     {toggleEdit ?
                         <>
                             <input id={`input-${props.list.id}`} type="text" value={listName} onChange={event => setListName(event.target.value)}></input>
-                            <button onClick={updateListName}>confirm</button>
+                            <i class="fa-solid fa-check" onClick={updateListName}></i>
                         </>
                         :
                         <>
                             <p>{listName}</p>
-                            <button onClick={() => setToggleEdit(!toggleEdit)}>enable</button>
+                            <i className="fa-solid fa-pen-to-square" onClick={() => setToggleEdit(!toggleEdit)}></i>
                         </>
                     }
                 </div>
