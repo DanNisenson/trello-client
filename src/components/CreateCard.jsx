@@ -6,7 +6,7 @@ import "../assets/css/Cards.css";
 const CreateCard = (props) => {
   const context = useAppContext();
 
-  const postNewCard = (e) => {
+  const postNewCard = () => {
     console.log('first')
     // get user title input
     const title = document.getElementById("new-card-title-input").value;
@@ -16,7 +16,7 @@ const CreateCard = (props) => {
     }
     request();
     // close card creation component
-    props.setListId(0);
+    props.setAddCard(false);
   };
 
   return (
@@ -35,7 +35,7 @@ const CreateCard = (props) => {
           </button>
           <i
             className="fa-solid fa-plus create-card__close-btn"
-            onClick={() => props.setListId(0)}
+            onClick={() => props.setAddCard(false)}
           ></i>
         </div>
     </div>
