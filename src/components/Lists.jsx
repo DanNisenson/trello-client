@@ -5,12 +5,9 @@ import SingleList from "./SingleList";
 import "../assets/css/Lists.css";
 
 const Lists = (props) => {
-  const context = useAppContext();
-  const [currentLists, setCurrentLists] = useState([]);
-  const [currentCards, setCurrentCards] = useState([]);
-
-  // listId not changing when creatting cardddd
-  // check useEffect dependencies
+    const context = useAppContext();
+    const [currentLists, setCurrentLists] = useState([]);
+    const [currentCards, setCurrentCards] = useState([]);
 
     // get board's lists & cards on props(board selection) change.
     useEffect(() => {
@@ -40,22 +37,9 @@ const Lists = (props) => {
               .map(list => 
                   <SingleList key={list.id} id={list.id} name={list.name} currentCards={currentCards.filter(c => c.idList === list.id)} />
                   )
-                }
+          }
     </div>
   );
 };
 
 export default Lists;
-
-/* if listId falsy -> render "add card icon". else render create card component */
-// {listId === each.id ? (
-//   <CreateCard setListId={setListId} idList={each.id} />
-// ) : (
-//   <button
-//     className="lists__add-card"
-//     onClick={() => setListId(each.id)}
-//   >
-//     <i className="fa-solid fa-plus lists__plus-icon "></i>
-//     <span>Add a card</span>
-//   </button>
-// )}
