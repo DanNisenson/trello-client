@@ -1,7 +1,26 @@
 .cards__card {
+  display: flex;
+  justify-content: space-between;
   padding: 10px;
-  margin: 10px 0;
-  border: 1px solid rgb(67, 67, 67);
-  border-radius: 20px;
-  background-color: rgb(244, 244, 244);
+  margin: 5px 0 0 0;
+  border-bottom: 1px solid #b4b9c5;
+  border-radius: 4px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.cards__card:hover {
+  background-color: #f3f4f6;
+}
+
+.cards__action-icons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  font-size: 0.7rem;
+}
+
+.cards__delete-btn,
+.cards__edit-btn {
+  cursor: pointer;
 }

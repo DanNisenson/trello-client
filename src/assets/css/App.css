@@ -4,3 +4,21 @@
   padding: 0;
 }
 
+body {
+  font-size: 14px;
+}
+input,
+textarea,
+button {
+  font-size: inherit;
+}
+
+textarea {
+  font-family: inherit;
+  resize: none;
+}
+
+button {
+  border: none;
+  background-color: inherit;
+}
