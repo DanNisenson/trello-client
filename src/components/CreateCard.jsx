@@ -1,20 +1,21 @@
 import axios from "axios";
+import { useState } from "react";
 import { useAppContext } from "../context/keys";
 import "../assets/css/CreateCard.css";
 import "../assets/css/Cards.css";
 
 const CreateCard = (props) => {
   const context = useAppContext();
+  const [title, setTitle] = useState('');
 
-  const postNewCard = () => {
-    console.log('first')
-    // get user title input
-    const title = document.getElementById("new-card-title-input").value;
-    // send post request
-    const request = async () => {
-      await axios.post(`https://api.trello.com/1/cards?name=${title}&idList=${props.idList}&key=${context.keys.apiKey}&token=${context.keys.token}`);
+  const postNewCard = async () => {
+    try {
+      const resp = await axios.post(`https://api.trello.com/1/cards?name=${title}&idList=${props.idList}&key=${context.keys.apiKey}&token=${context.keys.token}`);
+      console.log(resp, props);
+      props.setListCards([...props.listCards, resp]);
+    } catch {
+      console.log('error. failed to post new card. CreateCard.jsx::12')
     }
-    request();
     // close card creation component
     props.setAddCard(false);
   };
@@ -27,6 +28,7 @@ const CreateCard = (props) => {
           id="new-card-title-input"
           className="create-card__title-input"
           placeholder="Enter a title for this card..."
+          onChange={e => setTitle(e.target.value)}
         />
         {/* "add card" & close buttons */}
         <div className="create-card__btns-container">

@@ -12,34 +12,33 @@ const Cards = (props) => {
       );
     };
     request();
-    // has to refresh after request
   };
 
   return (
     <div className="cards">
-      {/* iterate all cards on board */}
-      {props.currentCards
-        .map((each) => {
-          return (
-            // each card
-            <div className="cards__card" key={each.id} onClick={()=>props.showCard(each)}>
-              {/* card name */}
-              <div className="cards__name">{each.name}</div>
+      {/* iterate and print all cards on board */}
+      {props.listCards.map((card) => {
+        return (
+            <div className="cards__card" key={card.id}>
               {/* card action icons */}
               <div className="cards__action-icons">
-                <button className="cards__edit-btn">
+                <button className="cards__edit-btn cards__action-icon">
                   <i className="fa-solid fa-pencil"></i>
                 </button>
                 <button
-                  className="cards__delete-btn"
-                  onClick={()=>deleteCard(each)}
+                  className="cards__delete-btn cards__action-icon"
+                  onClick={() => deleteCard(card.id)}
                 >
                   <i className="fa-solid fa-trash"></i>
                 </button>
               </div>
+              {/* card name */}
+              <div className="cards__name" onClick={() => props.showCard(card)} >
+                {card.name}
+              </div>
             </div>
-          );
-        })}
+        );
+      })}
     </div>
   );
 };
