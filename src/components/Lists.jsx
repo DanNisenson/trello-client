@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "../context/keys";
 import axios from "axios";
 import SingleList from "./SingleList";
+import ListForm from "./ListForm";
 import "../assets/css/Lists.css";
 
 const Lists = (props) => {
@@ -40,7 +41,7 @@ const Lists = (props) => {
                 .map(list => 
                     <SingleList key={list.id} list={list} currentCards={currentCards.filter(c => c.idList === list.id)} />
             )}
-            <i className="fa-solid fa-plus fa-1x">ADD</i>
+            <ListForm />
         </div>
     );
 };
