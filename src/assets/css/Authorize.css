@@ -22,8 +22,13 @@
     width: 10vw;
     font-size: 1.5em;
     padding: 5px;
+    margin: 5px;
     border-radius: 5px;
     color: #FFF;
     background-color: #0279C0;
     cursor: pointer;
+}
+
+.authorize__button:hover {
+    opacity: 0.8;
 }
