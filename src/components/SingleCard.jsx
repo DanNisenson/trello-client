@@ -1,11 +1,16 @@
 import axios from "axios";
 import { useAppContext } from "../context/keys";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../assets/css/SingleCard.css";
 
 const SingleCard = (props) => {
   const context = useAppContext();
   const [cardEdit, setCardEdit] = useState(false);
+
+  const editCard = () => {
+    setCardEdit(!cardEdit);
+    props.setModal(!props.modal);
+  };
 
   const deleteCard = async (id) => {
     try {
@@ -25,33 +30,55 @@ const SingleCard = (props) => {
   };
 
   return (
-      <div className="cards__card" key={props.id} >
-        {/* card name */}
-        {cardEdit ? (
-          <>
-            <div className="cards__edit">
-              <div
-                className="cards__name cards__name--edit"
-                // value={props.name}
-                readOnly
-              >{props.name}</div>
-              <button>Save</button>
-              <button>Delete</button>
+    <div className="cards__card" key={props.id}>
+      {/* card name */}
+      {cardEdit ? (
+        <>
+          <div className="cards__edit">
+            <textarea
+              className="cards__name cards__name--edit"
+              value={props.name}
+              readOnly
+            >
+              {props.name}
+            </textarea>
+            <i
+              className="fa-solid fa-plus cards__edit-close-btn"
+              onClick={editCard}
+            ></i>
+            <button className="cards__edit-save-btn create-card__add-btn">
+              Save
+            </button>
+            <div className="cards__edit-sidebar">
+              <button className="cards__edit-action-btn">
+                <i className="fa-solid fa-trash"></i>
+                {" "}
+                Delete
+              </button>
+              <button className="cards__edit-action-btn">
+                <i className="fa-solid fa-trash"></i>
+                {" "}
+                Open
+              </button>
+              <button className="cards__edit-action-btn">
+                <i className="fa-solid fa-trash"></i>
+                {" "}
+                Archive
+              </button>
             </div>
-          </>
-        ) : (
-          <input
-            className="cards__name"
-            value={props.name}
-            onClick={() => props.showCard()}
-            readOnly
-          />
-        )}
-        {/* card action icons */}
+          </div>
+        </>
+      ) : (
+        <div className="cards__name" onClick={() => props.showCard()} readOnly>
+          {props.name}
+        </div>
+      )}
+      {/* card action icons */}
+      {!cardEdit ? (
         <div className="cards__action-icons">
           <button
             className="cards__edit-btn cards__action-icon"
-            onClick={() => setCardEdit(true)}
+            onClick={editCard}
           >
             <i className="fa-solid fa-pencil"></i>
           </button>
@@ -62,7 +89,8 @@ const SingleCard = (props) => {
             <i className="fa-solid fa-trash"></i>
           </button>
         </div>
-      </div>
+      ) : null}
+    </div>
   );
 };
 

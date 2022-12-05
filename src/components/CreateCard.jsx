@@ -59,6 +59,3 @@ const CreateCard = (props) => {
   );
 };
 export default CreateCard;
-
-// make the form and pass user input value to postNewCard
-// make postNewCard async and make POST request
