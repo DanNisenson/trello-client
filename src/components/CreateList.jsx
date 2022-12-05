@@ -32,7 +32,7 @@ const CreateList = (props) => {
             <input type="text" placeholder="Enter list title..." onChange={event => setListName(event.target.value)}></input>
             <div className="create-list__btns-container">
                 <button className="create-list__add-btn" onClick={postNewList}>
-                    Add another list
+                    Add list
                 </button>
                 <i
                     className="fa-solid fa-plus create-list__close-btn"

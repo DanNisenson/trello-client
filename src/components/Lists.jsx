@@ -44,7 +44,7 @@ const Lists = (props) => {
             :
             <button className="lists__add-list" onClick={() => setToggleAddList(!toggleAddList)}>
                 <i className="fa-solid fa-plus lists__plus-icon "></i>
-                <span>Add a list</span>
+                <span>Add another list</span>
             </button>
             }
         </div>
