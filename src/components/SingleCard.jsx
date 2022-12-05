@@ -25,16 +25,16 @@ const SingleCard = (props) => {
   };
 
   return (
-    <>
-      <div className="cards__card">
+      <div className="cards__card" key={props.id} >
         {/* card name */}
         {cardEdit ? (
           <>
             <div className="cards__edit">
-              <input
+              <div
                 className="cards__name cards__name--edit"
-                value={props.name}
-              />
+                // value={props.name}
+                readOnly
+              >{props.name}</div>
               <button>Save</button>
               <button>Delete</button>
             </div>
@@ -63,7 +63,6 @@ const SingleCard = (props) => {
           </button>
         </div>
       </div>
-    </>
   );
 };
 

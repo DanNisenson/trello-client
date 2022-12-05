@@ -13,6 +13,7 @@
   border: none;
   padding: 10px;
   width: 100%;
+  overflow: visible;
   word-wrap: break-word;
 }
 

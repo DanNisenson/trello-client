@@ -2,6 +2,7 @@
     display: flex;
     gap: 10px;
     overflow: scroll;
+    padding: 10px;
 }
 
 .lists__list {
