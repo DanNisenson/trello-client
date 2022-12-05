@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAppContext } from "../context/keys";
 import axios from "axios";
+import ListName from "./ListName";
 import Cards from "./Cards";
 import Card from "./ShowedCard/Card";
 import "../assets/css/Lists.css";
@@ -16,7 +17,7 @@ const SingleList = (props) => {
     // get cards
     const getCards = async () => {
       const resp = await axios.get(
-        `https://api.trello.com/1/lists/${props.id}/cards?&key=${context.keys.apiKey}&token=${context.keys.token}`
+        `https://api.trello.com/1/lists/${props.list.id}/cards?&key=${context.keys.apiKey}&token=${context.keys.token}`
       );
       setListCards(resp.data);
     };
@@ -24,12 +25,10 @@ const SingleList = (props) => {
     getCards();
   }, []);
 
-  //name should become an input on click, for update
   return (
     <>
       <div className="lists__list">
-        {props.name}
-        <button>DELETE LIST</button>
+        <ListName name={props.list.name} listId={props.list.id} />
         <Cards
           listCards={listCards}
           setListCards={setListCards}
@@ -37,7 +36,7 @@ const SingleList = (props) => {
         />
         {/* 'add card' button */}
         <CreateCard
-          idList={props.id}
+          idList={props.list.id}
           listCards={listCards}
           setListCards={setListCards}
         />
