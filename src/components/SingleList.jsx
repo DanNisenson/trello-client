@@ -45,7 +45,8 @@ const SingleList = (props) => {
       {currentCard ? (
         <div className="card">
           {" "}
-          <Card currentCard={currentCard} showCard={setCurrentCard} />{" "}
+          <Card currentCard={currentCard} showCard={setCurrentCard} />
+          {" "}
         </div>
       ) : null}
     </>

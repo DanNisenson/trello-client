@@ -1,47 +1,11 @@
-.cards__card {
-  /* display: flex; */
-  /* justify-content: space-between; */
-  position: relative;
-  padding: 10px;
-  margin: 5px 0 0 0;
-  border-bottom: 1px solid #b4b9c5;
-  border-radius: 4px;
-  background-color: #ffffff;
-  cursor: pointer;
-}
 
-.cards__name {
-  word-wrap: break-word;
-}
 
-.cards__card:hover {
-  background-color: #f3f4f6;
-}
-
-.cards__action-icons {
-  font-size: 0.7rem;
+.cards__modal-bkground {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
-  top: 2px;
-  right: 2px;
-}
-
-.cards__action-icon {
-  color: #77787b;
-  display: inline;
-  cursor:crosshair;
-  padding: 10px;
-  border-radius: 2px;
-  /* visibility: hidden; */
-}
-
-.cards__action-icon:hover {
-  /* visibility: visible; */
-  color: #4f5053;
-  background-color: #e3e3e7;
-}
-
-.cards__delete-btn:hover,
-.cards__edit-btn:hover {
-  cursor: pointer;
-  border-radius: 4px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
