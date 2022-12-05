@@ -5,13 +5,16 @@ import "../assets/css/Cards.css";
 const Cards = (props) => {
   const context = useAppContext();
 
-  const deleteCard = (id) => {
-    const request = async () => {
-      await axios.delete(
+  const deleteCard = async (id) => {
+    try {
+     const resp = await axios.delete(
         `https://api.trello.com/1/cards/${id}?&key=${context.keys.apiKey}&token=${context.keys.token}`
       );
-    };
-    request();
+      
+    } catch (error) {
+      
+    }
+      
   };
 
   return (
