@@ -9,7 +9,6 @@ const CreateCard = (props) => {
   const [title, setTitle] = useState("");
   const [addCard, setAddCard] = useState(false);
 
-  // try-catch not working 🤷‍♂️
   const postNewCard = async () => {
     try {
       const resp = await axios.post(
