@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAppContext } from "../context/keys";
 import axios from "axios";
-import ListName from "./ListName";
+import ListName from "./ListName.jsx";
 import Cards from "./Cards";
 import Card from "./ShowedCard/Card";
 import "../assets/css/Lists.css";
@@ -44,7 +44,8 @@ const SingleList = (props) => {
       {currentCard ? (
         <div className="card">
           {" "}
-          <Card currentCard={currentCard} showCard={setCurrentCard} />{" "}
+          <Card currentCard={currentCard} showCard={setCurrentCard} />
+          {" "}
         </div>
       ) : null}
     </>
