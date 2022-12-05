@@ -11,12 +11,12 @@ const Cards = (props) => {
         `https://api.trello.com/1/cards/${id}?&key=${context.keys.apiKey}&token=${context.keys.token}`
       );
       if (resp.status === 200) {
-        const newListCards = props.listCards.filter(card => card.id !== id);
+        const newListCards = props.listCards.filter((card) => card.id !== id);
         props.setListCards([...newListCards]);
       }
     } catch (error) {
       console.log(error.message);
-      alert("Unable to create delete card");
+      alert("Unable to delete card");
     }
   };
 
@@ -28,7 +28,9 @@ const Cards = (props) => {
           <div className="cards__card" key={card.id}>
             {/* card action icons */}
             <div className="cards__action-icons">
-              <button className="cards__edit-btn cards__action-icon">
+              <button
+                className="cards__edit-btn cards__action-icon"
+              >
                 <i className="fa-solid fa-pencil"></i>
               </button>
               <button

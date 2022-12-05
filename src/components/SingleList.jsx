@@ -9,15 +9,10 @@ import CreateCard from "./CreateCard";
 
 const SingleList = (props) => {
   const context = useAppContext();
-  //state and function to show a card
   const [listCards, setListCards] = useState([]);
-
   const [currentCard, setCurrentCard] = useState(null);
-  //
-  const [addCard, setAddCard] = useState(false);
 
   useEffect(() => {
-    console.log(listCards);
     // get cards
     const getCards = async () => {
       const resp = await axios.get(
@@ -35,21 +30,17 @@ const SingleList = (props) => {
       <div className="lists__list">
         {props.name}
         <button>DELETE LIST</button>
-        <Cards listCards={listCards} setListCards={setListCards} showCard={setCurrentCard} />
-        {/* add card button toggle */}
-        {addCard ? (
-          <CreateCard
-            idList={props.id}
-            listCards={listCards}
-            setAddCard={setAddCard}
-            setListCards={setListCards}
-          />
-        ) : (
-          <button className="lists__add-card" onClick={() => setAddCard(true)}>
-            <i className="fa-solid fa-plus lists__plus-icon "></i>
-            <span>Add a card</span>
-          </button>
-        )}
+        <Cards
+          listCards={listCards}
+          setListCards={setListCards}
+          showCard={setCurrentCard}
+        />
+        {/* 'add card' button */}
+        <CreateCard
+          idList={props.id}
+          listCards={listCards}
+          setListCards={setListCards}
+        />
       </div>
       {currentCard ? (
         <div className="card">
