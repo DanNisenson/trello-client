@@ -46,9 +46,10 @@ const Authorize = props => {
             }
         }
         catch (error) {
-            if (error.response.data === "expired token")
+            if (error.response.data === "expired token") {
                 console.error("Token Expired");
                 localStorage.removeItem("trelloToken");
+            }
             return (false);
         }
         return (true);
