@@ -9,7 +9,6 @@ const Lists = (props) => {
     const context = useAppContext();
     const [currentLists, setCurrentLists] = useState([]);
     const [currentCards, setCurrentCards] = useState([]);
-    const [toggleAddList, setToggleAddList] = useState(false);
 
     // get board's lists & cards on props(board selection) change.
     useEffect(() => {
@@ -39,14 +38,9 @@ const Lists = (props) => {
                 .map(list => 
                     <SingleList key={list.id} list={list} currentCards={currentCards.filter(c => c.idList === list.id)} />
             )}
-            {toggleAddList ?
-                <CreateList boardId={props.boardId} currentLists={currentLists} setCurrentLists={setCurrentLists} setToggleAddList={setToggleAddList} />
-            :
-            <button className="lists__add-list" onClick={() => setToggleAddList(!toggleAddList)}>
-                <i className="fa-solid fa-plus lists__plus-icon "></i>
-                <span>Add a list</span>
-            </button>
-            }
+            <CreateList boardId={props.boardId}
+                currentLists={currentLists}
+                setCurrentLists={setCurrentLists} />
         </div>
     );
 };
