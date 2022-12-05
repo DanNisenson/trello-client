@@ -7,24 +7,28 @@ const Authorize = props => {
     const context = useAppContext();
 
     useEffect(() => {
-        const matchIndex = window.location.href.indexOf("#token=");
-        console.log(matchIndex);
-        console.log(localStorage.trelloToken);
-        //if a token already exists, check if still valid and return
-        if (localStorage.trelloToken && isValidToken(localStorage.trelloToken)) {
-            context.keys.token = localStorage.trelloToken;
-            props.setIsAuthorized(!props.isAuthorized);
-        }
-        else if (matchIndex !== -1) {
-            if ( window.location.href.indexOf("error=") === -1) {
-                localStorage.trelloToken = window.location.href.substring(matchIndex + "#token=".length);
+        const checkForToken = async () => {
+            const matchIndex = window.location.href.indexOf("#token=");
+            console.log(matchIndex);
+            console.log(localStorage.trelloToken);
+            //if a token already exists, check if still valid and return
+            if (localStorage.trelloToken && await isValidToken(localStorage.trelloToken)) {
+                console.log(isValidToken(localStorage.trelloToken));
                 context.keys.token = localStorage.trelloToken;
-                window.window.location.href = window.location.href.substring(0, matchIndex);
                 props.setIsAuthorized(!props.isAuthorized);
             }
+            else if (matchIndex !== -1) {
+                if ( window.location.href.indexOf("error=") === -1) {
+                    localStorage.trelloToken = window.location.href.substring(matchIndex + "#token=".length);
+                    context.keys.token = localStorage.trelloToken;
+                    window.window.location.href = window.location.href.substring(0, matchIndex);
+                    props.setIsAuthorized(!props.isAuthorized);
+                }
+            }
+            console.log(localStorage.trelloToken);
+            console.log(context.keys.token);
         }
-        console.log(localStorage.trelloToken);
-        console.log(context.keys.token);
+        checkForToken();
     },[]);
 
     const isValidToken = async token => {
@@ -33,7 +37,6 @@ const Authorize = props => {
         const currentTime = new Date();
         try {
             const response = await axios.get(`https://api.trello.com/1/tokens/${token}/?key=${context.keys.apiKey}&token=${token}`);
-            console.log(response.data);
             if (response.data.dateExpires !== null) {
                 const expirationDate = new Date(response.data.dateExpires);
                 if (currentTime.getTime() > expirationDate.getTime()) {
@@ -43,7 +46,9 @@ const Authorize = props => {
             }
         }
         catch (error) {
-            console.error(error);
+            if (error.response.data === "expired token")
+                console.error("Token Expired");
+                localStorage.removeItem("trelloToken");
             return (false);
         }
         return (true);
