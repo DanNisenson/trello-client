@@ -35,14 +35,14 @@ const SingleList = (props) => {
       <div className="lists__list">
         {props.name}
         <button>DELETE LIST</button>
-        <Cards listCards={listCards} showCard={setCurrentCard} />
+        <Cards listCards={listCards} setListCards={setListCards} showCard={setCurrentCard} />
         {/* add card button toggle */}
         {addCard ? (
           <CreateCard
             idList={props.id}
             listCards={listCards}
             setAddCard={setAddCard}
-            setListCards={props.setListCards}
+            setListCards={setListCards}
           />
         ) : (
           <button className="lists__add-card" onClick={() => setAddCard(true)}>
