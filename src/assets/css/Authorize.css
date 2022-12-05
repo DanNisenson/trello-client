@@ -1,0 +1,35 @@
+.authorize {
+    height: 40vh;
+    margin: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.authorize__text {
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.authorize__text-bold {
+    font-weight: bold;
+}
+
+.authorize__button {
+    width: 10vw;
+    font-size: 1.5em;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    color: #FFF;
+    background-color: #0279C0;
+    cursor: pointer;
+}
+
+.authorize__button:hover {
+    opacity: 0.8;
+}
