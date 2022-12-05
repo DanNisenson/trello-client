@@ -10,13 +10,16 @@ const CreateCard = (props) => {
 
   // try-catch not working 🤷‍♂️
   const postNewCard = async () => {
-    // try {
+    try {
       const resp = await axios.post(`https://api.trello.com/1/cards?name=${title}&idList=${props.idList}&key=${context.keys.apiKey}&token=${context.keys.token}`);
-      console.log(resp, props);
-      props.setListCards([...props.listCards, resp]);
-    // } catch {
-    //   console.log('error. failed to post new card. CreateCard.jsx::12')
-    // }
+      if (resp.status === 200) {
+        console.log(`'${resp.data.name}' card added`)
+        props.setListCards([...props.listCards, resp.data]);
+      }
+    } catch (error) {
+      console.log(error)
+      console.log('error. failed to post new card. CreateCard.jsx::12')
+    }
     // close card creation component
     props.setAddCard(false);
   };

@@ -7,14 +7,17 @@ const Cards = (props) => {
 
   const deleteCard = async (id) => {
     try {
-     const resp = await axios.delete(
+      const resp = await axios.delete(
         `https://api.trello.com/1/cards/${id}?&key=${context.keys.apiKey}&token=${context.keys.token}`
       );
-      
+      if (resp.status === 200) {
+        const newListCards = props.listCards.filter(card => card.id !== id);
+        props.setListCards([...newListCards]);
+      }
     } catch (error) {
-      
+      console.log(error.message);
+      alert("Unable to create delete card");
     }
-      
   };
 
   return (
@@ -22,24 +25,24 @@ const Cards = (props) => {
       {/* iterate and print all cards on board */}
       {props.listCards.map((card) => {
         return (
-            <div className="cards__card" key={card.id}>
-              {/* card action icons */}
-              <div className="cards__action-icons">
-                <button className="cards__edit-btn cards__action-icon">
-                  <i className="fa-solid fa-pencil"></i>
-                </button>
-                <button
-                  className="cards__delete-btn cards__action-icon"
-                  onClick={() => deleteCard(card.id)}
-                >
-                  <i className="fa-solid fa-trash"></i>
-                </button>
-              </div>
-              {/* card name */}
-              <div className="cards__name" onClick={() => props.showCard(card)} >
-                {card.name}
-              </div>
+          <div className="cards__card" key={card.id}>
+            {/* card action icons */}
+            <div className="cards__action-icons">
+              <button className="cards__edit-btn cards__action-icon">
+                <i className="fa-solid fa-pencil"></i>
+              </button>
+              <button
+                className="cards__delete-btn cards__action-icon"
+                onClick={() => deleteCard(card.id)}
+              >
+                <i className="fa-solid fa-trash"></i>
+              </button>
             </div>
+            {/* card name */}
+            <div className="cards__name" onClick={() => props.showCard(card)}>
+              {card.name}
+            </div>
+          </div>
         );
       })}
     </div>
