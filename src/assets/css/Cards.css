@@ -1,6 +1,7 @@
 .cards__card {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  position: relative;
   padding: 10px;
   margin: 5px 0 0 0;
   border-bottom: 1px solid #b4b9c5;
@@ -9,18 +10,38 @@
   cursor: pointer;
 }
 
+.cards__name {
+  word-wrap: break-word;
+}
+
 .cards__card:hover {
   background-color: #f3f4f6;
 }
 
 .cards__action-icons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
   font-size: 0.7rem;
+  position: absolute;
+  top: 2px;
+  right: 2px;
 }
 
-.cards__delete-btn,
-.cards__edit-btn {
+.cards__action-icon {
+  color: #77787b;
+  display: inline;
+  cursor:crosshair;
+  padding: 10px;
+  border-radius: 2px;
+  /* visibility: hidden; */
+}
+
+.cards__action-icon:hover {
+  /* visibility: visible; */
+  color: #4f5053;
+  background-color: #e3e3e7;
+}
+
+.cards__delete-btn:hover,
+.cards__edit-btn:hover {
   cursor: pointer;
+  border-radius: 4px;
 }
