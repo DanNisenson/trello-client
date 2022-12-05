@@ -15,6 +15,15 @@ const Authorize = props => {
                 <p>Once you authorize the Application, you will be redirected back here.</p>
             </div>
             <button className="authorize__button" onClick={() => props.setIsAuthorized(!props.isAuthorized)}>Authorize</button>
+            {/* This is a DEV Button */}
+            {process.env.REACT_APP_TOKEN &&
+                <button className="authorize__button"
+                    onClick={() => {
+                        context.keys.token = process.env.REACT_APP_TOKEN;
+                        props.setIsAuthorized(!props.isAuthorized)}
+                    }
+                >Use ENV Token</button>
+            }
         </div>
     );
 }
