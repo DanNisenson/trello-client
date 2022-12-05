@@ -5,41 +5,48 @@ import "../assets/css/Cards.css";
 const Cards = (props) => {
   const context = useAppContext();
 
-  const deleteCard = (id) => {
-    const request = async () => {
-      await axios.delete(
+  const deleteCard = async (id) => {
+    try {
+      const resp = await axios.delete(
         `https://api.trello.com/1/cards/${id}?&key=${context.keys.apiKey}&token=${context.keys.token}`
       );
-    };
-    request();
-    // has to refresh after request
+      if (resp.status === 200) {
+        const newListCards = props.listCards.filter((card) => card.id !== id);
+        props.setListCards([...newListCards]);
+      }
+    } catch (error) {
+      console.log(error.message);
+      alert("Unable to delete card");
+    }
   };
 
   return (
     <div className="cards">
-      {/* iterate all cards on board */}
-      {props.currentCards
-        .map((each) => {
-          return (
-            // each card
-            <div className="cards__card" key={each.id} onClick={()=>props.showCard(each)}>
-              {/* card name */}
-              <div className="cards__name">{each.name}</div>
-              {/* card action icons */}
-              <div className="cards__action-icons">
-                <button className="cards__edit-btn">
-                  <i className="fa-solid fa-pencil"></i>
-                </button>
-                <button
-                  className="cards__delete-btn"
-                  onClick={()=>deleteCard(each.id)}
-                >
-                  <i className="fa-solid fa-trash"></i>
-                </button>
-              </div>
+      {/* iterate and print all cards on board */}
+      {props.listCards.map((card) => {
+        return (
+          <div className="cards__card" key={card.id}>
+            {/* card action icons */}
+            <div className="cards__action-icons">
+              <button
+                className="cards__edit-btn cards__action-icon"
+              >
+                <i className="fa-solid fa-pencil"></i>
+              </button>
+              <button
+                className="cards__delete-btn cards__action-icon"
+                onClick={() => deleteCard(card.id)}
+              >
+                <i className="fa-solid fa-trash"></i>
+              </button>
             </div>
-          );
-        })}
+            {/* card name */}
+            <div className="cards__name" onClick={() => props.showCard(card)}>
+              {card.name}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
