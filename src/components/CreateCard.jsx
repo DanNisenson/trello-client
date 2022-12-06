@@ -45,7 +45,7 @@ const CreateCard = (props) => {
             </button>
             <i
               className="fa-solid fa-plus create-card__close-btn"
-              onClick={() => props.setAddCard(false)}
+              onClick={() => setAddCard(false)}
             ></i>
           </div>
         </div>

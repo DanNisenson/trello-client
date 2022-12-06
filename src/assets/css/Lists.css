@@ -12,16 +12,6 @@
     padding: 10px;
 }
 
-.lists__name {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid transparent;
-}
-
-.lists__name:hover {
-    border: 1px solid #FBC7C7;
-}
-
 .lists__add-card {
     display: flex;
     justify-content: flex-start;
