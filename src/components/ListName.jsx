@@ -27,11 +27,20 @@ const ListName = props => {
         }
     }
 
+    const handleKeyPress = event => {
+        if (event.key === "Escape")
+            setToggleEdit(!toggleEdit);
+        else if (event.key === "Enter")
+            updateListName();
+    }
+
     return (
         <>
             {toggleEdit ?
                 <div className="lists__name-edit">
-                    <input className="lists__name-edit-input" type="text" value={listName} onChange={event => setListName(event.target.value)}></input>
+                    <input className="lists__name-edit-input" type="text" value={listName}
+                        onChange={event => setListName(event.target.value)}
+                        onKeyDown={event => handleKeyPress(event)}></input>
                     <div className="lists__name-edit-btns">
                         <i className="fa-solid fa-check edit-list__go-btn" onClick={updateListName}></i>  
                         <i className="fa-solid fa-plus edit-list__close-btn" onClick={() => setToggleEdit(!toggleEdit)}></i>
