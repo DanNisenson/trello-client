@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAppContext } from "../context/keys";
 import axios from "axios";
+import ListMenu from "./ListMenu";
 import "../assets/css/ListName.css";
 
 const ListName = props => {
@@ -47,9 +48,12 @@ const ListName = props => {
                     </div>
                 </div>
                 :
-                <button className="lists__name" onClick={() => setToggleEdit(!toggleEdit)}>
-                    <p>{listName}</p>
-                </button>
+                <div className="lists__name">
+                    <button className="lists__name-title" onClick={() => setToggleEdit(!toggleEdit)}>
+                        <p>{listName}</p>
+                    </button>
+                    <ListMenu />
+                </div>
             }
         </>
     );

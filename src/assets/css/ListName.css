@@ -1,14 +1,19 @@
 .lists__name {
+    display: flex;
+    flex-direction: row;
+}
+
+.lists__name-title {
     width: 100%;
     display: flex;
     justify-content: space-between;
     border: 2px solid transparent;
-    border-radius: 4px;
+    border-radius: 5px;
     padding: 5px 15px;
     cursor: pointer;
 }
 
-.lists__name:hover {
+.lists__name-title:hover {
     background-color: #e3e3e7;
 }
 
