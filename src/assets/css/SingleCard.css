@@ -62,10 +62,10 @@
 .cards__edit-close-btn {
   font-size: 20px;
   transform: rotate(45deg);
-  color: #fff;
+  color: rgba(255, 255, 255, 0.753);
   position: absolute;
   top: -30px;
-  right: 0;
+  left: 0;
 }
 
 .cards__edit-save-btn {
