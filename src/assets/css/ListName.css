@@ -1,0 +1,48 @@
+.lists__name {
+    display: flex;
+    flex-direction: row;
+}
+
+.lists__name-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.lists__name-title:hover {
+    background-color: #e3e3e7;
+}
+
+.lists__name-edit {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.lists__name-edit-input {
+    width: 100%;
+    padding: 5px 15px;
+}
+
+.lists__name-edit-btns {
+    display: flex;
+    color: #414143;
+    font-size: 1rem;
+    padding: 5px;
+}
+
+.edit-list__go-btn {
+    color: #54a754;
+    margin: 0px 2.5px;
+}
+
+.edit-list__close-btn {
+    color: #a75454;
+    margin: 0px 2.5px;
+    transform: rotate(45deg);
+}

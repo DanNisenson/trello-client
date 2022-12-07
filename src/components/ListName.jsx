@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useAppContext } from "../context/keys";
 import axios from "axios";
-import "../assets/css/Lists.css";
+import ListMenu from "./ListMenu";
+import "../assets/css/ListName.css";
 
 const ListName = props => {
     const context = useAppContext();
@@ -27,20 +28,34 @@ const ListName = props => {
         }
     }
 
+    const handleKeyPress = event => {
+        if (event.key === "Escape")
+            setToggleEdit(!toggleEdit);
+        else if (event.key === "Enter")
+            updateListName();
+    }
+
     return (
-        <div className="lists__name">
+        <>
             {toggleEdit ?
-                <>
-                    <input type="text" value={listName} onChange={event => setListName(event.target.value)}></input>
-                    <i className="fa-solid fa-check" onClick={updateListName}></i>
-                </>
+                <div className="lists__name-edit">
+                    <input className="lists__name-edit-input" type="text" value={listName}
+                        onChange={event => setListName(event.target.value)}
+                        onKeyDown={event => handleKeyPress(event)}></input>
+                    <div className="lists__name-edit-btns">
+                        <i className="fa-solid fa-check edit-list__go-btn" onClick={updateListName}></i>  
+                        <i className="fa-solid fa-plus edit-list__close-btn" onClick={() => setToggleEdit(!toggleEdit)}></i>
+                    </div>
+                </div>
                 :
-                <>
-                    <p>{listName}</p>
-                    <i className="fa-solid fa-pen-to-square" onClick={() => setToggleEdit(!toggleEdit)}></i>
-                </>
+                <div className="lists__name">
+                    <button className="lists__name-title" onClick={() => setToggleEdit(!toggleEdit)}>
+                        <p>{listName}</p>
+                    </button>
+                    <ListMenu />
+                </div>
             }
-        </div>
+        </>
     );
 }
 
