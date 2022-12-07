@@ -25,7 +25,7 @@ const Lists = (props) => {
         <div className="lists">
             {currentLists
                 .map(list => 
-                    <SingleList key={list.id} list={list} />
+                    <SingleList key={list.id} list={list} currentLists={currentLists} setCurrentLists={setCurrentLists} />
             )}
             <CreateList boardId={props.boardId}
                 currentLists={currentLists}
