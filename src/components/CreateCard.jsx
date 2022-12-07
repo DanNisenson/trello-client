@@ -6,23 +6,27 @@ import "../assets/css/Cards.css";
 
 const CreateCard = (props) => {
   const context = useAppContext();
-  const [title, setTitle] = useState("");
+  // "card creation" mode toggle
   const [addCard, setAddCard] = useState(false);
+  // new card's title
+  const [title, setTitle] = useState("");
+  
 
   const postNewCard = async () => {
+    // request
     try {
       const resp = await axios.post(
         `https://api.trello.com/1/cards?name=${title}&idList=${props.idList}&key=${context.keys.apiKey}&token=${context.keys.token}`
       );
       if (resp.status === 200) {
-        console.log(`'${resp.data.name}' card added`);
+        // add new card at the end of listCards array
         props.setListCards([...props.listCards, resp.data]);
       }
     } catch (error) {
       console.log(error);
       console.log("error. failed to post new card. CreateCard.jsx::12");
     }
-    // close card creation component
+    // toggle card creation mode
     setAddCard(false);
   };
 
@@ -31,7 +35,7 @@ const CreateCard = (props) => {
       {addCard ? (
         <div className="create-card">
           {/* title user input */}
-          <textarea
+          <textarea   
             type="text"
             id="new-card-title-input"
             className="create-card__title-input"
@@ -59,6 +63,3 @@ const CreateCard = (props) => {
   );
 };
 export default CreateCard;
-
-// make the form and pass user input value to postNewCard
-// make postNewCard async and make POST request
