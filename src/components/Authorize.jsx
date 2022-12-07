@@ -9,11 +9,11 @@ const Authorize = props => {
     useEffect(() => {
         const checkForToken = async () => {
             const matchIndex = window.location.href.indexOf("#token=");
-            console.log(matchIndex);
-            console.log(localStorage.trelloToken);
+            // console.log(matchIndex);
+            // console.log(localStorage.trelloToken);
             //if a token already exists, check if still valid and return
             if (localStorage.trelloToken && await isValidToken(localStorage.trelloToken)) {
-                console.log(isValidToken(localStorage.trelloToken));
+                // console.log(isValidToken(localStorage.trelloToken));
                 context.keys.token = localStorage.trelloToken;
                 props.setIsAuthorized(!props.isAuthorized);
             }
@@ -25,8 +25,8 @@ const Authorize = props => {
                     props.setIsAuthorized(!props.isAuthorized);
                 }
             }
-            console.log(localStorage.trelloToken);
-            console.log(context.keys.token);
+            // console.log(localStorage.trelloToken);
+            // console.log(context.keys.token);
         }
         checkForToken();
     },[]);
@@ -55,7 +55,7 @@ const Authorize = props => {
     }
 
     const authorizeApp = () => {
-        console.log("Make a request");
+        // console.log("Make a request");
         window.open(`https://api.trello.com/1/authorize/?key=${context.keys.apiKey}&return_url=http://localhost:3000/&callback_method=fragment&scope=read,write&expiration=1hour&name=trelloClientApp&response_type=fragment`, "_self");
     }
 /* This function can be moved to a Component to be included as a button in Board.
