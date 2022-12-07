@@ -1,11 +1,12 @@
+import { useState } from "react";
 import "../assets/css/Cards.css";
 import SingleCard from "./SingleCard";
 
 const Cards = (props) => {
+
   
   return (
     <div className="cards" >
-      <div className="cards__modal-bkground"></div>
       {/* iterate and print all cards on board */}
       {props.listCards.map((card) => {
         return (
