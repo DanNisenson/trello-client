@@ -52,7 +52,8 @@ const ListName = props => {
                     <button className="lists__name-title" onClick={() => setToggleEdit(!toggleEdit)}>
                         <p>{listName}</p>
                     </button>
-                    <ListMenu />
+                    <ListMenu listId={props.listId} currentLists={props.currentLists} setCurrentLists={props.setCurrentLists}
+                        setListCards={props.setListCards}  />
                 </div>
             }
         </>
