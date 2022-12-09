@@ -1,0 +1,34 @@
+.userbox {
+    display: flex;
+    position: relative;
+    align-self: center;
+    margin: 20px;
+}
+
+.userbox-background {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: #61606050;
+}
+
+.userbox-btn {
+    cursor: pointer;
+}
+
+.userbox-logout {
+    position: absolute;
+    bottom: -200%;
+    left: 5%;
+    padding: 5px;
+    border-radius: 5px;
+    color: #FFF;
+    background-color: #0279C0;
+    cursor: pointer;
+}
+
+.userbox-logout:hover {
+    opacity: 0.8;
+}

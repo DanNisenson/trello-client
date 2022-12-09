@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "../context/keys";
 import axios from "axios";
 import Lists from "./Lists";
+import UserBox from "./UserBox";
 import "../assets/css/UserBoards.css";
 
 const Board = () => {
@@ -27,18 +28,21 @@ const Board = () => {
     <>
       {/* boards list */}
       <div className="boards">
-        <h1>Boards</h1>
-        {userBoards
-          .map((e, i) => (
-            <div
-              className="board-link"
-              onClick={() => setCurrentBoard(e)}
-              key={i}
-            >
-              {e.name}
+        <div className="boards__titles">
+            <h1>Boards</h1>
+            {userBoards
+            .map((e, i) => (
+                <div
+                className="board-link"
+                onClick={() => setCurrentBoard(e)}
+                key={i}
+                >
+                {e.name}
+                </div>
+            ))
+            .reverse()}
             </div>
-          ))
-          .reverse()}
+          <UserBox />
       </div>
       {/* if currentBoard === true -> render lists and cards */}
       {Object.keys(currentBoard).length !== 0 && <Lists boardId={currentBoard.id} />}

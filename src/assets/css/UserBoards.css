@@ -1,12 +1,17 @@
 .boards {
-  display: flex;
-  align-items: flex-end;
-  gap: 20px;
-  padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.boards__titles {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 20px;
+    padding: 20px 30px;
 }
 
 .board-link {
-  min-width: 100px;
-  cursor: pointer;
+    min-width: 100px;
+    cursor: pointer;
 }
-
