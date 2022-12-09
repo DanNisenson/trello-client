@@ -4,7 +4,7 @@ export const AppContext = createContext();
 
 export function AppWrapper({ children }) {
     const [keys, setKeys] = useState({
-        apiKey: "1a9b6e88add0383f3d5cdc6764833c2a",
+        apiKey: process.env.REACT_APP_API_KEY,
         token: ""
     });
 
