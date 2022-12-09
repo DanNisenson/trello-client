@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useAppContext } from "../context/keys";
+import { useAppContext } from "../context/context";
+import cardsAPI from "../services/cardsAPI";
 
 const EditCard = (props) => {
   const context = useAppContext();
@@ -8,16 +9,14 @@ const EditCard = (props) => {
   const updateCard = async () => {
     try {
       // request
-      const resp = await axios.put(
-        `https://api.trello.com/1/cards/${props.id}?name=${props.cardTitle}&key=${context.keys.apiKey}&token=${context.keys.token}`
-      );
+      const resp = await cardsAPI.updateCard(context.keys.apiKey, context.keys.token, props.id, props.cardTitle)
       if (resp.status === 200) {
         // recreate listCards array and replace modified card
-        const newListCards = props.listCards.map((card) =>
+        const newListCards = context.cards.map((card) =>
           card.id === resp.data.id ? resp.data : card
         );
         // update cards in List component
-        props.setListCards(newListCards);
+        context.setCards(newListCards);
       }
     } catch (error) {
       console.log(error.message);
@@ -31,16 +30,14 @@ const EditCard = (props) => {
   const deleteCard = async () => {
     try {
       // request
-      const resp = await axios.delete(
-        `https://api.trello.com/1/cards/${props.id}?&key=${context.keys.apiKey}&token=${context.keys.token}`
-      );
+      const resp = await cardsAPI.deleteCard(context.keys.apiKey, context.keys.token, props.id)
       if (resp.status === 200) {
         // copy listCards and remove deleted card
-        const newListCards = props.listCards.filter(
+        const newListCards = context.cards.filter(
           (card) => card.id !== props.id
         );
         // update cards in List component
-        props.setListCards(newListCards);
+        context.setCards(newListCards);
       }
     } catch (error) {
       console.log(error.message);
