@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useAppContext } from "../context/keys";
-import axios from "axios";
+import { useAppContext } from "../context/context";
 import ListName from "./ListName";
 import Cards from "./Cards";
 import Card from "./ShowedCard/Card";
@@ -13,24 +12,18 @@ const SingleList = (props) => {
   const [listCards, setListCards] = useState([]);
   const [currentCard, setCurrentCard] = useState(null);
 
-  useEffect(() => {
-    // get cards
-    const getCards = async () => {
-      const resp = await axios.get(
-        `https://api.trello.com/1/lists/${props.list.id}/cards?&key=${context.keys.apiKey}&token=${context.keys.token}`
-      );
-      setListCards(resp.data);
-    };
-
-    getCards();
-  }, []);
+  useEffect(()=> {
+      const filteredCards = context.cards.filter(card => props.list.id === card.idList);
+      setListCards(filteredCards);
+    }
+  , [context.cards]);
 
   return (
     <>
       <div className="lists__list">
         <ListName name={props.list.name} listId={props.list.id}
             currentLists={props.currentLists} setCurrentLists={props.setCurrentLists}
-            setListCards={setListCards} 
+            setListCards={setListCards}
         />
         <Cards
           listCards={listCards}

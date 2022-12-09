@@ -1,35 +1,48 @@
 import { useState, useEffect } from "react";
-import { useAppContext } from "../context/keys";
-import axios from "axios";
+import { useAppContext } from "../context/context";
+import listsAPI from "../services/listsAPI";
+import cardsAPI from "../services/cardsAPI";
 import SingleList from "./SingleList";
 import CreateList from "./CreateList";
+
 import "../assets/css/Lists.css";
 
 const Lists = (props) => {
     const context = useAppContext();
-    const [currentLists, setCurrentLists] = useState([]);
+    // !!!
+    // const [currentLists, setCurrentLists] = useState([]);
 
     // get board's lists on props(board selection) change.
     useEffect(() => {
         const getLists = async () => {
-            const resp = await axios.get(
-                `https://api.trello.com/1/boards/${props.boardId}/lists?&key=${context.keys.apiKey}&token=${context.keys.token}`
-            );
-            setCurrentLists(resp.data);
+            try {
+                const resp = await listsAPI.getLists(context.keys.apiKey, context.keys.token, props.boardId);
+                context.setLists(resp.data);
+            } catch (error) {
+                console.log('can\'t get lists.');
+            }
         }
+        const getCards = async () => {
+            try {
+                const resp = await cardsAPI.getCards(context.keys.apiKey, context.keys.token, props.boardId);
+                context.setCards(resp.data);
+            } catch (error) {
+                console.log("can't get cards ");
+            }
+        };
         getLists();
-    }, [props]);
+        getCards();
+    }, [props.boardId]);
 
     return (
         // iterate lists on selected board and render each, passing only the filtered cards that belong to each list
         <div className="lists">
-            {currentLists
-                .map(list => 
-                    <SingleList key={list.id} list={list} currentLists={currentLists} setCurrentLists={setCurrentLists} />
-            )}
+            {context.lists
+                .map(list =>
+                    <SingleList key={list.id} list={list} currentLists={context.lists} setCurrentLists={context.setLists} />
+                )}
             <CreateList boardId={props.boardId}
-                currentLists={currentLists}
-                setCurrentLists={setCurrentLists} />
+                currentLists={context.lists} setCurrentLists={context.setLists} />
         </div>
     );
 };
