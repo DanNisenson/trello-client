@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AppWrapper } from "./context/keys.js";
+import { AppWrapper } from "./context/context.js";
 import Board from "./components/Board";
 import Authorize from "./components/Authorize";
 import "./assets/css/App.css";

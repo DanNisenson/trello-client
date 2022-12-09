@@ -7,9 +7,16 @@ export function AppWrapper({ children }) {
         apiKey: process.env.REACT_APP_API_KEY,
         token: ""
     });
+    const [boards, setBoards] = useState([]);
+    const [lists, setLists] = useState([]);
+    const [cards, setCards] = useState([]);
 
     return (
-        <AppContext.Provider value={{ keys, setKeys }}>
+        <AppContext.Provider value={{   keys, setKeys,
+                                        boards, setBoards,
+                                        lists, setLists,
+                                        cards, setCards
+                                    }}>
             {children}
         </AppContext.Provider>
     );
