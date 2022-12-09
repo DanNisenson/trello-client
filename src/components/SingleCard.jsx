@@ -19,11 +19,11 @@ const SingleCard = (props) => {
       );
       if (resp.status === 200) {
         // recreate listCards array and replace modified card
-        const newListCards = props.listCards.map((card) =>
+        const newListCards = context.cards.map((card) =>
           card.id === resp.data.id ? resp.data : card
         );
         // update cards in List component
-        props.setListCards(newListCards);
+        context.setCards(newListCards);
       }
     } catch (error) {
       console.log(error.message);
@@ -42,11 +42,11 @@ const SingleCard = (props) => {
       );
       if (resp.status === 200) {
         // copy listCards and remove deleted card
-        const newListCards = props.listCards.filter(
+        const newListCards = context.cards.filter(
           (card) => card.id !== props.id
         );
         // update cards in List component
-        props.setListCards(newListCards);
+        context.setCards(newListCards);
       }
     } catch (error) {
       console.log(error.message);
