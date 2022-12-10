@@ -33,8 +33,6 @@ const SingleList = (props) => {
         {/* 'add card' button */}
         <CreateCard
           idList={props.list.id}
-          listCards={listCards}
-          setListCards={setListCards}
         />
       </div>
       {currentCard ? (
