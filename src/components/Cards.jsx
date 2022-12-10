@@ -1,7 +1,6 @@
 import SingleCard from "./SingleCard";
 
 const Cards = (props) => {
-
   
   return (
     <div className="cards" >

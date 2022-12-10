@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../assets/css/SingleCard.css";
 import EditCard from "./EditCard";
 
@@ -7,8 +7,6 @@ const SingleCard = (props) => {
   const [cardEdit, setCardEdit] = useState(false);
   // card title
   const [cardTitle, setCardTitle] = useState(props.name);
-
-  
 
   return (
     <>

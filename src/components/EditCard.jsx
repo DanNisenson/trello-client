@@ -1,42 +1,45 @@
 import { useAppContext } from "../context/context";
-import { useEffect ,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import cardsAPI from "../services/cardsAPI";
 import "../assets/css/EditCard.css";
 
 const EditCard = (props) => {
-  const textarea = useRef()
   const context = useAppContext();
+  const textarea = useRef();
+  // const [tempTitle, setTempTitle] = useState(props.cardTitle);
 
   useEffect(() => {
     // focus element and select all text to be edited
     const title = textarea.current;
     title.setSelectionRange(0, props.cardTitle.length);
     title.focus();
-  }, [])
-  
+  }, []);
 
   // card title change function
   const updateCard = async () => {
-    try {
-      // request
-      const resp = await cardsAPI.updateCard(
-        context.keys.apiKey,
-        context.keys.token,
-        props.id,
-        props.cardTitle
-      );
-      if (resp.status === 200) {
-        // recreate listCards array and replace modified card
-        const newListCards = context.cards.map((card) =>
-          card.id === resp.data.id ? resp.data : card
+    const newTitle = textarea.current.value;
+    // request
+      try {
+        const resp = await cardsAPI.updateCard(
+          context.keys.apiKey,
+          context.keys.token,
+          props.id,
+          newTitle
         );
-        // update cards in List component
-        context.setCards(newListCards);
+        if (resp.status === 200) {
+          // recreate listCards array and replace modified card
+          const newListCards = context.cards.map((card) =>
+            card.id === resp.data.id ? resp.data : card
+          );
+          // update card title in SingleCard
+          props.setCardTitle(newTitle);
+          // update cards in context
+          context.setCards(newListCards);
+        }
+      } catch (error) {
+        console.log(error.message);
+        alert("Unable to update card");
       }
-    } catch (error) {
-      console.log(error.message);
-      alert("Unable to update card");
-    }
     // toggle card edit mode
     props.setCardEdit(false);
   };
@@ -82,10 +85,7 @@ const EditCard = (props) => {
           {/* title input */}
           <textarea
             className="cards__name cards__name--edit"
-            value={props.cardTitle}
-            onChange={(e) => {
-              props.setCardTitle(e.target.value);
-            }}
+            defaultValue={props.cardTitle}
             ref={textarea}
           />
           {/* update card title button */}
