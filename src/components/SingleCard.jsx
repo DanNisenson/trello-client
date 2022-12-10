@@ -16,6 +16,7 @@ const SingleCard = (props) => {
       {cardEdit ? (
           <EditCard
             id={props.id}
+            idList={props.idList}
             cardTitle={cardTitle}
             listCards={props.listCards}
             setListCards={props.setListCards}

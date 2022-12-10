@@ -1,19 +1,20 @@
 import { useAppContext } from "../context/context";
-import { useEffect ,useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import cardsAPI from "../services/cardsAPI";
 import "../assets/css/EditCard.css";
+import MoveCard from "./MoveCard";
 
 const EditCard = (props) => {
-  const textarea = useRef()
   const context = useAppContext();
+  const textarea = useRef();
+  const [moveCard, setMoveCard] = useState(false);
 
   useEffect(() => {
     // focus element and select all text to be edited
     const title = textarea.current;
     title.setSelectionRange(0, props.cardTitle.length);
     title.focus();
-  }, [])
-  
+  }, []);
 
   // card title change function
   const updateCard = async () => {
@@ -27,11 +28,11 @@ const EditCard = (props) => {
       );
       if (resp.status === 200) {
         // recreate listCards array and replace modified card
-        const newListCards = context.cards.map((card) =>
+        const newCards = context.cards.map((card) =>
           card.id === resp.data.id ? resp.data : card
         );
         // update cards in List component
-        context.setCards(newListCards);
+        context.setCards(newCards);
       }
     } catch (error) {
       console.log(error.message);
@@ -100,9 +101,13 @@ const EditCard = (props) => {
             <button className="cards__edit-action-btn" onClick={deleteCard}>
               <i className="fa-solid fa-trash"></i> Delete
             </button>
-            <button className="cards__edit-action-btn">
-            <i class="fa-solid fa-arrow-right"></i> Move
+            <button
+              className="cards__edit-action-btn"
+              onClick={() => setMoveCard(true)}
+            >
+              <i className="fa-solid fa-arrow-right"></i> Move
             </button>
+            {moveCard && <MoveCard id={props.id} idList={props.idList} setMoveCard={setMoveCard} />}
             <button className="cards__edit-action-btn">
               <i className="fa-solid fa-trash"></i> Archive
             </button>
