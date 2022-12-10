@@ -21,12 +21,13 @@
     padding: 5px 15px;
     margin: 10px 0 0 0;
     border-radius: 3px;
-    color: #77787b;
+    color: #5E6C84;
+    cursor: pointer;
 }
 
 .lists__add-card:hover {
-    color: #4f5053;
-    background-color: #e3e3e7;
+    color: #182A4E;
+    background-color: #DADBE3;
 }
 
 .lists__add-list {
