@@ -101,7 +101,7 @@ const EditCard = (props) => {
               <i className="fa-solid fa-trash"></i> Delete
             </button>
             <button className="cards__edit-action-btn">
-              <i className="fa-solid fa-trash"></i> Open
+            <i class="fa-solid fa-arrow-right"></i> Move
             </button>
             <button className="cards__edit-action-btn">
               <i className="fa-solid fa-trash"></i> Archive

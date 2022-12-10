@@ -45,14 +45,14 @@ const CreateCard = (props) => {
               Add card
             </button>
             <i
-              className="fa-solid fa-plus create-card__close-btn"
+              className="fa-regular fa-plus create-card__close-btn"
               onClick={() => setAddCard(false)}
             ></i>
           </div>
         </div>
       ) : (
         <button className="lists__add-card" onClick={() => setAddCard(true)}>
-          <i className="fa-solid fa-plus lists__plus-icon "></i>
+          <i className="fa-regular fa-plus lists__plus-icon "></i>
           <span>Add a card</span>
         </button>
       )}
