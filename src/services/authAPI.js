@@ -11,20 +11,16 @@ class authAPI {
         return await axios.get(`${process.env.REACT_APP_BASE_URL}${url}`);
     }
 
-}
-
-/* This function can be moved to a Component to be included as a button in Board.
-    const removeAuth = async () => {
-        console.log("Revoke");
-        console.log(localStorage.trelloToken);
-        const response = await axios.delete(`https://api.trello.com/1/tokens/${localStorage.trelloToken}/?key=${context.keys.apiKey}&token=${localStorage.trelloToken}`);
-        console.log(response);
-        localStorage.removeItem("trelloToken");
-        context.keys.token = "";
-        console.log(localStorage.trelloToken);
-        console.log(context.keys.token);
-        props.setAuthorized(!props.authorized);
+    static async getMember(apiKey, token) {
+        const url = `tokens/${token}/member?key=${apiKey}&token=${token}`;
+        return await axios.get(`${process.env.REACT_APP_BASE_URL}${url}`);
     }
-*/
+
+    static async deleteToken(apiKey, token) {
+        const url = `tokens/${token}/?key=${apiKey}&token=${token}`;
+        return await axios.delete(`${process.env.REACT_APP_BASE_URL}${url}`);
+    }
+
+}
 
 export default authAPI;
