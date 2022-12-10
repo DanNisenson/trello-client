@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useState } from "react";
-import { useAppContext } from "../context/keys";
+import { useAppContext } from "../context/context";
+import cardsAPI from "../services/cardsAPI";
 import "../assets/css/CreateCard.css";
-import "../assets/css/Cards.css";
 
 const CreateCard = (props) => {
   const context = useAppContext();
@@ -15,16 +14,14 @@ const CreateCard = (props) => {
   const postNewCard = async () => {
     // request
     try {
-      const resp = await axios.post(
-        `https://api.trello.com/1/cards?name=${title}&idList=${props.idList}&key=${context.keys.apiKey}&token=${context.keys.token}`
-      );
+      const resp = await cardsAPI.postNewCard(context.keys.apiKey, context.keys.token, title, props.idList)
       if (resp.status === 200) {
         // add new card at the end of listCards array
-        props.setListCards([...props.listCards, resp.data]);
+        context.setCards([...context.cards, resp.data]);
       }
     } catch (error) {
       console.log(error);
-      console.log("error. failed to post new card. CreateCard.jsx::12");
+      console.log("error. failed to post new card.");
     }
     // toggle card creation mode
     setAddCard(false);

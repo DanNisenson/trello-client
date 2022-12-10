@@ -1,0 +1,68 @@
+
+
+.cards__edit {
+  width: 100%;
+  z-index: 10;
+}
+
+.cards__name--edit {
+  min-height: 100px;
+  min-width: 100%;
+}
+
+.cards__name--edit:focus {
+  outline: none;
+}
+
+.cards__edit-close-btn {
+  font-size: 1.8rem;
+  transform: rotate(45deg);
+  color: rgba(255, 255, 255, .85);
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  z-index: 10;
+}
+
+.cards__edit-save-btn {
+  position: absolute;
+  width: 80px;
+  bottom: -40px;
+  left: 0;
+}
+
+.cards__edit-sidebar {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: -90px;
+  gap: 3px;
+}
+
+ .cards__edit-action-btn {
+  cursor: pointer;
+  color: #C7D1DB;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 4px;
+  transition: transform ease-in .2s;
+ }
+
+ .cards__edit-action-btn:hover {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: translateX(5px);
+ }
+
+
+ .cards__modal-bkground {
+  /* display: none; */
+  background-color: rgba(0, 0, 0, 0.55);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}

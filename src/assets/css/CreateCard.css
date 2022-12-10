@@ -30,8 +30,12 @@
 
 .create-card__close-btn {
   cursor: pointer;
-  color: #77787b;
+  color: #77787bc0;
   padding: 0 .5rem;
   font-size: 1.5rem;
   transform: rotate(45deg);
+}
+
+.create-card__close-btn:hover {
+  color: #77787b;
 }

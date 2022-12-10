@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAppContext } from "../context/keys";
-import axios from "axios";
+import { useAppContext } from "../context/context";
+import listsAPI from "../services/listsAPI";
 import ListMenu from "./ListMenu";
 import "../assets/css/ListName.css";
 
@@ -15,11 +15,15 @@ const ListName = props => {
         if (!listName)
             return;
         try {
-            const URI = `https://api.trello.com/1/lists/${props.listId}/name?value=${listName}&key=${context.keys.apiKey}&token=${context.keys.token}`;
-            const response = await axios.put(URI);
+            const response = await listsAPI.updateListName(context.keys.apiKey, context.keys.token, props.listId, listName);
             if (response.status === 200) {
-                setListName(response.data.name);
                 setToggleEdit(!toggleEdit);
+                const newLists = context.lists.map(list => {
+                    list.name = list.id === props.listId ? response.data.name : list.name
+                    return list}
+                );
+                context.setLists(newLists);
+                setListName(response.data.name);
             }
         }
         catch (error) {
@@ -52,8 +56,7 @@ const ListName = props => {
                     <button className="lists__name-title" onClick={() => setToggleEdit(!toggleEdit)}>
                         <p>{listName}</p>
                     </button>
-                    <ListMenu listId={props.listId} currentLists={props.currentLists} setCurrentLists={props.setCurrentLists}
-                        setListCards={props.setListCards}  />
+                    <ListMenu listId={props.listId} />
                 </div>
             }
         </>
