@@ -12,6 +12,16 @@ class listsAPI {
         return await axios.post(`${process.env.REACT_APP_BASE_URL}${url}`);
     }
 
+    static async archiveListCards(apiKey, token, listId) {
+        const url = `lists/${listId}/archiveAllCards?key=${apiKey}&token=${token}`;
+        return await axios.post(`${process.env.REACT_APP_BASE_URL}${url}`);
+    }
+
+    static async archiveList(apiKey, token, listId) {
+        const url = `lists/${listId}/closed?value=true&key=${apiKey}&token=${token}`;
+        return await axios.put(`${process.env.REACT_APP_BASE_URL}${url}`);
+    }
+
 }
 
 export default listsAPI;

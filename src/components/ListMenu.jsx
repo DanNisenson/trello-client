@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useAppContext } from "../context/context";
-import axios from "axios";
+import listsAPI from "../services/listsAPI";
 import "../assets/css/ListMenu.css"
 
 const ListMenu = props => {
@@ -25,12 +25,11 @@ const ListMenu = props => {
     const archiveCards = async () => {
         const confirmation = window.confirm("This action will archive all cards in the list. Are you sure?");
         if (confirmation) {
-            console.log("All cards should archive:", props.listId);
             try {
-                const URI = `https://api.trello.com/1/lists/${props.listId}/archiveAllCards?key=${context.keys.apiKey}&token=${context.keys.token}`;
-                const response = await axios.post(URI);
+                const response = await listsAPI.archiveListCards(context.keys.apiKey,context.keys.token, props.listId);
                 if (response.status === 200) {
-                    props.setListCards([]);
+                    const newCards = context.cards.filter(card => card.idList !== props.listId);
+                    context.setCards(newCards);
                     setToggleMenu(!toggleMenu);
                 }
             }
@@ -42,13 +41,15 @@ const ListMenu = props => {
     }
 
     const archiveList = async () => {
-        const confirmation = window.confirm("This action will archive this list. Are you sure?");
+        const confirmation = window.confirm("This action will archive this list and its cards. Are you sure?");
         if (confirmation) {
             try {
-                const URI = `https://api.trello.com/1/lists/${props.listId}/closed?value=true&key=${context.keys.apiKey}&token=${context.keys.token}`;
-                const response = await axios.put(URI);
+                const response = await listsAPI.archiveList(context.keys.apiKey,context.keys.token, props.listId);
                 if (response.status === 200) {
-                    props.setCurrentLists(props.currentLists.filter(list => list.id !== props.listId));
+                    const newCards = context.cards.filter(card => card.IdList !== props.listId);
+                    const newLists = context.lists.filter(list => list.id !== props.listId);
+                    context.setCards(newCards);
+                    context.setLists(newLists);
                     setToggleMenu(!toggleMenu);
                 }
             }
