@@ -22,35 +22,22 @@ const UserBox = props => {
     }, []);
 
     const handleLogout = async () => {
-        console.log("Logging you out");
-        console.log(localStorage.trelloToken);
+        if (process.env.REACT_APP_TOKEN === context.keys.token) {
+            alert("You are using ENV Token, best not to revoke from client");
+            return;
+        }
         try {
             const response = await authAPI.deleteToken(context.keys.apiKey, context.keys.token);
             if (response.status === 200) {
                 localStorage.removeItem("trelloToken");
                 context.keys.token = "";
-                props.setAuthorized(!props.authorized);
+                props.setIsAuthorized(false);
             }
         } catch(error) {
             console.error(error.message);
             alert("Unable to revoke token");
         }
-        console.log(localStorage.trelloToken);
     }
-
-/* This function can be moved to a Component to be included as a button in Board.
-    const removeAuth = async () => {
-        console.log("Revoke");
-        console.log(localStorage.trelloToken);
-        const response = await axios.delete(`https://api.trello.com/1/tokens/${localStorage.trelloToken}/?key=${context.keys.apiKey}&token=${localStorage.trelloToken}`);
-        console.log(response);
-        localStorage.removeItem("trelloToken");
-        context.keys.token = "";
-        console.log(localStorage.trelloToken);
-        console.log(context.keys.token);
-        props.setAuthorized(!props.authorized);
-    }
-*/
 
     return (
         <>

@@ -5,7 +5,7 @@ import Lists from "./Lists";
 import UserBox from "./UserBox";
 import "../assets/css/UserBoards.css";
 
-const Board = () => {
+const Board = props => {
     // context.keys -> apiKey & token
     const context = useAppContext();
     // selected board
@@ -14,8 +14,13 @@ const Board = () => {
     // get boards on load
     useEffect(() => {
         const getBoards = async () => {
-            const resp = await boardAPI.getBoards(context.keys.apiKey, context.keys.token);
-            context.setBoards(resp.data);
+            try {
+                const resp = await boardAPI.getBoards(context.keys.apiKey, context.keys.token);
+                context.setBoards(resp.data);
+            } catch(error) {
+                console.error(error.message);
+                alert("Unable to retrieve boards");
+            }
         };
         getBoards();
     }, []);
@@ -37,7 +42,7 @@ const Board = () => {
                             </div>
                         ))}
                 </div>
-                <UserBox />
+                <UserBox setIsAuthorized={props.setIsAuthorized} />
             </div>
             {/* if currentBoard === true -> render lists and cards */}
             {Object.keys(currentBoard).length !== 0 && <Lists boardId={currentBoard.id} />}
