@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useAppContext } from "../context/context";
 import cardsAPI from "../services/cardsAPI";
 import "../assets/css/CreateCard.css";
-import "../assets/css/Cards.css";
 
 const CreateCard = (props) => {
   const context = useAppContext();

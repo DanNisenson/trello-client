@@ -1,4 +1,3 @@
-import "../assets/css/Cards.css";
 import SingleCard from "./SingleCard";
 
 const Cards = (props) => {
