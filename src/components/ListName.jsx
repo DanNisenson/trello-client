@@ -10,6 +10,7 @@ const ListName = props => {
     const [listName, setListName] = useState(props.name);
     //state to toggle editable Name
     const [toggleEdit, setToggleEdit] = useState(false);
+    let preEditName = props.name;
 
     const updateListName = async () => {
         if (!listName)
@@ -32,9 +33,14 @@ const ListName = props => {
         }
     }
 
+    const handleEditCancel = () => {
+        setListName(preEditName);
+        setToggleEdit(!toggleEdit);
+    }
+
     const handleKeyPress = event => {
         if (event.key === "Escape")
-            setToggleEdit(!toggleEdit);
+            handleEditCancel();
         else if (event.key === "Enter")
             updateListName();
     }
@@ -43,17 +49,21 @@ const ListName = props => {
         <>
             {toggleEdit ?
                 <div className="lists__name-edit">
-                    <input className="lists__name-edit-input" type="text" value={listName}
+                    <input className="lists__name-edit-input" type="text" autoFocus value={listName}
                         onChange={event => setListName(event.target.value)}
                         onKeyDown={event => handleKeyPress(event)}></input>
                     <div className="lists__name-edit-btns">
                         <i className="fa-solid fa-check edit-list__go-btn" onClick={updateListName}></i>  
-                        <i className="fa-solid fa-plus edit-list__close-btn" onClick={() => setToggleEdit(!toggleEdit)}></i>
+                        <i className="fa-solid fa-plus edit-list__close-btn" onClick={() => handleEditCancel()}></i>
                     </div>
                 </div>
                 :
                 <div className="lists__name">
-                    <button className="lists__name-title" onClick={() => setToggleEdit(!toggleEdit)}>
+                    <button className="lists__name-title" onClick={() => {
+                                preEditName = listName;
+                                setToggleEdit(!toggleEdit)}
+                            }
+                    >
                         <p>{listName}</p>
                     </button>
                     <ListMenu listId={props.listId} />

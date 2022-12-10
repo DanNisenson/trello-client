@@ -4,7 +4,6 @@ import listsAPI from "../services/listsAPI";
 import cardsAPI from "../services/cardsAPI";
 import SingleList from "./SingleList";
 import CreateList from "./CreateList";
-
 import "../assets/css/Lists.css";
 
 const Lists = (props) => {
