@@ -59,10 +59,11 @@ const ListName = props => {
                 </div>
                 :
                 <div className="lists__name">
-                    <button className="lists__name-title" onClick={() => {
-                                preEditName = listName;
-                                setToggleEdit(!toggleEdit)}
-                            }
+                    <button className="lists__name-title"
+                        onClick={() => {
+                            preEditName = listName;
+                            setToggleEdit(!toggleEdit)}
+                        }
                     >
                         <p>{listName}</p>
                     </button>
