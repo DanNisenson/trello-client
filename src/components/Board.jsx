@@ -23,11 +23,11 @@ const Board = () => {
     <>
       {/* boards list */}
       <div className="boards">
-        <h1>Boards</h1>
+        <h1 className="boards__title">Boards</h1>
         {context.boards
           .map((e, i) => (
             <div
-              className="board-link"
+              className="boards__link"
               onClick={() => setCurrentBoard(e)}
               key={i}
             >
