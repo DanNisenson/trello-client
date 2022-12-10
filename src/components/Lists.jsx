@@ -41,8 +41,7 @@ const Lists = (props) => {
                 .map(list =>
                     <SingleList key={list.id} list={list} currentLists={context.lists} setCurrentLists={context.setLists} />
                 )}
-            <CreateList boardId={props.boardId}
-                currentLists={context.lists} setCurrentLists={context.setLists} />
+            <CreateList boardId={props.boardId} />
         </div>
     );
 };
