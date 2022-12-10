@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppContext } from "../context/context";
 import listsAPI from "../services/listsAPI";
 import cardsAPI from "../services/cardsAPI";

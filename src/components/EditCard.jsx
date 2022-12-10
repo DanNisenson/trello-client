@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useAppContext } from "../context/context";
 import cardsAPI from "../services/cardsAPI";
 

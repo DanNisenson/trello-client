@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useAppContext } from "../context/context";
 import { useState } from "react";
 import "../assets/css/SingleCard.css";
 import EditCard from "./EditCard";
