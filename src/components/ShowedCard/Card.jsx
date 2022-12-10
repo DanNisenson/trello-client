@@ -13,7 +13,7 @@ return(
                 <BodyCard payload={props.currentCard}/>
             </div>
             <div className="card__aside">
-                <AsideCard/>
+                <AsideCard payload={props.currentCard} />
             </div>
         </div>
 

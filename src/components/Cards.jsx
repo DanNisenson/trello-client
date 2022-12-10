@@ -10,7 +10,7 @@ const Cards = (props) => {
       {/* iterate and print all cards on board */}
       {props.listCards.map((card) => {
         return (
-          <SingleCard id={card.id} name={card.name} listCards={props.listCards} setListCards={props.setListCards} showCard={props.showCard} key={card.id} />
+          <SingleCard id={card.id} name={card.name} listCards={props.listCards} setListCards={props.setListCards} showCard={props.showCard} key={card.id} currentCard={card}/>
         );
       })}
     </div>
