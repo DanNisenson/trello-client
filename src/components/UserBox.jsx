@@ -10,11 +10,15 @@ const UserBox = () => {
     }
 
     return (
-        <div className="userbox">
+        <>
             {toggleUser && <div className="userbox-background" onClick={() => setToggleUser(!toggleUser)}></div>}
-            <button className="userbox-btn" onClick={() => setToggleUser(!toggleUser)}>Username</button>
-            {toggleUser && <button className="userbox-btn userbox-logout" onClick={handleLogout}>Log Out</button>}
-        </div>
+            <div className="userbox">
+                {toggleUser && <button className="userbox-btn userbox-logout" onClick={handleLogout}>Log Out</button>}
+                <div className="userbox-btn" onClick={() => setToggleUser(!toggleUser)}>
+                    Username
+                </div>
+            </div>
+        </>
     );
 }
 
