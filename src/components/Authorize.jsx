@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import axios from "axios";
-import { useAppContext } from "../context/keys";
+import { useAppContext } from "../context/context";
 import "../assets/css/Authorize.css";
 
 const Authorize = props => {
