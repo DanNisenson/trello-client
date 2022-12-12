@@ -35,7 +35,8 @@ const AsideMove= (props)=> {
                         onChange={
                             e => setDestination(e.target.value)}>
                     {/* render de listas */}
-                    <option></option>
+                    <option>{props.idCard}</option>
+                    {/* La primera en blanco porque select no me detecta el value del primer valor por defecto */}
                     {context.lists.map((list) => 
                         <option value={list.id} key={list.id}> {list.name}
                         </option> )}
