@@ -6,7 +6,7 @@ const SingleCard = (props) => {
   // card title edit mode toggle
   const [cardEdit, setCardEdit] = useState(false);
   // card title
-  const [cardTitle, setCardTitle] = useState(props.name);
+  
 
   
 
@@ -16,10 +16,11 @@ const SingleCard = (props) => {
       {cardEdit ? (
           <EditCard
             id={props.id}
-            cardTitle={cardTitle}
+            name={props.name}
+            // cardTitle={cardTitle}
             listCards={props.listCards}
             setListCards={props.setListCards}
-            setCardTitle={setCardTitle}
+            // setCardTitle={setCardTitle}
             setCardEdit={setCardEdit}
           />
       ) : (
