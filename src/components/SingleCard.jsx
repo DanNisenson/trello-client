@@ -37,7 +37,7 @@ const SingleCard = (props) => {
           <div className="cards__card" key={props.id}>
             <div
               className="cards__name"
-              onClick={() => props.showCard()}
+              onClick={() => props.showCard(props.currentCard)}
               readOnly
             >
               {props.name}
