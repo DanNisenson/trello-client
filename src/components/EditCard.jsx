@@ -4,7 +4,6 @@ import cardsAPI from "../services/cardsAPI";
 import "../assets/css/EditCard.css";
 
 const EditCard = (props) => {
-  const textarea = useRef()
   const context = useAppContext();
 
   // card title change function
@@ -76,6 +75,9 @@ const EditCard = (props) => {
             className="cards__name cards__name--edit"
             defaultValue={props.name}
             ref={textarea}
+            // Focus on load and select all text
+            autoFocus
+            onFocus={e => e.target.setSelectionRange(0, props.cardTitle.length)}
           />
           {/* update card title button */}
           <button
@@ -90,7 +92,7 @@ const EditCard = (props) => {
               <i className="fa-solid fa-trash"></i> Delete
             </button>
             <button className="cards__edit-action-btn">
-              <i className="fa-solid fa-trash"></i> Open
+            <i className="fa-solid fa-arrow-right"></i> Move
             </button>
             <button className="cards__edit-action-btn">
               <i className="fa-solid fa-trash"></i> Archive

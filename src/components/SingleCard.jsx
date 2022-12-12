@@ -19,7 +19,7 @@ const SingleCard = (props) => {
           />
       ) : (
         // non-edit mode
-          <div className="cards__card" key={props.id}>
+          <div className="cards__card" key={props.id} >
             <div
               className="cards__name"
               onClick={() => props.showCard()}
@@ -28,7 +28,6 @@ const SingleCard = (props) => {
               {props.name}
             </div>
             {/* edit icons */}
-            <div className="cards__action-icons">
               <button
                 className="cards__edit-btn cards__action-icon"
                 onClick={() => setCardEdit(true)}
@@ -36,7 +35,6 @@ const SingleCard = (props) => {
                 <i className="fa-solid fa-pencil"></i>
               </button>
             </div>
-          </div>
       )}
     </>
   );
