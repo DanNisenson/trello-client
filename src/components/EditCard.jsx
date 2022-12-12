@@ -1,20 +1,11 @@
 import { useAppContext } from "../context/context";
-import { useEffect ,useRef } from "react";
+import { useRef } from "react";
 import cardsAPI from "../services/cardsAPI";
 import "../assets/css/EditCard.css";
 
 const EditCard = (props) => {
   const textarea = useRef()
   const context = useAppContext();
-  // const [cardTitle, setCardTitle] = useState(props.name);
-
-  useEffect(() => {
-    // focus element and select all text to be edited
-    const title = textarea.current;
-    title.setSelectionRange(0, props.name.length);
-    title.focus();
-  }, [])
-  
 
   // card title change function
   const updateCard = async () => {
@@ -84,9 +75,6 @@ const EditCard = (props) => {
           <textarea
             className="cards__name cards__name--edit"
             defaultValue={props.name}
-            // onChange={(e) => {
-            //   props.setCardTitle(e.target.value);
-            // }}
             ref={textarea}
           />
           {/* update card title button */}
