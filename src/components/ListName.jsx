@@ -43,7 +43,7 @@ const ListName = props => {
         <>
             {toggleEdit ?
                 <div className="lists__name-edit">
-                    <input className="lists__name-title lists__name-edit-input" type="text" value={listName}
+                    <input className="lists__name-title lists__name-edit-input" type="text" autoFocus value={listName}
                         onChange={event => setListName(event.target.value)}
                         onKeyDown={event => handleKeyPress(event)}></input>
                     <div className="lists__name-edit-btns">
