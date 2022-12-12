@@ -9,8 +9,6 @@ import "../assets/css/Lists.css";
 
 const Lists = (props) => {
     const context = useAppContext();
-    // !!!
-    // const [currentLists, setCurrentLists] = useState([]);
 
     // get board's lists on props(board selection) change.
     useEffect(() => {
@@ -32,6 +30,7 @@ const Lists = (props) => {
         };
         getLists();
         getCards();
+        
     }, [props.boardId]);
 
     return (
