@@ -6,11 +6,12 @@ import "../assets/css/EditCard.css";
 const EditCard = (props) => {
   const textarea = useRef()
   const context = useAppContext();
+  // const [cardTitle, setCardTitle] = useState(props.name);
 
   useEffect(() => {
     // focus element and select all text to be edited
     const title = textarea.current;
-    title.setSelectionRange(0, props.cardTitle.length);
+    title.setSelectionRange(0, props.name.length);
     title.focus();
   }, [])
   
@@ -23,7 +24,7 @@ const EditCard = (props) => {
         context.keys.apiKey,
         context.keys.token,
         props.id,
-        props.cardTitle
+        textarea.current.value
       );
       if (resp.status === 200) {
         // recreate listCards array and replace modified card
@@ -82,10 +83,10 @@ const EditCard = (props) => {
           {/* title input */}
           <textarea
             className="cards__name cards__name--edit"
-            value={props.cardTitle}
-            onChange={(e) => {
-              props.setCardTitle(e.target.value);
-            }}
+            defaultValue={props.name}
+            // onChange={(e) => {
+            //   props.setCardTitle(e.target.value);
+            // }}
             ref={textarea}
           />
           {/* update card title button */}
