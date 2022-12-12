@@ -58,6 +58,10 @@ class cardsAPI {
         return await axios.put(`${process.env.REACT_APP_BASE_URL}${url}`);
     }
 
+    static async moveCard(context, id, idList) {
+        const url = `cards/${id}?idList=${idList}&key=${context.apiKey}&token=${context.token}`;
+        return await axios.put(`${process.env.REACT_APP_BASE_URL}${url}`);
+    }
 
 }
 
