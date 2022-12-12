@@ -4,10 +4,11 @@ import cardsAPI from "../services/cardsAPI";
 
 const MoveCard = (props) => {
   const context = useAppContext();
-  // const targetBoard = useRef();
-  const targetList = useRef();
-  const targetPosition = useRef();
+  // target form elements
+  const targetList = useRef(props.idList);
+  const targetPosition = useRef(props.position);
 
+  // 'Move' btn executes
   const handleSubmit = async () => {
     try {
       // request
@@ -16,7 +17,7 @@ const MoveCard = (props) => {
         context.keys.token,
         props.id,
         targetList.current.value,
-        targetPosition.current.value,
+        targetPosition.current.value
       );
       if (resp.status === 200) {
         // recreate cards array and replace modified card
@@ -33,25 +34,25 @@ const MoveCard = (props) => {
     props.setMoveCard(false);
   };
 
-
-  // once its working, pass idList and card's id to default to right position and idList
   return (
     <div>
+      {/* board's lists drop-down menu */}
       <select name="list" defaultValue={props.idList} ref={targetList}>
         {context.lists.map((list, i) => (
-          <option value={list.id} key={list.id} >
+          <option value={list.id} key={list.id}>
             {list.name}
           </option>
         ))}
       </select>
+      {/* position number selection */}
       <input
         type="number"
         name="position"
-        // onChange={(e) => setPosition(e.target.value)}
-        ref={targetPosition}
         defaultValue={props.position}
         min={1}
+        ref={targetPosition}
       />
+      {/* 'Move' btn */}
       <button
         type="submit"
         className="create-card__add-btn"
