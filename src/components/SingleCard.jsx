@@ -8,7 +8,7 @@ const SingleCard = (props) => {
   // card title
   const [cardTitle, setCardTitle] = useState(props.name);
 
-  
+  console.log(props.name, props.position)
 
   return (
     <>
@@ -18,6 +18,7 @@ const SingleCard = (props) => {
             id={props.id}
             idList={props.idList}
             cardTitle={cardTitle}
+            position ={props.position}
             listCards={props.listCards}
             setListCards={props.setListCards}
             setCardTitle={setCardTitle}

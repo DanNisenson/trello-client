@@ -6,7 +6,7 @@ const MoveCard = (props) => {
   const context = useAppContext();
   const [usrInput, setUsrInput] = useState({
     list: props.idList,
-    position: 1,
+    position: props.position,
   });
 
   console.log(usrInput);
@@ -50,10 +50,10 @@ const MoveCard = (props) => {
       {/* <form onSubmit={handleSubmit}> */}
         <select name="list" onChange={handleChange}>
           {context.lists.map((list) => (
-            <option value={list.id}>{list.name}</option>
+            <option value={list.id} key={list.id}>{list.name}</option>
           ))}
         </select>
-        <input type="number" name="position" onChange={handleChange} defaultValue={1} min={1} />
+        <input type="number" name="position" onChange={handleChange} defaultValue={usrInput.position} min={1} />
         <button
           type="submit"
           className="create-card__add-btn"
