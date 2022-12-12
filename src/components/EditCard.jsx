@@ -1,4 +1,5 @@
 import { useAppContext } from "../context/context";
+import { useRef } from "react";
 import cardsAPI from "../services/cardsAPI";
 import "../assets/css/EditCard.css";
 
@@ -13,7 +14,7 @@ const EditCard = (props) => {
         context.keys.apiKey,
         context.keys.token,
         props.id,
-        props.cardTitle
+        textarea.current.value
       );
       if (resp.status === 200) {
         // recreate listCards array and replace modified card
@@ -72,10 +73,8 @@ const EditCard = (props) => {
           {/* title input */}
           <textarea
             className="cards__name cards__name--edit"
-            value={props.cardTitle}
-            onChange={(e) => {
-              props.setCardTitle(e.target.value);
-            }}
+            defaultValue={props.name}
+            ref={textarea}
             // Focus on load and select all text
             autoFocus
             onFocus={e => e.target.setSelectionRange(0, props.cardTitle.length)}
