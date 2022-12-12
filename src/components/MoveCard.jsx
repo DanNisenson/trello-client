@@ -53,7 +53,7 @@ const MoveCard = (props) => {
             <option value={list.id}>{list.name}</option>
           ))}
         </select>
-        <input type="number" name="position" id="" onChange={handleChange} />
+        <input type="number" name="position" onChange={handleChange} defaultValue={1} min={1} />
         <button
           type="submit"
           className="create-card__add-btn"
