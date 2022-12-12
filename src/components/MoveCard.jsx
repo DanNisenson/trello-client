@@ -1,21 +1,12 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { useAppContext } from "../context/context";
 import cardsAPI from "../services/cardsAPI";
 
 const MoveCard = (props) => {
   const context = useAppContext();
-  const [usrInput, setUsrInput] = useState({
-    list: props.idList,
-    position: props.position,
-  });
-
-  console.log(usrInput);
-  const handleChange = (e) => {
-    setUsrInput({
-      ...usrInput,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // const targetBoard = useRef();
+  const targetList = useRef();
+  const targetPosition = useRef();
 
   const handleSubmit = async () => {
     try {
@@ -24,8 +15,8 @@ const MoveCard = (props) => {
         context.keys.apiKey,
         context.keys.token,
         props.id,
-        usrInput.list,
-        usrInput.position
+        targetList.current.value,
+        targetPosition.current.value,
       );
       if (resp.status === 200) {
         // recreate cards array and replace modified card
@@ -39,29 +30,35 @@ const MoveCard = (props) => {
       console.log(error.message);
       alert("Unable to update card");
     }
-    props.setMoveCard(false)
+    props.setMoveCard(false);
   };
 
- 
 
-  // once its working, pass idList and card's id to default to right position and list
+  // once its working, pass idList and card's id to default to right position and idList
   return (
     <div>
-      {/* <form onSubmit={handleSubmit}> */}
-        <select name="list" onChange={handleChange}>
-          {context.lists.map((list) => (
-            <option value={list.id} key={list.id}>{list.name}</option>
-          ))}
-        </select>
-        <input type="number" name="position" onChange={handleChange} defaultValue={usrInput.position} min={1} />
-        <button
-          type="submit"
-          className="create-card__add-btn"
-          onClick={handleSubmit}
-        >
-          Move
-        </button>
-      {/* </form> */}
+      <select name="list" defaultValue={props.idList} ref={targetList}>
+        {context.lists.map((list, i) => (
+          <option value={list.id} key={list.id} >
+            {list.name}
+          </option>
+        ))}
+      </select>
+      <input
+        type="number"
+        name="position"
+        // onChange={(e) => setPosition(e.target.value)}
+        ref={targetPosition}
+        defaultValue={props.position}
+        min={1}
+      />
+      <button
+        type="submit"
+        className="create-card__add-btn"
+        onClick={handleSubmit}
+      >
+        Move
+      </button>
     </div>
   );
 };
