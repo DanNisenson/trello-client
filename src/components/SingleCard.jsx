@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useAppContext } from "../context/context";
 import { useState } from "react";
 import "../assets/css/SingleCard.css";
 import EditCard from "./EditCard";
@@ -16,12 +14,6 @@ const SingleCard = (props) => {
     <>
       {/* main card component */}
       {cardEdit ? (
-        <>
-        {/* modal background. if clicked -> toggle edit mode off */}
-          <div
-            className="cards__modal-bkground"
-            onClick={() => setCardEdit(false)}
-          ></div>
           <EditCard
             id={props.id}
             cardTitle={cardTitle}
@@ -30,10 +22,8 @@ const SingleCard = (props) => {
             setCardTitle={setCardTitle}
             setCardEdit={setCardEdit}
           />
-        </>
       ) : (
         // non-edit mode
-        <>
           <div className="cards__card" key={props.id}>
             <div
               className="cards__name"
@@ -52,7 +42,6 @@ const SingleCard = (props) => {
               </button>
             </div>
           </div>
-        </>
       )}
     </>
   );

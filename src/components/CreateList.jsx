@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppContext } from "../context/context";
-import axios from "axios";
+import listsAPI from "../services/listsAPI";
 import "../assets/css/CreateList.css";
 
 const CreateList = (props) => {
@@ -9,14 +9,12 @@ const CreateList = (props) => {
     const [toggleAddList, setToggleAddList] = useState(false);
 
     const postNewList = async () => {
-        console.log("Send POST request with name: ", listName);
         if (!listName)
             return;
         try {
-            const URI = `https://api.trello.com/1/lists?name=${listName}&idBoard=${props.boardId}&pos=bottom&key=${context.keys.apiKey}&token=${context.keys.token}`;
-            const response = await axios.post(URI);
+            const response = await listsAPI.createList(context.keys.apiKey,context.keys.token, listName, props.boardId);
             if (response.status === 200) {
-                props.setCurrentLists([...props.currentLists, response.data]);
+                context.setLists([...context.lists, response.data]);
                 setToggleAddList(false);
             }
         }

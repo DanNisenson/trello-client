@@ -1,16 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppContext } from "../context/context";
 import listsAPI from "../services/listsAPI";
 import cardsAPI from "../services/cardsAPI";
 import SingleList from "./SingleList";
 import CreateList from "./CreateList";
-
 import "../assets/css/Lists.css";
 
 const Lists = (props) => {
     const context = useAppContext();
-    // !!!
-    // const [currentLists, setCurrentLists] = useState([]);
 
     // get board's lists on props(board selection) change.
     useEffect(() => {
@@ -19,7 +16,7 @@ const Lists = (props) => {
                 const resp = await listsAPI.getLists(context.keys.apiKey, context.keys.token, props.boardId);
                 context.setLists(resp.data);
             } catch (error) {
-                console.log('can\'t get lists.');
+                console.log("Unable to retrieve lists");
             }
         }
         const getCards = async () => {
@@ -27,7 +24,7 @@ const Lists = (props) => {
                 const resp = await cardsAPI.getCards(context.keys.apiKey, context.keys.token, props.boardId);
                 context.setCards(resp.data);
             } catch (error) {
-                console.log("can't get cards ");
+                console.log("Unable to retrieve cards");
             }
         };
         getLists();
@@ -39,10 +36,9 @@ const Lists = (props) => {
         <div className="lists">
             {context.lists
                 .map(list =>
-                    <SingleList key={list.id} list={list} currentLists={context.lists} setCurrentLists={context.setLists} />
+                    <SingleList key={list.id} list={list} />
                 )}
-            <CreateList boardId={props.boardId}
-                currentLists={context.lists} setCurrentLists={context.setLists} />
+            <CreateList boardId={props.boardId} />
         </div>
     );
 };

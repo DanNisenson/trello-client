@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppContext } from "../context/context";
-import axios from "axios";
+import listsAPI from "../services/listsAPI";
 import ListMenu from "./ListMenu";
 import "../assets/css/ListName.css";
 
@@ -10,16 +10,21 @@ const ListName = props => {
     const [listName, setListName] = useState(props.name);
     //state to toggle editable Name
     const [toggleEdit, setToggleEdit] = useState(false);
+    let preEditName = props.name;
 
     const updateListName = async () => {
         if (!listName)
             return;
         try {
-            const URI = `https://api.trello.com/1/lists/${props.listId}/name?value=${listName}&key=${context.keys.apiKey}&token=${context.keys.token}`;
-            const response = await axios.put(URI);
+            const response = await listsAPI.updateListName(context.keys.apiKey, context.keys.token, props.listId, listName);
             if (response.status === 200) {
-                setListName(response.data.name);
                 setToggleEdit(!toggleEdit);
+                const newLists = context.lists.map(list => {
+                    list.name = list.id === props.listId ? response.data.name : list.name
+                    return list}
+                );
+                context.setLists(newLists);
+                setListName(response.data.name);
             }
         }
         catch (error) {
@@ -28,9 +33,14 @@ const ListName = props => {
         }
     }
 
+    const handleEditCancel = () => {
+        setListName(preEditName);
+        setToggleEdit(!toggleEdit);
+    }
+
     const handleKeyPress = event => {
         if (event.key === "Escape")
-            setToggleEdit(!toggleEdit);
+            handleEditCancel();
         else if (event.key === "Enter")
             updateListName();
     }
@@ -39,21 +49,25 @@ const ListName = props => {
         <>
             {toggleEdit ?
                 <div className="lists__name-edit">
-                    <input className="lists__name-edit-input" type="text" value={listName}
+                    <input className="lists__name-edit-input" type="text" autoFocus value={listName}
                         onChange={event => setListName(event.target.value)}
                         onKeyDown={event => handleKeyPress(event)}></input>
                     <div className="lists__name-edit-btns">
                         <i className="fa-solid fa-check edit-list__go-btn" onClick={updateListName}></i>  
-                        <i className="fa-solid fa-plus edit-list__close-btn" onClick={() => setToggleEdit(!toggleEdit)}></i>
+                        <i className="fa-solid fa-plus edit-list__close-btn" onClick={() => handleEditCancel()}></i>
                     </div>
                 </div>
                 :
                 <div className="lists__name">
-                    <button className="lists__name-title" onClick={() => setToggleEdit(!toggleEdit)}>
+                    <button className="lists__name-title"
+                        onClick={() => {
+                            preEditName = listName;
+                            setToggleEdit(!toggleEdit)}
+                        }
+                    >
                         <p>{listName}</p>
                     </button>
-                    <ListMenu listId={props.listId} currentLists={props.currentLists} setCurrentLists={props.setCurrentLists}
-                        setListCards={props.setListCards}  />
+                    <ListMenu listId={props.listId} />
                 </div>
             }
         </>
