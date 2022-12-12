@@ -8,8 +8,6 @@ const SingleCard = (props) => {
   // card title
   const [cardTitle, setCardTitle] = useState(props.name);
 
-  console.log(props.name, props.position)
-
   return (
     <>
       {/* main card component */}
