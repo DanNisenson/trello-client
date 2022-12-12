@@ -1,8 +1,14 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .boards {
   display: flex;
   align-items: center;
   padding: 2px 10px;
-  background-color: black;
+  background-color: #000;
   color: #fff;
   overflow: scroll;
 }
@@ -19,5 +25,5 @@
 }
 
 .boards__link:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: #ffffff26;
 }
