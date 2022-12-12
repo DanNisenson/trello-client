@@ -6,12 +6,18 @@
 
 body {
   font-size: 14px;
-  background: url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1231x1920/6d63009e449571f87306bdf2b526e3ff/photo-1669183213616-6fcc8a3e2226.jpg") #000;
+  height: 100vh;
+  background: no-repeat url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1231x1920/6d63009e449571f87306bdf2b526e3ff/photo-1669183213616-6fcc8a3e2226.jpg") #000;
   background-size: cover;
+  background-position: 50%;
+  color: #172b4d;
+  font-family: -apple-system, "system-ui";
 }
+
 input,
 textarea,
 button {
+  color: #172b4d;
   font-size: inherit;
 }
 

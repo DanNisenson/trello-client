@@ -8,6 +8,7 @@
 .cards__name--edit {
   min-height: 100px;
   min-width: 100%;
+  border-radius: 3px;
 }
 
 .cards__name--edit:focus {
@@ -27,7 +28,7 @@
 .cards__edit-save-btn {
   position: absolute;
   width: 80px;
-  bottom: -40px;
+  bottom: -50px;
   left: 0;
 }
 
@@ -36,16 +37,18 @@
   flex-direction: column;
   position: absolute;
   top: 0;
-  right: -90px;
+  right: -96px;
   gap: 3px;
 }
 
  .cards__edit-action-btn {
+  text-align: left;
+  width: max-content;
   cursor: pointer;
   color: #C7D1DB;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 6px 12px 6px 10px;
+  border-radius: 3px;
   transition: transform ease-in .2s;
  }
 
@@ -55,6 +58,10 @@
   transform: translateX(5px);
  }
 
+ .cards__edit-action-btn i {
+  font-size: .7rem;
+  padding-right: 6px;
+ }
 
  .cards__modal-bkground {
   /* display: none; */

@@ -9,6 +9,10 @@
   background-color: #FFFFFF;
 }
 
+.create-card__title-input:focus {
+  outline: none;
+}
+
 .create-card__btns-container {
   display: flex;
   align-items: center;

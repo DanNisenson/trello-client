@@ -1,19 +1,9 @@
 import { useAppContext } from "../context/context";
-import { useEffect ,useRef } from "react";
 import cardsAPI from "../services/cardsAPI";
 import "../assets/css/EditCard.css";
 
 const EditCard = (props) => {
-  const textarea = useRef()
   const context = useAppContext();
-
-  useEffect(() => {
-    // focus element and select all text to be edited
-    const title = textarea.current;
-    title.setSelectionRange(0, props.cardTitle.length);
-    title.focus();
-  }, [])
-  
 
   // card title change function
   const updateCard = async () => {
@@ -86,7 +76,9 @@ const EditCard = (props) => {
             onChange={(e) => {
               props.setCardTitle(e.target.value);
             }}
-            ref={textarea}
+            // Focus on load and select all text
+            autoFocus
+            onFocus={e => e.target.setSelectionRange(0, props.cardTitle.length)}
           />
           {/* update card title button */}
           <button
@@ -101,7 +93,7 @@ const EditCard = (props) => {
               <i className="fa-solid fa-trash"></i> Delete
             </button>
             <button className="cards__edit-action-btn">
-              <i className="fa-solid fa-trash"></i> Open
+            <i className="fa-solid fa-arrow-right"></i> Move
             </button>
             <button className="cards__edit-action-btn">
               <i className="fa-solid fa-trash"></i> Archive
