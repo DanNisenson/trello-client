@@ -22,10 +22,7 @@ const SingleList = (props) => {
   return (
     <>
       <div className="lists__list">
-        <ListName name={props.list.name} listId={props.list.id}
-            currentLists={props.currentLists} setCurrentLists={props.setCurrentLists}
-            setListCards={setListCards}
-        />
+        <ListName name={props.list.name} listId={props.list.id} />
         <Cards
           listCards={listCards}
           setListCards={setListCards}
@@ -37,11 +34,7 @@ const SingleList = (props) => {
         />
       </div>
       {currentCard ? (
-        <div className="card">
-          {" "}
           <Card currentCard={currentCard} showCard={setCurrentCard} />
-          {" "}
-        </div>
       ) : null}
     </>
   );

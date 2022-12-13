@@ -1,92 +1,125 @@
-.card{
+.card--background {
     position: absolute;
-    padding-top: 100px;
-    background-color: rgba(245, 245, 245, 0.356);
-    width: 100%;
+    background-color: rgba(0, 0, 0, 0.323);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
 }
 
-.card__total{
-    margin-top: 100px;
-    margin: auto;
+.card__total {
+    min-height: 600px;
+    position: absolute;
+    margin: 100px 200px;
     border-radius: 15px;
-    background-image: linear-gradient( to right, rgba(152, 141, 141, 0.866), rgb(199, 199, 199) );
-    width: 500px;
-    display: flexbox;
+    background-color: #EBECF0;
+    display: flex;
     flex-direction: column;
+    z-index: 2;
 }
-.card__title{
+
+.card__head {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 15px;
+    align-items: center;
 }
-.card__main{
+
+.card__head__title--title{
+    margin-left: 15px;
+}
+
+.card__main {
     display: flex;
     flex-direction: row;
 }
-.card__body{
-    width: 70%;
+
+.card__body {
+    width: 520px;
     display: flex;
     flex-direction: column;
 }
-.card__aside{
+
+.card__aside {
+    color: #172b4d;
     margin: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+
 }
 
-.XButton:hover{
+.XButton:hover {
     cursor: pointer;
 }
 
-.card__section{
-    padding: 20px;
-    border-top: 2px solid black ;
-}
 
-.card__comments__options{
+
+.card__comments__options {
     width: auto;
     display: flex;
     justify-content: left;
 }
 
-.options__element{
+.options__element {
     font-size: small;
     font-style: italic;
     margin: 10px;
     font-weight: bold;
-    color: rgb(75, 75, 234)
-    
+    color: #0279C0;
 }
 
 .options__element:hover{
-    cursor:pointer
+    cursor: pointer
 }
 
-.card__aside__options{
-    width: 110px;
-    padding: 5px;
-    margin:5px;
-    border-radius: 10px;
-    border: 2px solid black;
-    background-color: rgba(53, 107, 245, 0.345);
-    font-weight: bold;
-    font-size: medium;
-}
-.card__aside__options:hover {
-    cursor: pointer;
-}
-.card__section__title{
-    font-size: larger;
-    font-weight: bolder;
-    font-style: italic;
-}
-.options__text{
+.card__options--textarea {
+    min-height: 100px;
+    background-color: #FFF;
     width: 100%;
+    padding: 8px 12px;
     margin: 5px;
-    background-color: rgba(186, 183, 183, 0.395);
-    overflow: hidden; 
     overflow-wrap: break-word;
-    height: 50px;
+    font-size: 14px;
+    font-weight: 400;
+    border-style: none;
+
 }
-textarea{
+
+textarea {
     resize: none;
+}
+
+.card__comments__head {
+    display: flex;
+    flex-direction: row;
+}
+
+.card__comments--name,
+.card__comments--date {
+    margin: 5px;
+    font-size: smaller;
+}
+
+.checklist__list__item{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.checklist__list__item--checkbox,
+ .checklist__list__item--name{
+    margin: 4px;
+}
+
+.options--button{
+    cursor: pointer;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 3px;
+    margin: 8px 4px 0 0;
+    width: fit-content;
 }

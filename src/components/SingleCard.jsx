@@ -5,8 +5,6 @@ import EditCard from "./EditCard";
 const SingleCard = (props) => {
   // card title edit mode toggle
   const [cardEdit, setCardEdit] = useState(false);
-  // card title
-  const [cardTitle, setCardTitle] = useState(props.name);
 
   return (
     <>
@@ -19,7 +17,6 @@ const SingleCard = (props) => {
             position ={props.position}
             listCards={props.listCards}
             setListCards={props.setListCards}
-            setCardTitle={setCardTitle}
             setCardEdit={setCardEdit}
           />
       ) : (
@@ -27,7 +24,7 @@ const SingleCard = (props) => {
           <div className="cards__card" key={props.id} >
             <div
               className="cards__name"
-              onClick={() => props.showCard()}
+              onClick={() => props.showCard(props.currentCard)}
               readOnly
             >
               {props.name}

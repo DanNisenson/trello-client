@@ -5,23 +5,20 @@ import "../assets/css/CreateCard.css";
 
 const CreateCard = (props) => {
   const context = useAppContext();
-  const textarea = useRef()
   // "card creation" mode toggle
   const [addCard, setAddCard] = useState(false);
   // new card's title
   const [title, setTitle] = useState("");
 
-  // open text input and focus it
-  const titleInputMode = async () => {
-    await setAddCard(true);
-    textarea.current.focus();
-  }
-  
-
   const postNewCard = async () => {
     // request
     try {
-      const resp = await cardsAPI.postNewCard(context.keys.apiKey, context.keys.token, title, props.idList)
+      const resp = await cardsAPI.postNewCard(
+        context.keys.apiKey,
+        context.keys.token,
+        title,
+        props.idList
+      );
       if (resp.status === 200) {
         // add new card at the end of listCards array
         context.setCards([...context.cards, resp.data]);
@@ -39,13 +36,13 @@ const CreateCard = (props) => {
       {addCard ? (
         <div className="create-card">
           {/* title user input */}
-          <textarea   
+          <textarea
             type="text"
             id="new-card-title-input"
             className="create-card__title-input"
             placeholder="Enter a title for this card..."
             onChange={(e) => setTitle(e.target.value)}
-            ref={textarea}
+            autoFocus
           />
           {/* "add card" & close buttons */}
           <div className="create-card__btns-container">
@@ -59,7 +56,7 @@ const CreateCard = (props) => {
           </div>
         </div>
       ) : (
-        <button className="lists__add-card" onClick={titleInputMode}>
+        <button className="lists__add-card" onClick={() => setAddCard(true)}>
           <i className="fa-regular fa-plus lists__plus-icon "></i>
           <span>Add a card</span>
         </button>

@@ -84,11 +84,11 @@ const EditCard = (props) => {
           {/* title input */}
           <textarea
             className="cards__name cards__name--edit"
-            value={props.cardTitle}
-            onChange={(e) => {
-              props.setCardTitle(e.target.value);
-            }}
+            defaultValue={props.name}
             ref={textarea}
+            // Focus on load and select all text
+            autoFocus
+            onFocus={e => e.target.setSelectionRange(0, props.cardTitle.length)}
           />
           {/* update card title button */}
           <button
