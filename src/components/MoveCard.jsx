@@ -1,23 +1,80 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useAppContext } from "../context/context";
 import cardsAPI from "../services/cardsAPI";
 
 const MoveCard = (props) => {
   const context = useAppContext();
-  // target form elements
-  const targetList = useRef(props.idList);
-  const targetPosition = useRef(props.position);
+  // selected list
+  const [targetListId, setTargetListId] = useState(props.idList);
+  // selected position
+  const targetPosition = useRef();
+  // array of card pos(ition) values
+  const [cardPositions, setCardPositions] = useState([]);
 
-  // 'Move' btn executes
+
+  useEffect(() => {
+    // filter all cards by selected list
+    const listCards = context.cards.filter(
+      (card, i) => card.idList === targetListId
+    );
+    // update state with array containing card position values
+    const cardPositions = listCards.map((card, i) => card.pos);
+    setCardPositions(cardPositions);
+
+  }, [targetListId]);
+
+  const cardPositionOptions = () => {
+    // check if there are card in list 
+    // render option elements for new "card position"
+    let cardOrder = [];
+    if (cardPositions[0]) {
+      for (let i = 0; i <= cardPositions.length; i++) {
+        cardOrder.push(
+          <option value={i} key={i}>
+            {parseInt(i) + 1}
+          </option>
+        );
+      }
+    } else {
+      // if theres no cards in list there is only one option
+      cardOrder = [
+        <option value={0} key={0}>
+          {1}
+        </option>,
+      ];
+    }
+    return cardOrder;
+  };
+
+  const calculatePosition = () => {
+    let targPosInt = parseInt(targetPosition.current.value);
+    let position;
+
+    if (targPosInt === 0) {
+      position = "top";
+    } else if (targPosInt === cardPositions.length) {
+      position = "bottom";
+    } else if (targPosInt > 0 && targPosInt < cardPositions.length +1) {
+      // calculate mean
+      position =
+        (cardPositions[targPosInt] +
+          cardPositions[targPosInt - 1]) /
+        2;
+    }
+    return position;
+  }
+
+  // 'Move' btn gives new position value and requests update
   const handleSubmit = async () => {
+    let position = calculatePosition();
     try {
       // request
       const resp = await cardsAPI.updateCardPosition(
         context.keys.apiKey,
         context.keys.token,
         props.id,
-        targetList.current.value,
-        targetPosition.current.value
+        targetListId,
+        position
       );
       if (resp.status === 200) {
         // recreate cards array and replace modified card
@@ -32,26 +89,34 @@ const MoveCard = (props) => {
       alert("Unable to update card");
     }
     props.setMoveCard(false);
+    props.setCardEdit(false);
   };
 
   return (
     <div>
       {/* board's lists drop-down menu */}
-      <select name="list" defaultValue={props.idList} ref={targetList}>
+      <select
+        name="list"
+        defaultValue={props.idList}
+        onChange={(e) => setTargetListId(e.target.value)}
+      >
         {context.lists.map((list, i) => (
           <option value={list.id} key={list.id}>
             {list.name}
           </option>
         ))}
       </select>
-      {/* position number selection */}
-      <input
-        type="number"
+
+      {/* position selection */}
+      <select
         name="position"
-        defaultValue={props.position}
-        min={1}
+        defaultValue={0} // should initalize on card position
+        // onChange={(e) => setTargetPosition(e.target.value)}
         ref={targetPosition}
-      />
+      >
+        {cardPositionOptions()}
+      </select>
+
       {/* 'Move' btn */}
       <button
         type="submit"

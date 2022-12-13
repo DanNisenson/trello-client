@@ -15,6 +15,7 @@ const SingleList = (props) => {
   useEffect(()=> {
       const filteredCards = context.cards.filter(card => props.list.id === card.idList);
       setListCards(filteredCards);
+      console.log(context.lists,context.cards);
     }
   , [context.cards]);
 

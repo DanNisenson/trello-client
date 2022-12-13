@@ -25,6 +25,7 @@ const EditCard = (props) => {
         context.keys.token,
         props.id,
         props.cardTitle
+
       );
       if (resp.status === 200) {
         // recreate listCards array and replace modified card
@@ -107,7 +108,7 @@ const EditCard = (props) => {
             >
               <i className="fa-solid fa-arrow-right"></i> Move
             </button>
-            {moveCard && <MoveCard id={props.id} idList={props.idList} position={props.position} setMoveCard={setMoveCard} />}
+            {moveCard && <MoveCard id={props.id} idList={props.idList} position={props.position} setMoveCard={setMoveCard} setCardEdit={props.setCardEdit} />}
             <button className="cards__edit-action-btn">
               <i className="fa-solid fa-trash"></i> Archive
             </button>
