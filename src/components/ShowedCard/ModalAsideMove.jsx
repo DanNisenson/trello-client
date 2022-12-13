@@ -1,12 +1,12 @@
-import { AppContext, useAppContext } from "../../context/context";
+import {useAppContext } from "../../context/context";
 import { useState } from "react";
 import cardsAPI from "../../services/cardsAPI";
 
-const AsideMove= (props)=> {
-    const context= useAppContext();
-    const[destination, setDestination]= useState(null)
+const ModalAsideMove = (props) => {
+    const context = useAppContext();
+    const [destination, setDestination] = useState(null)
 
-    const moveCard= async () =>{
+    const moveCard = async () => {
         try {
             const resp = await cardsAPI.moveCard(context.keys, props.idCard, destination)
             // update position Move
@@ -31,15 +31,15 @@ const AsideMove= (props)=> {
             <div className="aside__new__window--section window__section__checklist">
                 <p className="window__section--title " >Select a destiny</p>
                 {/* Seleccion a través del valor */}
-                <select className="window__section__move--selectcamp window__section--inputtext " 
-                        onChange={
-                            e => setDestination(e.target.value)}>
+                <select className="window__section__move--selectcamp window__section--inputtext "
+                    onChange={
+                        e => setDestination(e.target.value)}>
                     {/* render de listas */}
                     <option></option>
                     {/* La primera en blanco porque select no me detecta el value del primer valor por defecto */}
-                    {context.lists.map((list) => 
+                    {context.lists.map((list) =>
                         <option value={list.id} key={list.id}> {list.name}
-                        </option> )}
+                        </option>)}
                 </select>
             </div>
             <button type="button" className="aside__new--button" onClick={moveCard}>
@@ -49,4 +49,4 @@ const AsideMove= (props)=> {
     )
 }
 
-export default AsideMove
+export default ModalAsideMove
