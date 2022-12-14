@@ -7,15 +7,15 @@ import "../assets/css/Lists.css";
 import "../assets/css/Card/Card.css";
 import CreateCard from "./CreateCard";
 
-const SingleList = (props) => {
+const SingleList = (props) => { 
   const context = useAppContext();
   const [listCards, setListCards] = useState([]);
   const [currentCard, setCurrentCard] = useState(null);
 
   useEffect(()=> {
-      const filteredCards = context.cards.filter(card => props.list.id === card.idList);
+      const filteredCards = context.cards.filter(card => props.list.id === card.idList).sort((a, b) => a.pos - b.pos);
       setListCards(filteredCards);
-      console.log(context.lists,context.cards);
+      console.log(context.lists, context.cards);
     }
   , [context.cards]);
 
