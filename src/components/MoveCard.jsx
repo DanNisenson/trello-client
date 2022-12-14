@@ -18,15 +18,15 @@ const MoveCard = (props) => {
       (card, i) => card.idList === targetListId
     );
     // update state with array containing card position values
-    const cardPositions = listCards.map((card, i) => card.pos);
-    setCardPositions(cardPositions);
+    const positions = listCards.map((card, i) => card.pos);
+    setCardPositions(positions);
   }, [targetListId]);
 
   const cardPositionOptions = () => {
     // check if there are card in list
     // render option elements for new "card position"
     let cardOrder = [];
-    if (cardPositions[0]) {
+    if (cardPositions.length) {
       for (let i = 0; i <= cardPositions.length; i++) {
         cardOrder.push(
           <option value={i} key={i}>
