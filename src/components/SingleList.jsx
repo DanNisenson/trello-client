@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "../context/context";
 import ListName from "./ListName";
 import Cards from "./Cards";
-import Card from "./ShowedCard/Card";
+import ModalCard from "./ShowedCard/ModalCard";
 import "../assets/css/Lists.css";
-import "../assets/css/Card/Card.css";
 import CreateCard from "./CreateCard";
 
 const SingleList = (props) => {
@@ -33,7 +32,7 @@ const SingleList = (props) => {
         />
       </div>
       {currentCard ? (
-          <Card currentCard={currentCard} showCard={setCurrentCard} />
+          <ModalCard currentCard={currentCard} showCard={setCurrentCard} />
       ) : null}
     </>
   );

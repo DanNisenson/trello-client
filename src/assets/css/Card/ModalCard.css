@@ -28,7 +28,7 @@
     align-items: center;
 }
 
-.card__head__title--title{
+.card__head__title--title {
     margin-left: 15px;
 }
 
@@ -52,11 +52,6 @@
 
 }
 
-.XButton:hover {
-    cursor: pointer;
-}
-
-
 
 .card__comments__options {
     width: auto;
@@ -72,7 +67,7 @@
     color: #0279C0;
 }
 
-.options__element:hover{
+.options__element:hover {
     cursor: pointer
 }
 
@@ -104,18 +99,18 @@ textarea {
     font-size: smaller;
 }
 
-.checklist__list__item{
+.checklist__list__item {
     display: flex;
     flex-direction: row;
     margin-left: 10px;
 }
 
 .checklist__list__item--checkbox,
- .checklist__list__item--name{
+.checklist__list__item--name {
     margin: 4px;
 }
 
-.options--button{
+.options--button {
     cursor: pointer;
     padding: 10px 14px;
     border: none;
