@@ -1,0 +1,78 @@
+
+.move-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFFEFF;
+  border-radius: 3px;
+  padding: 10px 10px 10px 10px ;
+  /* height: 200px; */
+  /* width: 200px; */
+  position: absolute;
+  transform: translateY(0);
+  animation: slide-in ease .5s;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.move-card__title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 100%;
+  padding: 10px 0;
+  /* margin: 0 10px; */
+  border-bottom: 1px solid #E0E2E6;
+}
+
+.move-card__close-btn {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  cursor: pointer;
+  color: #77787bc0;
+  padding: 0 .5rem;
+  font-size: .8rem;
+  transform: rotate(45deg);
+}
+
+.move-card__select-section {
+  display: flex;
+  padding: 15px 0;
+  gap: 10px;
+
+}
+
+.move-card__select {
+  display: flex;
+  flex-direction: column;
+  background-color: #F6F6F6;
+  border-radius: 3px;
+  padding: 8px;
+}
+
+.move-card__select:hover {
+  background-color: #ECEDF0;
+}
+
+.move-card__select label {
+  color: #5E6C84;
+}
+
+.move-card__select select {
+  color: #182A4E;
+  border: none;
+  background: none;
+}
+
+.move-card__btn-section {
+  align-self: flex-start;
+}

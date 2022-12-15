@@ -2,6 +2,7 @@
     display: flex;
     gap: 10px;
     overflow: scroll;
+    height: 100vh;
     padding: 10px;
 }
 
@@ -36,15 +37,15 @@
     align-items: center;
     gap: .3rem;
     min-width: 200px;
-    height: 100%;
-    padding: 5px 15px;
+    height: fit-content;
+    padding: 13px 15px;
     border-radius: 3px;
     color: #ffffff;
-    background-color: #2b2c2e79;
+    background-color: #ffffff30;
 }
 
 .lists__add-list:hover {
-    background-color: #858992ba;
+    background-color: #ffffff4f;
 }
 
 i {
