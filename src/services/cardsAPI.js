@@ -47,7 +47,7 @@ class cardsAPI {
         return await axios.delete(`${process.env.REACT_APP_BASE_URL}${url}`);
     }
 
-    static async delComm(context, id ) {
+    static async delComment(context, id ) {
         const url = `actions/${id}?key=${context.apiKey}&token=${context.token}`;
         return await axios.delete(`${process.env.REACT_APP_BASE_URL}${url}`);
 
@@ -58,10 +58,31 @@ class cardsAPI {
         return await axios.put(`${process.env.REACT_APP_BASE_URL}${url}`);
     }
 
-    static async moveCard(context, id, idList) {
-        const url = `cards/${id}?idList=${idList}&key=${context.apiKey}&token=${context.token}`;
+    static async moveCard(context, id, idList,idBoard, pos) {
+        const url = `cards/${id}?idBoard=${idBoard}&idList=${idList}&pos=${pos}&key=${context.apiKey}&token=${context.token}`;
         return await axios.put(`${process.env.REACT_APP_BASE_URL}${url}`);
     }
+    static async archiveCard(closed, context, id) {
+        const url = `cards/${id}?closed=${closed}&key=${context.apiKey}&token=${context.token}`;
+        return await axios.put(`${process.env.REACT_APP_BASE_URL}${url}`);
+    }
+
+    static async updateCheckItem(state, context, id, idCheckItem) {
+        const url = `cards/${id}/checkItem/${idCheckItem}?state=${state}&key=${context.apiKey}&token=${context.token}`;
+        return await axios.put(`${process.env.REACT_APP_BASE_URL}${url}`);
+    }
+
+    static async deleteCheckItem(context, id, idCheckItem) {
+        const url = `cards/${id}/checkItem/${idCheckItem}?key=${context.apiKey}&token=${context.token}`;
+        return await axios.delete(`${process.env.REACT_APP_BASE_URL}${url}`);
+
+    }
+
+    static async newCheckItem(text, context, id ) {
+        const url = `checklists/${id}/checkItems?name=${text}&key=${context.apiKey}&token=${context.token}`;
+        return await axios.post(`${process.env.REACT_APP_BASE_URL}${url}`);
+    }
+
 
 }
 

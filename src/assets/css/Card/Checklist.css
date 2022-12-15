@@ -1,0 +1,73 @@
+.checklist__list__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+    padding: 5px;
+    border-radius: 5px;
+
+
+}
+.checklist__list__item--main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.checklist__list__item:hover{
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    background-color: #DADBE3;
+}
+.checklist__list__item:hover div:nth-child(2){
+    visibility: visible;
+}
+.checklist__list__item--edit{
+    visibility: hidden;
+    margin-left: auto;
+    background-color:#091e420a ;
+    padding: 5px;
+    cursor: pointer;
+}
+.checklist__list__item--edit:hover {
+    background-color: #091e4226
+  
+}
+
+.checklist__list__item--checkbox{
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    margin-right: 30px;
+    color:grey; 
+
+}
+.checklist__list__item--checkbox:hover{
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    background-color: #00129a4d;
+}
+.checklist__list__item--name{
+    color: var(--ds-text, #172b4d);
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.checklist__list{
+    display: flex;
+    flex-direction: column;
+}
+.card__section__checklist--button{
+    background-color: #091e4212;
+}
+
+.card__section__checklist--button:hover {
+    background-color: #091e4222;
+}
+
+.card__section__checklist--savebutton{
+    background-color: #0279C0;
+    color: #FFF;
+}
+.card__section__checklist--savebutton:hover {
+    background-color: #016aa7;
+}

@@ -10,7 +10,7 @@
 }
 
 .card__total {
-    min-height: 600px;
+    height: fit-content;
     position: absolute;
     margin: 100px 200px;
     border-radius: 15px;
@@ -49,6 +49,8 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
+    width: fit-content;
+    min-width: 140px;
 
 }
 
@@ -99,17 +101,6 @@ textarea {
     font-size: smaller;
 }
 
-.checklist__list__item {
-    display: flex;
-    flex-direction: row;
-    margin-left: 10px;
-}
-
-.checklist__list__item--checkbox,
-.checklist__list__item--name {
-    margin: 4px;
-}
-
 .options--button {
     cursor: pointer;
     padding: 10px 14px;
@@ -117,4 +108,13 @@ textarea {
     border-radius: 3px;
     margin: 8px 4px 0 0;
     width: fit-content;
+}
+
+.card__head--archivebackground{
+    background-color: var(--ds-background-warning, #FDFAE5);
+    background-image: linear-gradient(to bottom right, var(--ds-background-neutral, rgba(0, 0, 0, 0.05)) 25%, transparent 25%, transparent 50%, var(--ds-background-neutral, rgba(0, 0, 0, 0.05)) 50%, var(--ds-background-neutral, rgba(0, 0, 0, 0.05)) 75%, transparent 75%, transparent);
+    background-size: 14px 14px;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
 }

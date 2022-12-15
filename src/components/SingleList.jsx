@@ -12,7 +12,7 @@ const SingleList = (props) => {
   const [currentCard, setCurrentCard] = useState(null);
 
   useEffect(()=> {
-      const filteredCards = context.cards.filter(card => props.list.id === card.idList);
+    const filteredCards = context.cards.filter(card => props.list.id === card.idList).sort((a, b) => a.pos - b.pos);
       setListCards(filteredCards);
     }
   , [context.cards]);
@@ -32,7 +32,7 @@ const SingleList = (props) => {
         />
       </div>
       {currentCard ? (
-          <ModalCard currentCard={currentCard} showCard={setCurrentCard} />
+          <ModalCard currentCard={currentCard} setCurrentCard={setCurrentCard} />
       ) : null}
     </>
   );
