@@ -1,8 +1,8 @@
 .cards__card {
   position: relative;
   display: flex;
-  margin: 5px 0 0 0;
-  border-bottom: 1px solid #b4b9c5;
+  margin: 7px 0 0 0;
+  border-bottom: 1.3px solid #b4b9c5;
   background-color: #ffffff;
   cursor: pointer;
   border-radius: 4px;
@@ -11,7 +11,8 @@
 .cards__name {
   border: none;
   border-radius: 4px;
-  padding: 10px;
+  margin: 1px 0;
+  padding: 8px;
   width: 100%;
   overflow: visible;
   word-wrap: break-word;
@@ -23,18 +24,16 @@
 }
 
 .cards__card:hover {
-  background-color: #f3f4f6;
-}
-
-.cards__action-icons {
-  align-self: flex-start;
-  margin: 2px 2px 0 0 ;
-  display: flex;
-  font-size: 0.7rem;
+  background-color: #F4F5F6;
 }
 
 .cards__action-icon {
-  color: #77787b;
+  height: 31px;
+  align-self: flex-start;
+  margin: 2px 2px 0px 0 ;
+  display: flex;
+  font-size: 0.7rem;
+  color: #65738A;
   display: inline;
   cursor:crosshair;
   padding: 10px;
@@ -44,7 +43,7 @@
 
 .cards__action-icon:hover {
   /* visibility: visible; */
-  color: #4f5053;
+  color: #182A4E;
   background-color: #e3e3e7;
 }
 

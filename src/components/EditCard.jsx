@@ -1,19 +1,13 @@
 import { useAppContext } from "../context/context";
-import { useEffect ,useRef } from "react";
+import { useRef, useState } from "react";
 import cardsAPI from "../services/cardsAPI";
 import "../assets/css/EditCard.css";
+import MoveCard from "./MoveCard";
 
 const EditCard = (props) => {
-  const textarea = useRef()
   const context = useAppContext();
-
-  useEffect(() => {
-    // focus element and select all text to be edited
-    const title = textarea.current;
-    title.setSelectionRange(0, props.cardTitle.length);
-    title.focus();
-  }, [])
-  
+  const textarea = useRef();
+  const [moveCard, setMoveCard] = useState(false);
 
   // card title change function
   const updateCard = async () => {
@@ -24,14 +18,15 @@ const EditCard = (props) => {
         context.keys.token,
         props.id,
         props.cardTitle
+
       );
       if (resp.status === 200) {
         // recreate listCards array and replace modified card
-        const newListCards = context.cards.map((card) =>
+        const newCards = context.cards.map((card) =>
           card.id === resp.data.id ? resp.data : card
         );
         // update cards in List component
-        context.setCards(newListCards);
+        context.setCards(newCards);
       }
     } catch (error) {
       console.log(error.message);
@@ -82,11 +77,11 @@ const EditCard = (props) => {
           {/* title input */}
           <textarea
             className="cards__name cards__name--edit"
-            value={props.cardTitle}
-            onChange={(e) => {
-              props.setCardTitle(e.target.value);
-            }}
+            defaultValue={props.name}
             ref={textarea}
+            // Focus on load and select all text
+            autoFocus
+            onFocus={e => e.target.select()}
           />
           {/* update card title button */}
           <button
@@ -100,9 +95,13 @@ const EditCard = (props) => {
             <button className="cards__edit-action-btn" onClick={deleteCard}>
               <i className="fa-solid fa-trash"></i> Delete
             </button>
-            <button className="cards__edit-action-btn">
-              <i className="fa-solid fa-trash"></i> Open
+            <button
+              className="cards__edit-action-btn"
+              onClick={() => setMoveCard(true)}
+            >
+              <i className="fa-solid fa-arrow-right"></i> Move
             </button>
+            {moveCard && <MoveCard id={props.id} idList={props.idList} position={props.position} setMoveCard={setMoveCard} setCardEdit={props.setCardEdit} />}
             <button className="cards__edit-action-btn">
               <i className="fa-solid fa-trash"></i> Archive
             </button>

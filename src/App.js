@@ -11,7 +11,7 @@ function App() {
         // context variables
         <AppWrapper>
             <div className="App">
-                {isAuthorized ? <Board /> : <Authorize isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} />}
+                {isAuthorized ? <Board setIsAuthorized={setIsAuthorized} /> : <Authorize isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} />}
             </div>
         </AppWrapper>
     );

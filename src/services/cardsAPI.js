@@ -16,6 +16,11 @@ class cardsAPI {
         const url = `cards/${id}?name=${title}&key=${apiKey}&token=${token}`;
         return await axios.put(`${process.env.REACT_APP_BASE_URL}${url}`);
     }
+    
+    static async updateCardPosition(apiKey, token, id, idList, position) {
+        const url = `cards/${id}?idList=${idList}&pos=${position}&key=${apiKey}&token=${token}`;
+        return await axios.put(`${process.env.REACT_APP_BASE_URL}${url}`);
+    }
 
     static async deleteCard(apiKey, token, id) {
         const url = `cards/${id}?&key=${apiKey}&token=${token}`;

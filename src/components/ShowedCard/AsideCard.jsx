@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useAppContext } from "../../context/context";
-import ModalAsideMove from "./ModalAsideMove";
+import MoveCard from "../MoveCard";
 import WarningAdvise from "./WarningAdvise";
 import "../../assets/css/Card/AsideCard.css";
 import cardsAPI from "../../services/cardsAPI";
@@ -8,7 +8,7 @@ import cardsAPI from "../../services/cardsAPI";
 const AsideCard = (props) => {
     const context = useAppContext()
     const [toggleCheckList, setToggleCheckList] = useState(false)
-    const [toggleMove, setToggleMove] = useState(false)
+    const [moveCard, setMoveCard] = useState(false)
     const [listName, setListName] = useState("");
     const [isArchived, setIsArchived]= useState(props.payload.closed)
     const [toggleDelete, setToggleDelete] = useState(false)
@@ -107,16 +107,16 @@ const AsideCard = (props) => {
 
 
             <div>
-                <div className="card__aside card__aside__options" onClick={() => setToggleMove(!toggleMove)}>
+                <div className="card__aside card__aside__options" onClick={() => setMoveCard(true)}>
                     <i class="fa-solid fa-arrow-right fa-lg"></i>
                     <span className=" card__aside__options--title" >Move</span>
                 </div>
-                {toggleMove &&
-                    <div className="card__aside aside__new__checklist">
-                        <div className="aside__new--window--background" onClick={() => setToggleCheckList(false)}>
-                        </div>
-                        <ModalAsideMove close={setToggleMove} payload={props.payload} />
-                    </div>}
+                {moveCard &&
+                    // <div className="card__aside aside__new__checklist">
+                    //     <div className="aside__new--window--background" onClick={() => setToggleCheckList(false)}>
+                    //     </div>
+                        <MoveCard id={props.payload.id}  setMoveCard={setMoveCard} setCardEdit={setMoveCard} idList={props.payload.idList}/>
+                }
             </div>
         </>
     )

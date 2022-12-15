@@ -1,0 +1,50 @@
+.userbox {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    color: #FFF;
+}
+
+.userbox-background {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+.userbox-btn {
+    color: #FFF;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px 20px;
+    min-width: 100px;
+}
+
+.userbox-btn:hover {
+    background-color: #ffffff26;
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.userbox-logout {
+    z-index: 1;
+    border-radius: 4px;
+    padding: 10px 20px;
+    color: #FFF;
+    background-color: #0279C0;
+    font-size: 0.8rem;
+    cursor: pointer;
+    animation: 0.3s ease-out 0s 1 slideInFromRight;
+}
+
+.userbox-logout:hover {
+    background-color: #027ac0dd;
+}

@@ -15,7 +15,7 @@ const BodyCard = (props) => {
 
     const delCheckList = async (List) => {
         try {
-            const resp = await cardsAPI.delCheckList(context.keys, List);
+            const resp = await cardsAPI.delCheckL(context.keys, List);
             if (resp.status === 200) {
                 props.setCheckList(props.checkList.filter(a => a.id !== List))
             }
@@ -93,7 +93,7 @@ const BodyCard = (props) => {
                     </>
                     : <p className="card__section--desc">{description}</p>}
             </div>
-            {props.checkList.length === 0
+            {!props.checkList.length
                 ? null
                 :
                 props.checkList?.map((List, i) =>
@@ -108,7 +108,6 @@ const BodyCard = (props) => {
                             <button type="button" className="card__section__headtitle--button options--button"
                                 onClick={() => {
                                     delCheckList(List.id);
-
                                 }
                                 }>
                                 Eliminar

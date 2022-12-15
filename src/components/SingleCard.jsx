@@ -5,10 +5,6 @@ import EditCard from "./EditCard";
 const SingleCard = (props) => {
   // card title edit mode toggle
   const [cardEdit, setCardEdit] = useState(false);
-  // card title
-  const [cardTitle, setCardTitle] = useState(props.name);
-
-  
 
   return (
     <>
@@ -16,15 +12,16 @@ const SingleCard = (props) => {
       {cardEdit ? (
           <EditCard
             id={props.id}
-            cardTitle={cardTitle}
+            idList={props.idList}
+            name={props.name}
+            position ={props.position}
             listCards={props.listCards}
             setListCards={props.setListCards}
-            setCardTitle={setCardTitle}
             setCardEdit={setCardEdit}
           />
       ) : (
         // non-edit mode
-          <div className="cards__card" key={props.id}>
+          <div className="cards__card" key={props.id} >
             <div
               className="cards__name"
               onClick={() => props.showCard(props.currentCard)}
@@ -33,7 +30,6 @@ const SingleCard = (props) => {
               {props.name}
             </div>
             {/* edit icons */}
-            <div className="cards__action-icons">
               <button
                 className="cards__edit-btn cards__action-icon"
                 onClick={() => setCardEdit(true)}
@@ -41,7 +37,6 @@ const SingleCard = (props) => {
                 <i className="fa-solid fa-pencil"></i>
               </button>
             </div>
-          </div>
       )}
     </>
   );

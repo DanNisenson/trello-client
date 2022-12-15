@@ -9,16 +9,15 @@ const Checklist= (props) => {
     const [newItem, setNewItem]= useState("")
     const context= useAppContext();
     let thisList = props.checkList.filter(list => list.id === props.idList)
-    let items= props.checkList.map(list => list.id === props.idList ? list.checkItems : null)
+    let items= thisList[0].checkItems
 
 
     const changeCheckBox = async (id) =>{
-        let actualItem= items[0].filter(item=> item.id === id)
+        let actualItem= items.filter(item=> item.id === id)
         if(actualItem[0].state === "complete"){
             try {
                 const resp = await cardsAPI.updateCheckItem("incomplete", context.keys, thisList[0].idCard, id);
                 if (resp.status === 200) {
-                    console.log(resp.data)
                     actualItem= {...actualItem[0], state: "incomplete"}
                     const thisItems = thisList[0].checkItems.map(item => item.id === actualItem.id ? actualItem : item )
                     const newList= {...thisList[0], checkItems: thisItems }
@@ -84,7 +83,7 @@ const Checklist= (props) => {
 
     return(
         <div className="card__section__checklist--list checklist__list">
-            {items[0]?.map((a)=> 
+            {items?.map((a)=> 
                 <div className=" checklist__list__item" > 
                     <div className="checklist__list__item--main">
                         <div className="checklist__list__item--checkbox " onClick={() => changeCheckBox(a.id)}>
@@ -113,7 +112,7 @@ const Checklist= (props) => {
                 </>
                 :
                 <button type="button" className="card__section__checklist--button options--button" onClick={() => setToggleNewItem(true)}>
-                        Add an element
+                        Add an item
                 </button>
                 
             }

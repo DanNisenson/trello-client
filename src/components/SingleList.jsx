@@ -6,14 +6,15 @@ import ModalCard from "./ShowedCard/ModalCard";
 import "../assets/css/Lists.css";
 import CreateCard from "./CreateCard";
 
-const SingleList = (props) => {
+const SingleList = (props) => { 
   const context = useAppContext();
   const [listCards, setListCards] = useState([]);
   const [currentCard, setCurrentCard] = useState(null);
 
   useEffect(()=> {
-    const filteredCards = context.cards.filter(card => props.list.id === card.idList).sort((a, b) => a.pos - b.pos);
+      const filteredCards = context.cards.filter(card => props.list.id === card.idList).sort((a, b) => a.pos - b.pos);
       setListCards(filteredCards);
+      console.log(context.lists, context.cards);
     }
   , [context.cards]);
 

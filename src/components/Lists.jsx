@@ -29,6 +29,7 @@ const Lists = (props) => {
         };
         getLists();
         getCards();
+        
     }, [props.boardId]);
 
     return (
