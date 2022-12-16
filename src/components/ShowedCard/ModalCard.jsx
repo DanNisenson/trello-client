@@ -31,23 +31,46 @@ const ModalCard = (props) => {
         <>
             <div className="card--background">
                 <div className="card__total">
-
-                    <div className="card__head">
-                        <div className="card__head card__head__title">
-                            <i class="fa-sharp fa-solid fa-computer fa-2xl"></i>
-                            <h1 className="card__head__title--title"> {props.currentCard.name}</h1>
-                        </div>
-                        <div onClick={() => props.showCard(null)}>
-                            <i class="fa-solid fa-xmark fa-2xl"></i>
-                        </div>
+                    <div className="card__head" >
+                        {props.currentCard.closed===true ?
+                            <>
+                                <div className="card__head--archive card__head__title card__head--archivebackground">  
+                                    <i class="fa-sharp fa-solid fa-computer fa-2xl"></i>
+                                    <h2 className="card__head__title--title">
+                                        This Card is archived
+                                    </h2>
+                                </div>
+                                <div onClick={() => props.setCurrentCard(null)}>
+                                        <i class="fa-solid fa-xmark fa-2xl"></i>
+                                </div>
+                            </>
+                            :<>
+                            <div className="card__head card__head__title">
+                                <i class="fa-sharp fa-solid fa-computer fa-2xl"></i>
+                                <h2 className="card__head__title--title">
+                                    {props.currentCard.name}
+                                </h2>
+                            </div>
+                                <div onClick={() => props.setCurrentCard(null)}>
+                                    <i class="fa-solid fa-xmark fa-2xl"></i>
+                            </div></>
+                        }
                     </div>
                     <div className="card__main">
                         <div className="card__body">
-                            <BodyCard payload={props.currentCard} comments={comments} checkList={checkList}
-                                setComments={setComments} setCheckList={setCheckList} />
+                            <BodyCard 
+                                payload={props.currentCard} 
+                                comments={comments} 
+                                checkList={checkList}
+                                setComments={setComments} 
+                                setCheckList={setCheckList}
+                                setCurrentCard={props.setCurrentCard} />
                         </div>
                         <div className="card__aside">
-                            <AsideCard payload={props.currentCard} setCheckList={setCheckList} checkList={checkList} />
+                            <AsideCard payload={props.currentCard} 
+                                setCheckList={setCheckList} 
+                                checkList={checkList} 
+                                setCurrentCard={props.setCurrentCard}/>
                         </div>
                     </div>
 

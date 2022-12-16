@@ -1,7 +1,6 @@
 .card__section {
     padding: 20px;
-    margin-top: 5px;
-    border-top: 2px solid black;
+    margin-left: 10px;
 }
 
 .card__section_checklist {

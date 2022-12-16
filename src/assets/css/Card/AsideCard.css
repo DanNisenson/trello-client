@@ -91,3 +91,18 @@
     width: 100%;
     margin: 4px 0 12px;
 }
+
+.card__aside__options--delete{
+    background-color: rgba(173, 2, 2, 0.285);
+}
+
+.card__aside__options--delete:hover{
+    background-color: rgba(173, 2, 2, 0.504);
+}
+
+.window__section__move--selectcamp{
+    background-color: rgba(140, 140, 140, 0.256);
+    border-radius: 3px;
+    height: 50px;
+    width: 100%;
+}

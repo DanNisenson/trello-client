@@ -33,7 +33,7 @@ const SingleList = (props) => {
         />
       </div>
       {currentCard ? (
-          <ModalCard currentCard={currentCard} showCard={setCurrentCard} />
+          <ModalCard currentCard={currentCard} setCurrentCard={setCurrentCard} />
       ) : null}
     </>
   );

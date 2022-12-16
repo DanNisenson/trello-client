@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAppContext } from "../../context/context";
 import Checklist from './Checklist';
 import cardsAPI from "../../services/cardsAPI";
+import WarningAdvise from './WarningAdvise';
 import "../../assets/css/Card/BodyCard.css";
 
 const BodyCard = (props) => {
@@ -10,10 +11,11 @@ const BodyCard = (props) => {
     const [toggleEditDescription, setToggleEditDescription] = useState(false)
     const [toggleNewComment, setToggleNewComm] = useState(false)
     const [newComment, setNewComment] = useState("")
+    const [toggleDelete, setToggleDelete]=useState(false)
 
     const delCheckList = async (List) => {
         try {
-            const resp = await cardsAPI.delCheckList(context.keys, List);
+            const resp = await cardsAPI.delCheckL(context.keys, List);
             if (resp.status === 200) {
                 props.setCheckList(props.checkList.filter(a => a.id !== List))
             }
@@ -28,7 +30,7 @@ const BodyCard = (props) => {
         try {
             const resp = await cardsAPI.delComment(context.keys, comm);
             if (resp.status === 200) {
-                props.getComments(props.comments.filter(a => a.id !== comm))
+                props.setComments(props.comments.filter(a => a.id !== comm))
 
             }
         }
@@ -44,8 +46,6 @@ const BodyCard = (props) => {
             if (resp.status === 200) {
                 // update Card
                 context.setCards(context.cards.map(card => card.id === props.payload.id ? resp.data : card))
-
-                // await props.setDescription(resp.data)
             }
         }
         catch (error) {
@@ -93,7 +93,8 @@ const BodyCard = (props) => {
                     </>
                     : <p className="card__section--desc">{description}</p>}
             </div>
-            {props.checkList.length === 0
+            {/* render Checklists if exist*/}
+            {!props.checkList.length
                 ? null
                 :
                 props.checkList?.map((List, i) =>
@@ -108,13 +109,16 @@ const BodyCard = (props) => {
                             <button type="button" className="card__section__headtitle--button options--button"
                                 onClick={() => {
                                     delCheckList(List.id);
-
                                 }
                                 }>
-                                Eliminar
+                                Delete
                             </button>
                         </div>
-                        <Checklist items={List.checkItems} idList={List.id} />
+                        <Checklist 
+                            checkList={props.checkList} 
+                            idList={List.id}
+                            setCheckList={props.setCheckList} 
+                            />
                     </div>)}
 
 
@@ -125,13 +129,15 @@ const BodyCard = (props) => {
                     </h3>
                     {/* setNewComment reset content when close with button*/}
                     <button type="button" className="card__section__headtitle--button options--button"
-                        onClick={() => { setToggleNewComm(!toggleNewComment); setNewComment("") }}>
-                        {toggleNewComment ? "Cancelar" : "Nuevo"}
+                        onClick={() => { 
+                            setToggleNewComm(!toggleNewComment); 
+                            setNewComment("") }}>
+                        {toggleNewComment ? "Cancel" : "New"}
                     </button>
                 </div>
-
+                        
                 {toggleNewComment ? <>
-                    <textarea className="card__options--textarea" placeholder="Escriba un comentario..." onChange={event => setNewComment(event.target.value)}
+                    <textarea className="card__options--textarea" placeholder="Write a comment..." onChange={event => setNewComment(event.target.value)}
                     >
                     </textarea>
                     <button type="button" className="card__section__comm--button options--button"
@@ -147,6 +153,15 @@ const BodyCard = (props) => {
                 </>
                     : null
                 }
+                {toggleDelete &&
+                    <WarningAdvise
+                        title={"Delete comment? "}
+                        text={"Deleting a comment is forever. There is no undo."}
+                    setToggle={setToggleDelete}
+                        onClick={delComment}
+                        content={toggleDelete}
+                    />
+                }
                 <div className="card__comments__list">
                     {props.comments?.map((a, i) =>
                         <div className='card__comment' key={i}>
@@ -156,10 +171,11 @@ const BodyCard = (props) => {
                             </div>
                             <input type="text" className="card__section__comm--text" value={a.data.text} readOnly />
                             <div className='card__comments__options'>
-                                <a className='card__comments__options--delete'
-                                    onClick={() => delComment(a.id)} >
-                                    Delete
-                                </a>
+                                    <a className='card__comments__options--delete'
+                                        onClick={() => setToggleDelete(a.id)} >
+                                        Delete
+                                     </a>
+                                
                             </div>
                         </div>
                     )
