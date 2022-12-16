@@ -11,7 +11,7 @@ export function AppWrapper({ children }) {
     const [boards, setBoards] = useState([]);
     const [lists, setLists] = useState([]);
     const [cards, setCards] = useState([]);
-    console.log(cards)
+
     const moveCard = async (id, idList, position) => {
         console.log(id, idList, position)
         // let position = calculatePosition();
