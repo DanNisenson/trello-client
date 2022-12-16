@@ -67,7 +67,7 @@ const ListName = props => {
                     >
                         <p>{listName}</p>
                     </button>
-                    <ListMenu listId={props.listId} />
+                    <ListMenu listId={props.listId} boardId={props.boardId} />
                 </div>
             }
         </>

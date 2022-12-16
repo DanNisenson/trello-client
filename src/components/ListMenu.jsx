@@ -84,7 +84,7 @@ const ListMenu = props => {
                     </ul>
                 </div>}
             {toggleMove &&
-                <ListMove listId={props.listId} setToggleMenu={setToggleMenu} setToggleMove={setToggleMove} />
+                <ListMove listId={props.listId} boardId={props.boardId} setToggleMenu={setToggleMenu} setToggleMove={setToggleMove} />
             }
         </div>
     );
