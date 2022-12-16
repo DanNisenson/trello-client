@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useAppContext } from "../context/context";
 import listsAPI from "../services/listsAPI";
 import "../assets/css/ListMove.css";
@@ -55,6 +55,15 @@ const ListMove = props => {
 
     return (
         <div className="lists__move">
+            <div className="lists__move-controls">
+                <i className="fa-solid fa-arrow-left lists__move-controls-back" onClick={() => {
+                    props.setToggleMove(false)
+                    props.setToggleMenu(true)
+                    }}>
+                </i>
+                <p>Move list</p>
+                <i className="fa-solid fa-plus lists__move-controls-close" onClick={() => props.setToggleMove(false)}></i>
+            </div>
             <div className="lists__move-select">
                 <label>Position:</label>
                 <select className="lists__move-options" 

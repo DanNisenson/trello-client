@@ -11,6 +11,22 @@
     flex-direction: column;
 }
 
+.lists__move-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    color: #5E6C84;
+}
+
+.lists__move-controls > i:hover {
+    color: #000000;
+}
+
+.lists__move-controls-close {
+    transform: rotate(45deg);
+}
+
 .lists__move-select {
     display: flex;
     flex-direction: column;
