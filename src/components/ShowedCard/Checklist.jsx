@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useAppContext } from "../../context/context";
 import cardsAPI from "../../services/cardsAPI";
+import ProgressBar from "./ProgressBar";
 import "../../assets/css/Card/Checklist.css";
+
 
 
 const Checklist= (props) => {
@@ -83,6 +85,10 @@ const Checklist= (props) => {
 
     return(
         <div className="card__section__checklist--list checklist__list">
+            <ProgressBar 
+                actual={items.filter(item => item.state === "complete").length}
+                target={items.length}
+                />
             {items?.map((a)=> 
                 <div className=" checklist__list__item" > 
                     <div className="checklist__list__item--main">
