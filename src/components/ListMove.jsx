@@ -26,8 +26,9 @@ const ListMove = props => {
             return ("top");
         if (targetIndex === context.lists.length - 1)
             return ("bottom");
-        const posDifference = context.lists[targetIndex].pos - context.lists[targetIndex - 1].pos;
-        return (context.lists[targetIndex].pos - posDifference / 2);
+        if (targetPosition > currentPosition)
+            return ((context.lists[targetIndex].pos + context.lists[targetIndex + 1].pos) / 2);
+        return ((context.lists[targetIndex].pos + context.lists[targetIndex - 1].pos) / 2);
     }
 
     const handleMove = async () => {
