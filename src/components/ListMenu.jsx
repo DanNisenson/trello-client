@@ -1,26 +1,29 @@
 import { useState, useRef, useEffect } from "react";
 import { useAppContext } from "../context/context";
 import listsAPI from "../services/listsAPI";
+import ListMove from "./ListMove";
 import "../assets/css/ListMenu.css"
 
 const ListMenu = props => {
     const context = useAppContext();
     const menuRef = useRef();
     const [toggleMenu, setToggleMenu] = useState(false);
+    const [toggleMove, setToggleMove] = useState(false);
 
     useEffect(() => {
         const handleClickOutside = event => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
                 document.removeEventListener("mousedown", handleClickOutside);
-                setToggleMenu(!toggleMenu);
+                setToggleMenu(false);
+                setToggleMove(false);
             }
         }
-        if (toggleMenu)
+        if (toggleMenu || toggleMove)
             document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         }
-    }, [menuRef, toggleMenu]);
+    }, [menuRef, toggleMenu, toggleMove]);
 
     const archiveCards = async () => {
         const confirmation = window.confirm("This action will archive all cards in the list. Are you sure?");
@@ -61,8 +64,10 @@ const ListMenu = props => {
     }
 
     return (
-        <div id={props.listId} className="lists__menu" ref={menuRef}>
-            <button className="lists__menu-btn" onClick={() => setToggleMenu(!toggleMenu)}>
+        <div className="lists__menu" ref={menuRef}>
+            <button className="lists__menu-btn" onClick={() => 
+                toggleMove ? setToggleMove(!toggleMove) : setToggleMenu(!toggleMenu)
+            }>
                 <i className="fa-solid fa-bars"></i>
             </button>
             {toggleMenu &&
@@ -70,8 +75,17 @@ const ListMenu = props => {
                     <ul className="lists__menu-dropdown__options">
                         <li onClick={archiveCards}>Archive all cards in this list...</li>
                         <li onClick={archiveList}>Archive this list</li>
+                        <li onClick={() => {
+                                setToggleMenu(!toggleMenu);
+                                setToggleMove(!toggleMove);
+                        }}>
+                            Move list...
+                        </li>
                     </ul>
                 </div>}
+            {toggleMove &&
+                <ListMove listId={props.listId} setToggleMenu={setToggleMenu} setToggleMove={setToggleMove} />
+            }
         </div>
     );
 }

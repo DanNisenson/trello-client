@@ -1,0 +1,64 @@
+.lists__move {
+    position: absolute;
+    top: 300%;
+    left: 10%;
+    width: 10rem;
+    z-index: 2;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.lists__move-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    color: #5E6C84;
+}
+
+.lists__move-controls > i:hover {
+    color: #000000;
+}
+
+.lists__move-controls-close {
+    transform: rotate(45deg);
+}
+
+.lists__move-select {
+    display: flex;
+    flex-direction: column;
+    color: #5E6C84;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f0eeee;
+}
+
+.lists__move-select:hover {
+    color: #000000;
+    background-color: #e1e2e8;
+}
+
+.lists__move-options {
+    margin-top: 5px;
+    border: none;
+    background-color: inherit;
+    overflow: hidden;
+}
+
+.lists__move-btn {
+    font-size: 0.9rem;
+    width: 5rem;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    color: #FFF;
+    background-color: #0279C0;
+    cursor: pointer;
+}
+
+.lists__move-btn:hover {
+    opacity: 0.8;
+}
