@@ -92,12 +92,6 @@
     margin: 4px 0 12px;
 }
 
-.prueba{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
 .card__aside__options--delete{
     background-color: rgba(173, 2, 2, 0.285);
 }

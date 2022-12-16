@@ -5,7 +5,6 @@ import ProgressBar from "./ProgressBar";
 import "../../assets/css/Card/Checklist.css";
 
 
-
 const Checklist= (props) => {
     const [toggleNewItem, setToggleNewItem]=useState(false)
     const [newItem, setNewItem]= useState("")
@@ -23,7 +22,7 @@ const Checklist= (props) => {
                     actualItem= {...actualItem[0], state: "incomplete"}
                     const thisItems = thisList[0].checkItems.map(item => item.id === actualItem.id ? actualItem : item )
                     const newList= {...thisList[0], checkItems: thisItems }
-                    props.setCheckList(props.checkList.map(Cl=> Cl.id=== props.idList ? newList : Cl))
+                    props.setCheckList(props.checkList.map(cL=> cL.id=== props.idList ? newList : cL))
                 }
             }
             catch (error) {
@@ -38,7 +37,7 @@ const Checklist= (props) => {
                     actualItem = resp.data 
                     const thisItems = thisList[0].checkItems.map(item => item.id === actualItem.id ? actualItem : item)
                     const newList = { ...thisList[0], checkItems: thisItems }
-                    props.setCheckList(props.checkList.map(Cl => Cl.id === props.idList ? newList : Cl))
+                    props.setCheckList(props.checkList.map(cL => cL.id === props.idList ? newList : cL))
                 }
             }
             catch (error) {
@@ -54,10 +53,9 @@ const Checklist= (props) => {
         try {
             const resp = await cardsAPI.deleteCheckItem(context.keys, thisList[0].idCard, id );
             if (resp.status === 200) {
-                console.log(resp.data)
                 const thisItems = thisList[0].checkItems.filter(item => item.id !== id)
                 const newList = { ...thisList[0], checkItems: thisItems }
-                props.setCheckList(props.checkList.map(Cl => Cl.id === props.idList ? newList : Cl))
+                props.setCheckList(props.checkList.map(cL => cL.id === props.idList ? newList : cL))
             }
         }
         catch (error) {
@@ -71,7 +69,7 @@ const Checklist= (props) => {
             const resp = await cardsAPI.newCheckItem(newItem, context.keys, props.idList);
             if (resp.status === 200) {
                 const newList = { ...thisList[0], checkItems: [...thisList[0].checkItems, resp.data] }
-                props.setCheckList(props.checkList.map(Cl => Cl.id === props.idList ? newList : Cl))
+                props.setCheckList(props.checkList.map(cL => cL.id === props.idList ? newList : cL))
                 setToggleNewItem(false)
             }
         }

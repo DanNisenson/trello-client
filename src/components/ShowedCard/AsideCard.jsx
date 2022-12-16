@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState} from "react"
 import { useAppContext } from "../../context/context";
 import MoveCard from "../MoveCard";
 import WarningAdvise from "./WarningAdvise";
@@ -29,7 +29,6 @@ const AsideCard = (props) => {
         setToggleCheckList(false);
     }
 
-    // useEffect(() => {
             const archiveCard = async () => {
                 try {
                     const resp = await cardsAPI.archiveCard(isArchived, context.keys, props.payload.id)
@@ -49,8 +48,7 @@ const AsideCard = (props) => {
                     console.log("error. failed to post new Checklist.");
                 }
                 };
-                // archiveCard()}, 
-                // [isArchived] )
+
     const deleteCard = async () => {
         try {
             const resp = await cardsAPI.deleteCard(context.keys.apiKey,context.keys.token,props.payload.id);
@@ -102,14 +100,14 @@ const AsideCard = (props) => {
                     <p className="card__aside card__aside__options" onClick={() => {
                             setIsArchived(!isArchived);
                             archiveCard()}}>
-                        Enviar al tablero
+                        Send to board
                     </p> 
                     {!toggleDelete ? 
                         <p className="card__aside card__aside__options card__aside__options--delete" onClick={() => setToggleDelete(true) } > 
                             Delete</p> :
                         <WarningAdvise 
                             title={"Delete card? "}
-                            text={"All actions will be removed from the activity feed and you won’t be able to re-open the card. There is no undo." }
+                            text={"All actions will be removed from the activity feed and you won't be able to re-open the card. There is no undo." }
                             setToggle={setToggleDelete}
                             onClick={deleteCard}
                             />
@@ -137,9 +135,6 @@ const AsideCard = (props) => {
                     <span className=" card__aside__options--title" >Move</span>
                 </div>
                 {moveCard &&
-                    // <div className="card__aside aside__new__checklist">
-                    //     <div className="aside__new--window--background" onClick={() => setToggleCheckList(false)}>
-                    //     </div>
                         <MoveCard id={props.payload.id}  setMoveCard={setMoveCard} setCardEdit={setMoveCard} idList={props.payload.idList}/>
                 }
             </div>

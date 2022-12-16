@@ -111,7 +111,7 @@ const BodyCard = (props) => {
                                     delCheckList(List.id);
                                 }
                                 }>
-                                Eliminar
+                                Delete
                             </button>
                         </div>
                         <Checklist 
@@ -132,12 +132,12 @@ const BodyCard = (props) => {
                         onClick={() => { 
                             setToggleNewComm(!toggleNewComment); 
                             setNewComment("") }}>
-                        {toggleNewComment ? "Cancelar" : "Nuevo"}
+                        {toggleNewComment ? "Cancel" : "New"}
                     </button>
                 </div>
                         
                 {toggleNewComment ? <>
-                    <textarea className="card__options--textarea" placeholder="Escriba un comentario..." onChange={event => setNewComment(event.target.value)}
+                    <textarea className="card__options--textarea" placeholder="Write a comment..." onChange={event => setNewComment(event.target.value)}
                     >
                     </textarea>
                     <button type="button" className="card__section__comm--button options--button"
