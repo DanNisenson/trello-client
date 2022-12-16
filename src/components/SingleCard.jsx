@@ -10,15 +10,16 @@ const SingleCard = (props) => {
     <>
       {/* main card component */}
       {cardEdit ? (
-        <EditCard
-          id={props.id}
-          idList={props.idList}
-          name={props.name}
-          position={props.position}
-          listCards={props.listCards}
-          setListCards={props.setListCards}
-          setCardEdit={setCardEdit}
-        />
+          <EditCard
+            id={props.id}
+            idList={props.idList}
+            idBoard={props.idBoard}
+            name={props.name}
+            position ={props.position}
+            listCards={props.listCards}
+            setListCards={props.setListCards}
+            setCardEdit={setCardEdit}
+          />
       ) : (
         // non-edit mode
         <div className="cards__card" key={props.id}>

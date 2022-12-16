@@ -117,7 +117,7 @@ const EditCard = (props) => {
                 position={props.position}
                 setMoveCard={setMoveCard}
                 setCardEdit={props.setCardEdit}
-              />
+                idBoard={props.idBoard}/>
             )}
             <button className="cards__edit-action-btn">
               <i className="fa-solid fa-trash"></i> Archive

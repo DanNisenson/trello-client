@@ -109,7 +109,7 @@ const MoveCard = (props) => {
             defaultValue={props.idList}
             onChange={(e) => setTargetListId(e.target.value)}
           >
-            {context.lists.map((list, i) => (
+            {context.lists.filter(list => list.idBoard === props.idBoard).map((list, i) => (
               <option value={list.id} key={list.id}>
                 {list.name}
               </option>
