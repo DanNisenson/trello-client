@@ -1,8 +1,17 @@
 import { useState } from "react";
-import "../assets/css/SingleCard.css";
+import { useDrag } from "react-dnd";
+import { ItemTypes } from "../utils/ItemTypes";
 import EditCard from "./EditCard";
+import "../assets/css/SingleCard.css";
 
 const SingleCard = (props) => {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: ItemTypes.CARD,
+    item: {id: props.id, position: props.position},
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging()
+    }),
+  }));
   // card title edit mode toggle
   const [cardEdit, setCardEdit] = useState(false);
 
@@ -21,7 +30,7 @@ const SingleCard = (props) => {
           />
       ) : (
         // non-edit mode
-          <div className="cards__card" key={props.id} >
+          <div ref={drag} className="cards__card" key={props.id} >
             <div
               className="cards__name"
               onClick={() => props.showCard(props.currentCard)}

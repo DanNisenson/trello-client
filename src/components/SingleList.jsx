@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAppContext } from "../context/context";
+import { useDrop } from "react-dnd";
+import { ItemTypes } from "../utils/ItemTypes";
 import ListName from "./ListName";
 import Cards from "./Cards";
 import Card from "./ShowedCard/Card";
@@ -9,19 +11,27 @@ import CreateCard from "./CreateCard";
 
 const SingleList = (props) => { 
   const context = useAppContext();
+
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: ItemTypes.CARD,
+    drop: (item, monitor) => context.moveCard(item.id, props.list.id, item.position),
+    collect: monitor => ({
+      isOver: !!monitor.isOver(),
+    }),
+  }))
+
   const [listCards, setListCards] = useState([]);
   const [currentCard, setCurrentCard] = useState(null);
 
   useEffect(()=> {
-      const filteredCards = context.cards.filter(card => props.list.id === card.idList).sort((a, b) => a.pos - b.pos);
+      const filteredCards = context.cards.filter(card => {console.log(card.name ,props.list.id === card.idList) ;return props.list.id === card.idList}).sort((a, b) => a.pos - b.pos);
       setListCards(filteredCards);
-      console.log(context.lists, context.cards);
     }
   , [context.cards]);
 
   return (
     <>
-      <div className="lists__list">
+      <div ref={drop} className="lists__list">
         <ListName name={props.list.name} listId={props.list.id} />
         <Cards
           listCards={listCards}
