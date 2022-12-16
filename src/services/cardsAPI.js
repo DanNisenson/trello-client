@@ -64,7 +64,7 @@ class cardsAPI {
     }
 
     static async moveCard(context, id, idList,idBoard, pos) {
-        const url = `cards/${id}?idBoard=${idBoard}&idList=${idList}&pos=${pos}&key=${context.apiKey}&token=${context.token}`;
+        const url =`cards/${id}?idBoard=${idBoard}&idList=${idList}&pos=${pos}&key=${context.apiKey}&token=${context.token}`;
         return await axios.put(`${process.env.REACT_APP_BASE_URL}${url}`);
     }
     static async archiveCard(closed, context, id) {

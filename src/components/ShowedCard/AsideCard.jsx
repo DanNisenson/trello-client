@@ -10,7 +10,7 @@ const AsideCard = (props) => {
     const [toggleCheckList, setToggleCheckList] = useState(false)
     const [moveCard, setMoveCard] = useState(false)
     const [listName, setListName] = useState("");
-    const [isArchived, setIsArchived]= useState(props.payload.closed)
+    const [isArchived, setIsArchived]= useState(!props.payload.closed)
     const [toggleDelete, setToggleDelete] = useState(false)
  
 
@@ -29,28 +29,45 @@ const AsideCard = (props) => {
         setToggleCheckList(false);
     }
 
-    useEffect(() => {
+    // useEffect(() => {
             const archiveCard = async () => {
                 try {
                     const resp = await cardsAPI.archiveCard(isArchived, context.keys, props.payload.id)
                     // update checklist
                     if (resp.status === 200) {
-                        context.setCards(context.cards.map(card => card.id === props.payload.id ? resp.data : card))
+                        //{ context.setCards(context.cards.map(card => card.id === props.payload.id ? resp.data : card))}
                         //actualizar las cartas
                         props.setCurrentCard(resp.data)
+                        isArchived? 
+                            context.setCards(context.cards.filter(card=> card.id!== props.payload.id))
+                            : context.setCards([...context.cards, props.payload])
+                        
+                        console.log(resp.data)
                     }
                 } catch (error) {
                     console.log(error);
                     console.log("error. failed to post new Checklist.");
                 }
-                // close new checklist window 
-                setToggleCheckList(false);
                 };
-                archiveCard()}, 
-                [isArchived] )
-
+                // archiveCard()}, 
+                // [isArchived] )
+    const deleteCard = async () => {
+        try {
+            const resp = await cardsAPI.deleteCard(context.keys.apiKey,context.keys.token,props.payload.id);
+            if (resp.status === 200) {
+                // copy listCards and remove deleted card
+                context.setCards(context.cards.filter((card) => card.id !== props.payload.id));
+                props.setCurrentCard(null)
+            }
+        } catch (error) {
+            console.log(error.message);
+            alert("Unable to delete card");
+        }
+    };
+    
     return (
         <>
+            <p className="card__aside card__aside__options">Members</p>
             <div>
                 <div className="card__aside card__aside__options" onClick={() => setToggleCheckList(!toggleCheckList)}>
                     <i class="fa-regular fa-square-check fa-lg"></i>
@@ -80,9 +97,13 @@ const AsideCard = (props) => {
             </div>
             <p className="card__aside card__aside__options">Dates</p>
             
-            {isArchived ? 
+            {!isArchived ? 
                 <>
-                    <p className="card__aside card__aside__options" onClick={() => {setIsArchived(false)} }>Enviar al tablero</p> 
+                    <p className="card__aside card__aside__options" onClick={() => {
+                            setIsArchived(!isArchived);
+                            archiveCard()}}>
+                        Enviar al tablero
+                    </p> 
                     {!toggleDelete ? 
                         <p className="card__aside card__aside__options card__aside__options--delete" onClick={() => setToggleDelete(true) } > 
                             Delete</p> :
@@ -90,12 +111,16 @@ const AsideCard = (props) => {
                             title={"Delete card? "}
                             text={"All actions will be removed from the activity feed and you won’t be able to re-open the card. There is no undo." }
                             setToggle={setToggleDelete}
+                            onClick={deleteCard}
                             />
                     }
                 </>
 
                 :
-                 <div className="card__aside card__aside__options" onClick={() => { setIsArchived(true) }}>
+                 <div className="card__aside card__aside__options" onClick=
+                 {() => { 
+                        setIsArchived(!isArchived);
+                        archiveCard()}}>
                     <i class="fa-sharp fa-solid fa-box-archive fa-lg"></i>
                     <span className=" card__aside__options--title">Archive</span>
                 </div>

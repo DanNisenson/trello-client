@@ -93,6 +93,7 @@ const BodyCard = (props) => {
                     </>
                     : <p className="card__section--desc">{description}</p>}
             </div>
+            {/* render Checklists if exist*/}
             {!props.checkList.length
                 ? null
                 :
@@ -128,11 +129,13 @@ const BodyCard = (props) => {
                     </h3>
                     {/* setNewComment reset content when close with button*/}
                     <button type="button" className="card__section__headtitle--button options--button"
-                        onClick={() => { setToggleNewComm(!toggleNewComment); setNewComment("") }}>
+                        onClick={() => { 
+                            setToggleNewComm(!toggleNewComment); 
+                            setNewComment("") }}>
                         {toggleNewComment ? "Cancelar" : "Nuevo"}
                     </button>
                 </div>
-
+                        
                 {toggleNewComment ? <>
                     <textarea className="card__options--textarea" placeholder="Escriba un comentario..." onChange={event => setNewComment(event.target.value)}
                     >
@@ -154,10 +157,9 @@ const BodyCard = (props) => {
                     <WarningAdvise
                         title={"Delete comment? "}
                         text={"Deleting a comment is forever. There is no undo."}
-                        setToggle={setToggleDelete}
+                    setToggle={setToggleDelete}
                         onClick={delComment}
-                        content={toggleDelete[1]}
-
+                        content={toggleDelete}
                     />
                 }
                 <div className="card__comments__list">
@@ -170,7 +172,7 @@ const BodyCard = (props) => {
                             <input type="text" className="card__section__comm--text" value={a.data.text} readOnly />
                             <div className='card__comments__options'>
                                     <a className='card__comments__options--delete'
-                                        onClick={() => setToggleDelete([true, a.id])} >
+                                        onClick={() => setToggleDelete(a.id)} >
                                         Delete
                                      </a>
                                 

@@ -12,7 +12,10 @@ const WarningAdvise= (props)=>{
                     </div>
                 <div className="modal__warning__main--section ">
                     <p className="modal__warning__section--text " >{props.text}</p>
-                    <button type="button" className="modal__warning__deleteBttn " onClick={() => { props.onClick(props.content); props.setToggle(false) }}>
+                    <button type="button" className="modal__warning__deleteBttn " onClick={() => {
+                            props.onClick(props.content);
+                            props.setToggle(false); 
+                        }}>
                         Delete
                     </button>
                 </div>

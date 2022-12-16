@@ -1,5 +1,7 @@
 .card--background {
-    position: absolute;
+    display: flex;
+    justify-content: center;
+    position: relative;
     background-color: rgba(0, 0, 0, 0.323);
     position: absolute;
     top: 0;
@@ -11,19 +13,27 @@
 
 .card__total {
     height: fit-content;
-    position: absolute;
+    position: relative;
     margin: 100px 200px;
-    border-radius: 15px;
+    border-radius: 10px;
     background-color: #ebecf0;
     display: flex;
     flex-direction: column;
     z-index: 2;
+    width: fit-content;
 }
 
 .card__head {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 15px;
+    align-items: center;
+}
+.card__head--archive{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
     padding: 15px;
     align-items: center;
 }
@@ -35,10 +45,11 @@
 .card__main {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .card__body {
-    width: 520px;
+    width: 550px;
     display: flex;
     flex-direction: column;
 }
@@ -49,9 +60,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-    width: fit-content;
-    min-width: 140px;
-
+    min-width: 160px;
 }
 
 
@@ -114,7 +123,7 @@ textarea {
     background-color: var(--ds-background-warning, #FDFAE5);
     background-image: linear-gradient(to bottom right, var(--ds-background-neutral, rgba(0, 0, 0, 0.05)) 25%, transparent 25%, transparent 50%, var(--ds-background-neutral, rgba(0, 0, 0, 0.05)) 50%, var(--ds-background-neutral, rgba(0, 0, 0, 0.05)) 75%, transparent 75%, transparent);
     background-size: 14px 14px;
-    width: 100%;
+    width: 95%;
     height: 100%;
     z-index: 10;
 }
