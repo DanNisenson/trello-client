@@ -17,8 +17,7 @@ const EditCard = (props) => {
         context.keys.apiKey,
         context.keys.token,
         props.id,
-        props.cardTitle
-
+        textarea.current.value
       );
       if (resp.status === 200) {
         // recreate listCards array and replace modified card
