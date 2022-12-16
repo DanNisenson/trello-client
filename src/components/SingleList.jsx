@@ -14,7 +14,7 @@ const SingleList = (props) => {
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.CARD,
-    drop: (item, monitor) => context.moveCard(item.id, props.list.id, item.position),
+    drop: (item, monitor) => {console.log(item); context.moveCard(item.id, props.list.id, item.position)},
     collect: monitor => ({
       isOver: !!monitor.isOver(),
     }),
