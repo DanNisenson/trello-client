@@ -5,30 +5,31 @@ import "../assets/css/ListMove.css";
 
 const ListMove = props => {
     const context = useAppContext();
-    const currentPosition = context.lists.filter(list => list.id === props.listId)[0].pos;
+    const boardLists = context.lists.filter(list => list.idBoard === props.boardId);
+    const currentPosition = boardLists.filter(list => list.id === props.listId)[0].pos;
     const [newPosition, setNewPosition] = useState(currentPosition);
 
     const generateOptions = () => 
-        context.lists.map((list, index) => 
+        boardLists.map((list, index) => 
             <option key={list.pos} value={list.pos}>
                 {index + 1}{list.id === props.listId && " (current)"}
             </option>)
 
     const generateCallPosition = targetPosition => {
         let targetIndex = -1;
-        for (let i = 0; i < context.lists.length; i++) {
-            if (context.lists[i].pos === targetPosition) {
+        for (let i = 0; i < boardLists.length; i++) {
+            if (boardLists[i].pos === targetPosition) {
                 targetIndex = i;
                 break;
             }
         }
         if (targetIndex === 0)
             return ("top");
-        if (targetIndex === context.lists.length - 1)
+        if (targetIndex === boardLists.length - 1)
             return ("bottom");
         if (targetPosition > currentPosition)
-            return ((context.lists[targetIndex].pos + context.lists[targetIndex + 1].pos) / 2);
-        return ((context.lists[targetIndex].pos + context.lists[targetIndex - 1].pos) / 2);
+            return ((boardLists[targetIndex].pos + boardLists[targetIndex + 1].pos) / 2);
+        return ((boardLists[targetIndex].pos + boardLists[targetIndex - 1].pos) / 2);
     }
 
     const handleMove = async () => {
