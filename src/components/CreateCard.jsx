@@ -41,7 +41,7 @@ const CreateCard = (props) => {
             id="new-card-title-input"
             className="create-card__title-input"
             placeholder="Enter a title for this card..."
-            onChange={(e) => setTitle(e.target.value.toString())}
+            onChange={(e) => setTitle(e.target.value)}
             autoFocus
           />
           {/* "add card" & close buttons */}
