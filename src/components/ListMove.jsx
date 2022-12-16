@@ -10,14 +10,45 @@ const ListMove = props => {
 
     const generateOptions = () => 
         context.lists.map((list, index) => 
-            <option value={list.pos}>
+            <option key={list.pos} value={list.pos}>
                 {index + 1}{list.id === props.listId && " (current)"}
             </option>)
 
-    const handleMove = () => {
-        if (newPosition === currentPosition)
-            return ;
-        console.log(`Moving list to position: ${newPosition}`);
+    const generateCallPosition = targetPosition => {
+        let targetIndex = -1;
+        for (let i = 0; i < context.lists.length; i++) {
+            if (context.lists[i].pos === targetPosition) {
+                targetIndex = i;
+                break;
+            }
+        }
+        if (targetIndex === 0)
+            return ("top");
+        if (targetIndex === context.lists.length - 1)
+            return ("bottom");
+        const posDifference = context.lists[targetIndex].pos - context.lists[targetIndex - 1].pos;
+        return (context.lists[targetIndex].pos - posDifference / 2);
+    }
+
+    const handleMove = async () => {
+        if (newPosition !== currentPosition)
+        {
+            const callPosition = generateCallPosition(newPosition);
+            try {
+                const response = await listsAPI.updateListPosition(context.keys.apiKey, context.keys.token, props.listId, callPosition);
+                if (response.status === 200) {
+                    const newLists = context.lists.map(list => {
+                        list.pos = list.id === props.listId ? response.data.pos : list.pos
+                        return list}
+                    ).sort((a , b) => a.pos - b.pos);
+                    context.setLists(newLists);
+                }
+            }
+            catch (error) {
+                console.log(error.message);
+                alert("Unable to update list position");
+            }
+        }
         props.setToggleMove(false);
     }
 
@@ -27,7 +58,7 @@ const ListMove = props => {
                 <label>Position:</label>
                 <select className="lists__move-options" 
                     defaultValue={currentPosition}
-                    onChange={event => setNewPosition(event.target.value)}>
+                    onChange={event => setNewPosition(parseFloat(event.target.value))}>
                     {generateOptions()}
                 </select>
             </div>
