@@ -9,7 +9,6 @@ const UserBox = props => {
     const [toggleUser, setToggleUser] = useState(false);
 
     useEffect(() => {
-        console.log('userBox')
         const getUser = async () => {
             try {
                 const response = await authAPI.getMember(context.keys.apiKey, context.keys.token);

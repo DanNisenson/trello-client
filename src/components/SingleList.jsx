@@ -15,7 +15,10 @@ const SingleList = (props) => {
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.CARD,
-    drop: (item, monitor) => moveCard(item.id, props.list.id, item.position),
+    drop: (item, monitor) => {
+      console.log(item);
+      moveCard(item.id, props.list.id, item.position);
+    },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
@@ -42,7 +45,6 @@ const SingleList = (props) => {
           card.id === resp.data.id ? resp.data : card
         );
         // update cards in List component
-        // console.log(newCards)
         context.setCards(newCards);
       }
     } catch (error) {
@@ -52,15 +54,13 @@ const SingleList = (props) => {
   };
 
   useEffect(() => {
-    // console.log(context.cards)
     const filteredCards = context.cards
-    .filter((card) => {
-      // console.log(card.name, props.list.id === card.idList);
-      return props.list.id === card.idList;
-    })
-    .sort((a, b) => a.pos - b.pos);
+      .filter((card) => {
+        console.log(card.name, props.list.name);
+        return props.list.id === card.idList;
+      })
+      .sort((a, b) => a.pos - b.pos);
     setListCards(filteredCards);
-    // console.log(filteredCards);
   }, [context.cards]);
 
   return (

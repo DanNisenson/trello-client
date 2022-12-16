@@ -13,7 +13,6 @@ const Board = props => {
 
     // get boards on load
     useEffect(() => {
-        console.log('board')
         const getBoards = async () => {
             try {
                 const resp = await boardAPI.getBoards(context.keys.apiKey, context.keys.token);

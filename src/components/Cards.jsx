@@ -2,7 +2,6 @@ import SingleCard from "./SingleCard";
 
 const Cards = (props) => {
 
-  
   return (
     <div className="cards" >
       {/* iterate and print all cards on board */}
