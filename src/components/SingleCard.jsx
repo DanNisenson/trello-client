@@ -10,33 +10,33 @@ const SingleCard = (props) => {
     <>
       {/* main card component */}
       {cardEdit ? (
-          <EditCard
-            id={props.id}
-            idList={props.idList}
-            name={props.name}
-            position ={props.position}
-            listCards={props.listCards}
-            setListCards={props.setListCards}
-            setCardEdit={setCardEdit}
-          />
+        <EditCard
+          id={props.id}
+          idList={props.idList}
+          name={props.name}
+          position={props.position}
+          listCards={props.listCards}
+          setListCards={props.setListCards}
+          setCardEdit={setCardEdit}
+        />
       ) : (
         // non-edit mode
-          <div className="cards__card" key={props.id} >
-            <div
-              className="cards__name"
-              onClick={() => props.showCard(props.currentCard)}
-              readOnly
-            >
-              {props.name}
-            </div>
-            {/* edit icons */}
-              <button
-                className="cards__edit-btn cards__action-icon"
-                onClick={() => setCardEdit(true)}
-              >
-                <i className="fa-solid fa-pencil"></i>
-              </button>
-            </div>
+        <div className="cards__card" key={props.id}>
+          <div
+            className="cards__name"
+            onClick={() => props.showCard(props.currentCard)}
+            readOnly
+          >
+            {props.name}
+          </div>
+          {/* edit icons */}
+          <button
+            className="cards__edit-btn cards__action-icon"
+            onClick={() => setCardEdit(true)}
+          >
+            <i className="fa-solid fa-pencil"></i>
+          </button>
+        </div>
       )}
     </>
   );
