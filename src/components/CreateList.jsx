@@ -14,7 +14,9 @@ const CreateList = (props) => {
         try {
             const response = await listsAPI.createList(context.keys.apiKey,context.keys.token, listName, props.boardId);
             if (response.status === 200) {
-                context.setLists([...context.lists, response.data]);
+                const newLists = context.lists.map(list => list);
+                newLists.push(response.data);
+                context.setLists(newLists);
                 setToggleAddList(false);
             }
         }
