@@ -28,7 +28,7 @@ const SingleCard = (props) => {
             setListCards={props.setListCards}
             setCardEdit={setCardEdit}
           />
-      ) : (
+      ) : !isDragging && (
         // non-edit mode
           <div ref={drag} className="cards__card" key={props.id} >
             <div

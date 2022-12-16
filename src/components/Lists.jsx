@@ -11,6 +11,7 @@ const Lists = (props) => {
 
     // get board's lists on props(board selection) change.
     useEffect(() => {
+        console.log('lists')
         const getLists = async () => {
             try {
                 const resp = await listsAPI.getLists(context.keys.apiKey, context.keys.token, props.boardId);
