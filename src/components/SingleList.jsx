@@ -22,7 +22,7 @@ const SingleList = (props) => {
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
-  }));
+  }), [context.cards]);
 
   const [listCards, setListCards] = useState([]);
   const [currentCard, setCurrentCard] = useState(null);

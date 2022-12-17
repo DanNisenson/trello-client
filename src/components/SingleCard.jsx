@@ -1,17 +1,19 @@
 import { useState } from "react";
+import { useAppContext } from "../context/context";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "../utils/ItemTypes";
 import EditCard from "./EditCard";
 import "../assets/css/SingleCard.css";
 
 const SingleCard = (props) => {
+  const context = useAppContext();
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.CARD,
     item: {id: props.id, position: props.position},
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging()
     }),
-  }));
+  }), [context.cards]);
   // card title edit mode toggle
   const [cardEdit, setCardEdit] = useState(false);
 
