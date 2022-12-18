@@ -1,0 +1,27 @@
+.progress__actualprogress{
+    margin-top: 8px;
+    position: absolute;
+}
+
+.progress__bar--complete{
+    margin-left: 50px;
+    height: 8px;
+    border-radius: 7px;
+    margin-top: 15px;
+    position: relative;
+    background-color: #091e4214;
+    margin-bottom: 10px;
+}
+
+.progress__bar--actual{
+    height: 10px;
+    border-radius: 7px;
+    height: 100%;
+    background-color: #6ba1c1;
+    border-radius: 15px;
+    box-shadow: none;
+    overflow: hidden;
+    padding: 3px;
+    transition-property: width;
+    transition-duration: 1s;
+}

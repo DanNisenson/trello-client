@@ -1,55 +1,76 @@
 .card__section {
-     padding: 20px;
-     margin-top: 5px;
-     border-top: 2px solid black;
- }
- .card__section_checklist {
-     display: flex;
-     flex-direction: column;
- }
+    padding: 20px;
+    margin-left: 10px;
+}
 
- .card__section__headtitle{
+.card__section_checklist {
+    display: flex;
+    flex-direction: column;
+}
+
+.card__section__headtitle {
     display: flex;
     align-items: center;
-    justify-content:space-between
+    justify-content: space-between
+}
 
- }
-
- .options--button{
+.options--button {
     cursor: pointer;
     padding: 10px 14px;
     border: none;
     border-radius: 3px;
     margin: 8px 4px 0 0;
     width: fit-content;
- }
- .card__section--desc{
+}
+
+.body__input--background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+}
+
+.body__input--main {
+    position: relative;
+    z-index: 5;
+}
+
+.card__section--desc {
     margin-left: 10px;
- }
- .card__comments__options--delete{
+}
+
+.card__comments__options--delete {
     font-size: 12px;
     color: #5e6c84;
     cursor: pointer;
     margin-left: 20px;
 
- }
-
-.card__section__headtitle--button{
-    background-color:  #091e420a;
 }
 
-.card__section__comm--button, .card__section__desc--button{
+
+.card__section__headtitle--button {
+    background-color: #091e420a;
+}
+
+.card__section__headtitle--button:hover {
+    background-color: #DADBE3;
+}
+
+.card__section__comm--button,
+.card__section__desc--button {
     background-color: #0279C0;
     color: #FFF;
 
 }
 
-.card__section__headtitle--maintitle{
+.card__section__headtitle--maintitle {
     display: flex;
     align-items: center;
 }
- 
- .card__section__headtitle--title {
+
+.card__section__headtitle--title {
     color: #172b4d;
     cursor: pointer;
     font-size: larger;
@@ -58,7 +79,8 @@
     line-height: 20px;
     font-weight: 600;
 }
-.card__section__comm--text{
+
+.card__section__comm--text {
     min-height: 20px;
     background-color: #FFF;
     width: 100%;
@@ -71,5 +93,3 @@
     border-style: none;
     border-radius: 3px;
 }
- 
- 

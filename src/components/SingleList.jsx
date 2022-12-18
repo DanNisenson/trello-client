@@ -4,11 +4,10 @@ import { useDrop } from "react-dnd";
 import { ItemTypes } from "../utils/ItemTypes";
 import ListName from "./ListName";
 import Cards from "./Cards";
-import Card from "./ShowedCard/Card";
+import ModalCard from "./ShowedCard/ModalCard";
 import CreateCard from "./CreateCard";
 import cardsAPI from "../services/cardsAPI";
 import "../assets/css/Lists.css";
-import "../assets/css/Card/Card.css";
 
 const SingleList = (props) => {
   const context = useAppContext();
@@ -61,7 +60,7 @@ const SingleList = (props) => {
   return (
     <>
       <div ref={drop} className="lists__list">
-        <ListName name={props.list.name} listId={props.list.id} />
+        <ListName name={props.list.name} listId={props.list.id} boardId={props.list.idBoard} />
         <Cards
           listCards={listCards}
           setListCards={setListCards}
@@ -72,7 +71,7 @@ const SingleList = (props) => {
         <CreateCard idList={props.list.id} />
       </div>
       {currentCard ? (
-        <Card currentCard={currentCard} showCard={setCurrentCard} />
+        <ModalCard currentCard={currentCard} setCurrentCard={setCurrentCard} />
       ) : null}
     </>
   );

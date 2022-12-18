@@ -17,7 +17,7 @@ const Cards = (props) => {
             key={card.id}
             currentCard={card}
             moveCard={props.moveCard}
-          />
+           idBoard={card.idBoard} />
         );
       })}
     </div>

@@ -17,8 +17,7 @@ const EditCard = (props) => {
         context.keys.apiKey,
         context.keys.token,
         props.id,
-        props.cardTitle
-
+        textarea.current.value
       );
       if (resp.status === 200) {
         // recreate listCards array and replace modified card
@@ -101,7 +100,7 @@ const EditCard = (props) => {
             >
               <i className="fa-solid fa-arrow-right"></i> Move
             </button>
-            {moveCard && <MoveCard id={props.id} idList={props.idList} position={props.position} setMoveCard={setMoveCard} setCardEdit={props.setCardEdit} />}
+            {moveCard && <MoveCard id={props.id} idList={props.idList} position={props.position} setMoveCard={setMoveCard} setCardEdit={props.setCardEdit} idBoard={props.idBoard}/>}
             <button className="cards__edit-action-btn">
               <i className="fa-solid fa-trash"></i> Archive
             </button>
