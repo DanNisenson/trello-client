@@ -15,10 +15,7 @@ const SingleList = (props) => {
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.CARD,
-    drop: (item, monitor) => {
-      console.log(item);
-      moveCard(item.id, props.list.id, item.position);
-    },
+    drop: (item, monitor) => listCards.length===0 ? moveCard(item.id, props.list.id, item.position) : null,
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
@@ -28,7 +25,6 @@ const SingleList = (props) => {
   const [currentCard, setCurrentCard] = useState(null);
 
   const moveCard = async (id, idList, position) => {
-    console.log(id, idList, position);
     // let position = calculatePosition();
     try {
       // request
@@ -56,7 +52,6 @@ const SingleList = (props) => {
   useEffect(() => {
     const filteredCards = context.cards
       .filter((card) => {
-        console.log(card.name, props.list.name);
         return props.list.id === card.idList;
       })
       .sort((a, b) => a.pos - b.pos);
@@ -71,6 +66,7 @@ const SingleList = (props) => {
           listCards={listCards}
           setListCards={setListCards}
           showCard={setCurrentCard}
+          moveCard={moveCard}
         />
         {/* 'add card' button */}
         <CreateCard idList={props.list.id} />
