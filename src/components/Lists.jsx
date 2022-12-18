@@ -32,6 +32,7 @@ const Lists = (props) => {
                         };
                         getLists();
                         getCards();
+                        console.log(context.cards)
                 }
                         
     }, [props.boardId]);

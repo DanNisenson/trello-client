@@ -9,20 +9,26 @@ const ModalCard = (props) => {
     const context = useAppContext()
     const [comments, setComments] = useState([])
     const [checkList, setCheckList] = useState([])
+    const [members, setMembers]= useState([])
 
     const getComments = async () => {
-        const resp = await cardsAPI.getComments(context.keys, props.currentCard.id);
+        const resp = await cardsAPI.getComments(context.keys, props.currentCard.id);     
         setComments(resp.data)
-        console.log(resp.data)
     }
     const getChecklist = async () => {
         const resp = await cardsAPI.getCheckL(context.keys, props.currentCard.id);
         setCheckList(resp.data);
+    }
+    const getMembers = async () => {
+        const resp = await cardsAPI.getMembers(context.keys, props.currentCard.idBoard);
+        setMembers(resp.data);
         console.log(resp.data)
     }
+
     useEffect(() => {
-        getComments()
-        getChecklist()
+        getComments();
+        getChecklist();
+        getMembers()
     }
         , [])
 
@@ -40,7 +46,7 @@ const ModalCard = (props) => {
                                         This Card is archived
                                     </h2>
                                 </div>
-                                <div onClick={() => props.setCurrentCard(null)}>
+                                <div className="card__head--X" onClick={() => props.setCurrentCard(null)}>
                                         <i class="fa-solid fa-xmark fa-2xl"></i>
                                 </div>
                             </>
@@ -51,7 +57,7 @@ const ModalCard = (props) => {
                                     {props.currentCard.name}
                                 </h2>
                             </div>
-                                <div onClick={() => props.setCurrentCard(null)}>
+                                <div className="card__head--X" onClick={() => props.setCurrentCard(null)}>
                                     <i class="fa-solid fa-xmark fa-2xl"></i>
                             </div></>
                         }
@@ -70,7 +76,9 @@ const ModalCard = (props) => {
                             <AsideCard payload={props.currentCard} 
                                 setCheckList={setCheckList} 
                                 checkList={checkList} 
-                                setCurrentCard={props.setCurrentCard}/>
+                                setCurrentCard={props.setCurrentCard}
+                                members={members}
+                                setMembers={setMembers}/>
                         </div>
                     </div>
 

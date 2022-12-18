@@ -3,6 +3,7 @@ import { useAppContext } from "../../context/context";
 import Checklist from './Checklist';
 import cardsAPI from "../../services/cardsAPI";
 import WarningAdvise from './WarningAdvise';
+import SelectDate from './SelectDate';
 import "../../assets/css/Card/BodyCard.css";
 
 const BodyCard = (props) => {
@@ -12,6 +13,17 @@ const BodyCard = (props) => {
     const [toggleNewComment, setToggleNewComm] = useState(false)
     const [newComment, setNewComment] = useState("")
     const [toggleDelete, setToggleDelete]=useState(false)
+
+
+    const finishDate = new Date(props.payload.due)
+    let date = (props.payload.due=== null) ? null :
+        {
+        day: finishDate.getDate(), 
+        month: finishDate.toLocaleString("en-GB",  {month: "short"}),
+        hours: finishDate.getHours(), 
+        minutes: ('0' + finishDate.getMinutes()).slice(-2)
+    }
+    console.log(date)
 
     const delCheckList = async (List) => {
         try {
@@ -44,8 +56,9 @@ const BodyCard = (props) => {
         try {
             const resp = await cardsAPI.updateDesc(description, context.keys, props.payload.id);
             if (resp.status === 200) {
-                // update Card
+                // update Card in current Card and context
                 context.setCards(context.cards.map(card => card.id === props.payload.id ? resp.data : card))
+                props.setCurrentCard(resp.data)
             }
         }
         catch (error) {
@@ -61,6 +74,12 @@ const BodyCard = (props) => {
 
     return (
         <>
+            {/* date */}
+            <SelectDate 
+                date={date} 
+                id={props.payload.id}
+                setCurrentCard={props.setCurrentCard}/>
+
             <div className="card__section">
                 <div className='card__section__headtitle'>
                     <div className='card__section__headtitle--maintitle'>
@@ -71,8 +90,10 @@ const BodyCard = (props) => {
                     </div>
                     {/* Button change to text area and reset value of Desc when close with itself */}
                     <button type="button" className="card__section__headtitle--button options--button"
-                        onClick={() => { setToggleEditDescription(!toggleEditDescription); setDescription(props.payload.desc) }}>
-                        {toggleEditDescription ? "Cancelar" : props.payload.desc ? "Editar" : "Nuevo"}
+                        onClick={() => { 
+                            setToggleEditDescription(!toggleEditDescription);
+                            setDescription(props.payload.desc) }}>
+                        {toggleEditDescription ? "Cancelar" : props.payload.desc ? "Edit" : "New"}
                     </button>
                 </div>
 

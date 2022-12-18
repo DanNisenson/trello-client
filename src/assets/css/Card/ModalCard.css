@@ -127,3 +127,16 @@ textarea {
     height: 100%;
     z-index: 10;
 }
+
+.card__head--X{
+    width: fit-content;
+    height: fit-content;
+    padding: 12px;
+    border-radius: 50%;
+    background-color: #091e4206;
+    transition-property: background-color;
+    transition-duration: 0.4s;
+}
+.card__head--X:hover {
+    background-color: #091e421f;;
+}
