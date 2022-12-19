@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppContext } from "../context/context";
 import listsAPI from "../services/listsAPI";
 import "../assets/css/CreateList.css";
@@ -7,6 +7,12 @@ const CreateList = (props) => {
     const context = useAppContext();
     const [listName, setListName] = useState("");
     const [toggleAddList, setToggleAddList] = useState(false);
+
+    //If board is changed while form is mounted, unmount it
+    useEffect(() => {
+        if (toggleAddList)
+            setToggleAddList(!toggleAddList);
+    }, [props.boardId]);
 
     const postNewList = async () => {
         if (!listName)
@@ -28,7 +34,7 @@ const CreateList = (props) => {
         <>
             {toggleAddList ?
                 <div className="create-list">
-                    <input type="text" placeholder="Enter list title..." onChange={event => setListName(event.target.value)}></input>
+                    <input type="text" autoFocus placeholder="Enter list title..." onChange={event => setListName(event.target.value)}></input>
                     <div className="create-list__btns-container">
                         <button className="create-list__add-btn" onClick={postNewList}>
                             Add list
