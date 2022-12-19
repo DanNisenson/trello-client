@@ -88,7 +88,7 @@ const Checklist= (props) => {
                 target={items.length}
                 />
             {items?.map((a)=> 
-                <div className=" checklist__list__item" > 
+                <div className=" checklist__list__item" key={a.id} > 
                     <div className="checklist__list__item--main">
                         <div className="checklist__list__item--checkbox " onClick={() => changeCheckBox(a.id)}>
                             {a.state === "complete" ? <i class="fa-solid fa-square-check fa-xl"></i> : <i class="fa-regular fa-square fa-xl" ></i>}
@@ -102,7 +102,9 @@ const Checklist= (props) => {
             ) }
             {toggleNewItem ?
                  <>
-                    <textarea className="card__options--textarea" placeholder="Add an element" onChange={event => setNewItem(event.target.value)}
+                    <textarea className="card__options--textarea" placeholder="Add an element" autoFocus
+                         onChange={event => 
+                            setNewItem(event.target.value)}
                     >
                     </textarea>
                     <div>

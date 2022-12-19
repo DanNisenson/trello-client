@@ -110,14 +110,6 @@ textarea {
     font-size: smaller;
 }
 
-.options--button {
-    cursor: pointer;
-    padding: 10px 14px;
-    border: none;
-    border-radius: 3px;
-    margin: 8px 4px 0 0;
-    width: fit-content;
-}
 
 .card__head--archivebackground{
     background-color: var(--ds-background-warning, #FDFAE5);
@@ -126,4 +118,17 @@ textarea {
     width: 95%;
     height: 100%;
     z-index: 10;
+}
+
+.card__head--X{
+    width: fit-content;
+    height: fit-content;
+    padding: 12px;
+    border-radius: 50%;
+    background-color: #091e4206;
+    transition-property: background-color;
+    transition-duration: 0.4s;
+}
+.card__head--X:hover {
+    background-color: #091e421f;;
 }

@@ -58,6 +58,7 @@
 }
 .card__section__checklist--button{
     background-color: #091e4212;
+    margin: 10px 35px;
 }
 
 .card__section__checklist--button:hover {
