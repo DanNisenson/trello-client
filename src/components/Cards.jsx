@@ -4,10 +4,11 @@ const Cards = (props) => {
   return (
     <div className="cards">
       {/* iterate and print all cards on board */}
-      {props.listCards.map((card) => {
+      {props.listCards.map((card, i) => {
         return (
           <SingleCard
             id={card.id}
+            index={i}
             idList={card.idList}
             name={card.name}
             position={card.pos}
@@ -17,7 +18,7 @@ const Cards = (props) => {
             key={card.id}
             currentCard={card}
             moveCard={props.moveCard}
-           idBoard={card.idBoard} />
+            idBoard={card.idBoard} />
         );
       })}
     </div>
