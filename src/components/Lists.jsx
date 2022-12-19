@@ -1,11 +1,8 @@
 import { useEffect } from "react";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import { useAppContext } from "../context/context";
 import listsAPI from "../services/listsAPI";
 import cardsAPI from "../services/cardsAPI";
 import ListSpace from "./ListSpace";
-import SingleList from "./SingleList";
 import CreateList from "./CreateList";
 import "../assets/css/Lists.css";
 
@@ -40,7 +37,7 @@ const Lists = (props) => {
     }, [props.boardId]);
 
     return (
-        <DndProvider backend={HTML5Backend}>
+        <>
             {/* iterate lists on selected board and render each, passing only the filtered cards that belong to each list */}
             <div className="lists">
                 {/* list filter by current board */}
@@ -51,7 +48,7 @@ const Lists = (props) => {
                         )}
                 <CreateList boardId={props.boardId} />
             </div>
-        </DndProvider>
+        </>
     );
 };
 

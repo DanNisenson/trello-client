@@ -5,6 +5,7 @@
     width: 10rem;
     z-index: 2;
     border: 1px solid #000000;
+    border-radius: 3px;
     background-color: #ffffff;
     padding: 5px;
     display: flex;

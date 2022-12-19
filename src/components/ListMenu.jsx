@@ -72,6 +72,10 @@ const ListMenu = props => {
             </button>
             {toggleMenu &&
                 <div className="lists__menu-dropdown">
+                    <div className="lists__menu-title">
+                        <p>List actions</p>
+                        <hr></hr>
+                    </div>
                     <ul className="lists__menu-dropdown__options">
                         <li onClick={archiveCards}>Archive all cards in this list...</li>
                         <li onClick={archiveList}>Archive this list</li>
