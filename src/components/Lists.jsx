@@ -5,7 +5,6 @@ import { useAppContext } from "../context/context";
 import listsAPI from "../services/listsAPI";
 import cardsAPI from "../services/cardsAPI";
 import ListSpace from "./ListSpace";
-import SingleList from "./SingleList";
 import CreateList from "./CreateList";
 import "../assets/css/Lists.css";
 
