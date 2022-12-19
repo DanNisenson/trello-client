@@ -102,7 +102,9 @@ const BodyCard = (props) => {
                         <div className="body__input--background" onClick={() => { setToggleEditDescription(false); setDescription(props.payload.desc) }}>
                         </div>
                         < div className='body__input--main'>
-                            <textarea className="card__options--textarea" value={description} onChange={event => setDescription(event.target.value)}>
+                            <textarea className="card__options--textarea" autoFocus
+                                value={description} 
+                                onChange={event => setDescription(event.target.value)}>
                             </textarea>
                             <button
                                 className=" card__section__desc--button options--button"
@@ -158,7 +160,9 @@ const BodyCard = (props) => {
                 </div>
                         
                 {toggleNewComment ? <>
-                    <textarea className="card__options--textarea" placeholder="Write a comment..." onChange={event => setNewComment(event.target.value)}
+                    <textarea className="card__options--textarea" placeholder="Write a comment..." autoFocus
+                        onChange={event => 
+                        setNewComment(event.target.value)}
                     >
                     </textarea>
                     <button type="button" className="card__section__comm--button options--button"

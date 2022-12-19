@@ -25,19 +25,21 @@ const SelectDate= (props)=> {
         }
         catch (error) {
             console.log(error);
-            console.log("error. failed to update Date.");
+            console.log("error. failed to update DueDate.");
         }
         setToggleDate(false)
     }
 
         
     return(
+        // if Component is in AsideCard
         <>{props.header=== "aside" &&
             <div className="card__aside card__aside__options" onClick={()=> setToggleDate(!toggleDate)}>
                 <i class="fa-solid fa-clock"></i>
                 <span className=" card__aside__options--title" >Dates</span>
             </div>
             }
+            {/* if Componente is in BodyCard and isn´t null or undefined */}
             {(props.date === undefined || props.date === null) ? null :
                 <div className="card__section">
                     <div className="card__finishdate">
@@ -49,6 +51,7 @@ const SelectDate= (props)=> {
                     </div>
                 </div>
             }
+            {/* Modal Date Selection */}
             {toggleDate &&
             <>
                 <div className="modal__dates__background" onClick={() => setToggleDate(false)} >
@@ -74,8 +77,6 @@ const SelectDate= (props)=> {
                             <input type="text" className="modal__section__dates--input" placeholder="D/M/YYYY" value={date.toLocaleDateString()} readOnly />
                             <input type="text" className="modal__section__dates--input" placeholder="HH/MM" value={date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} readOnly />
                         </div>
-
-                    <p>{date.toISOString()}</p>
                     </div>
 
                     <button type="button" className="modal__dates__savebttn " onClick={() => updateDate()}>

@@ -12,17 +12,38 @@ const ModalCard = (props) => {
     const [members, setMembers]= useState([])
 
     const getComments = async () => {
-        const resp = await cardsAPI.getComments(context.keys, props.currentCard.id);     
-        setComments(resp.data)
+        try{
+            const resp = await cardsAPI.getComments(context.keys, props.currentCard.id);     
+            if (resp.status===200){    
+                setComments(resp.data)
+            }
+        } catch (error) {
+            console.log(error);
+            console.log("error. failed to load data.");
+        }
     }
     const getChecklist = async () => {
-        const resp = await cardsAPI.getCheckL(context.keys, props.currentCard.id);
-        setCheckList(resp.data);
+        try{
+            const resp = await cardsAPI.getCheckL(context.keys, props.currentCard.id);
+            if (resp.status===200){    
+                setCheckList(resp.data)
+            };
+
+        } catch (error) {
+            console.log(error);
+            console.log("error. failed to load data.");
+        }
     }
     const getMembers = async () => {
-        const resp = await cardsAPI.getMembers(context.keys, props.currentCard.idBoard);
-        setMembers(resp.data);
-        console.log(resp.data)
+        try{
+            const resp = await cardsAPI.getMembers(context.keys, props.currentCard.idBoard);
+            if (resp.status===200){    
+                setMembers(resp.data);
+            }
+        } catch (error) {
+            console.log(error);
+            console.log("error. failed to load data.");
+        }
     }
 
     useEffect(() => {

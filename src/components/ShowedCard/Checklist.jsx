@@ -102,7 +102,9 @@ const Checklist= (props) => {
             ) }
             {toggleNewItem ?
                  <>
-                    <textarea className="card__options--textarea" placeholder="Add an element" onChange={event => setNewItem(event.target.value)}
+                    <textarea className="card__options--textarea" placeholder="Add an element" autoFocus
+                         onChange={event => 
+                            setNewItem(event.target.value)}
                     >
                     </textarea>
                     <div>

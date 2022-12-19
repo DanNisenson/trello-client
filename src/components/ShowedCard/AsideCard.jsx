@@ -90,7 +90,7 @@ const AsideCard = (props) => {
                         </div>
                         <div className="aside__new__window--section window__section__checklist">
                             <p className="window__section--title " >titulo</p>
-                            <input className="window__section--inputtext " type="text" 
+                            <input className="window__section--inputtext " autoFocus type="text" 
                                 onChange={(event) => 
                                     setListName(event.target.value)}>
                             </input>
