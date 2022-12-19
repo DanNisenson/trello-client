@@ -13,18 +13,45 @@ import "../assets/css/Lists.css";
 const SingleList = (props) => {
   const context = useAppContext();
   const ref = useRef();
-
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: ItemTypes.CARD,
-    drop: (item, monitor) => listCards.length===0 ? moveCard(item.id, props.list.id, item.position) : null,
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-    }),
-  }), [context.cards]);
-
   const [listCards, setListCards] = useState([]);
   const [currentCard, setCurrentCard] = useState(null);
-
+  const [{ isOver }, drop] = useDrop(
+    () => ({
+      accept: ItemTypes.CARD,
+      drop: (item, monitor) =>
+        listCards.length === 0
+          ? moveCard(item.id, props.list.id, item.position)
+          : null,
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+      }),
+    }),
+    [context.cards]
+  );
+  const [{ isDragging }, drag] = useDrag(
+    () => ({
+      type: ItemTypes.LIST,
+      item: {
+        listId: props.list.id,
+        pos: props.list.pos,
+      },
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging(),
+      }),
+    }),
+    [context.lists]
+  );
+  drag(drop(ref));
+  
+  useEffect(() => {
+    const filteredCards = context.cards
+      .filter((card) => {
+        return props.list.id === card.idList;
+      })
+      .sort((a, b) => a.pos - b.pos);
+    setListCards(filteredCards);
+  }, [context.cards]);
+  
   const moveCard = async (id, idList, position) => {
     // let position = calculatePosition();
     try {
@@ -50,31 +77,18 @@ const SingleList = (props) => {
     }
   };
 
-  useEffect(() => {
-    const filteredCards = context.cards
-      .filter((card) => {
-        return props.list.id === card.idList;
-      })
-      .sort((a, b) => a.pos - b.pos);
-    setListCards(filteredCards);
-        }, [context.cards]);
+  
 
-        const [{ isDragging }, drag] = useDrag(() => ({
-        type: ItemTypes.LIST,
-        item: {
-            listId: props.list.id,
-            pos: props.list.pos
-        },
-        collect: (monitor) => ({
-            isDragging: !!monitor.isDragging()
-        })
-    }), [context.lists]);
-    drag(drop(ref))
+  
 
   return (
     <>
       <div ref={ref} className="lists__list">
-        <ListName name={props.list.name} listId={props.list.id} boardId={props.list.idBoard} />
+        <ListName
+          name={props.list.name}
+          listId={props.list.id}
+          boardId={props.list.idBoard}
+        />
         <Cards
           listCards={listCards}
           setListCards={setListCards}
