@@ -4,21 +4,16 @@ const Cards = (props) => {
   return (
     <div className="cards">
       {/* iterate and print all cards on board */}
-      {props.listCards.map((card, i) => {
-        console.log(card.pos)
+      {props.listCards.map((card) => {
         return (
           <SingleCard
-            id={card.id}
-            idList={card.idList}
-            name={card.name}
-            position={card.pos}
+            currentCard={card}
             listCards={props.listCards}
             setListCards={props.setListCards}
             showCard={props.showCard}
-            key={card.id}
-            currentCard={card}
             moveCard={props.moveCard}
-            idBoard={card.idBoard} />
+            key={card.id}
+            />
         );
       })}
     </div>

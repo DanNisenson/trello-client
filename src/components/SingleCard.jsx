@@ -5,7 +5,7 @@ import { ItemTypes } from "../utils/ItemTypes";
 import EditCard from "./EditCard";
 import "../assets/css/SingleCard.css";
 
-const SingleCard = (props) => {
+const SingleCard = ({currentCard, ...props}) => {
   const ref = useRef(null);
   const context = useAppContext();
   const [cardEdit, setCardEdit] = useState(false);
@@ -19,18 +19,17 @@ const SingleCard = (props) => {
         dropCard(item, monitor);
       },
     }),
-    [context.cards, props.position]
+    [context.cards, currentCard.pos]
   );
-
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: ItemTypes.CARD,
-      item: { name: props.name, id: props.id, position: props.position },
+      item: { name: currentCard.name, id: currentCard.id, position: currentCard.pos },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),
     }),
-    [context.cards,  props.position]
+    [context.cards,  currentCard.pos]
   );
   // make the ref accesible to both drag and drop
   drag(drop(ref));
@@ -42,7 +41,7 @@ const SingleCard = (props) => {
     // item is the props that useDrag passes
     //  in this case is the pos value of the dragged card
     const dragPos = item.position;
-    const hoverPos = props.position;
+    const hoverPos = currentCard.pos;
     let newPosition;
     // Don't replace items with themselves
     if (dragPos === hoverPos) {
@@ -73,18 +72,16 @@ const SingleCard = (props) => {
     ) {
       newPosition = "bottom";
     } else if (isOverTopHalf) {
-      console.log('first')
       newPosition = Math.floor(
         (hoverPos + props.listCards[hoverIndex - 1].pos) / 2
         );
       } else if (!isOverTopHalf) {
-      console.log('sec')
       newPosition = Math.floor(
         (hoverPos + props.listCards[hoverIndex + 1].pos) / 2
       );
     }
     // card update request
-    props.moveCard(item.id, props.idList, newPosition);
+    props.moveCard(item.id, currentCard.idList, newPosition);
   };
 
   return (
@@ -92,11 +89,11 @@ const SingleCard = (props) => {
       {/* main card component */}
       {cardEdit ? (
         <EditCard
-          id={props.id}
-          idList={props.idList}
-          idBoard={props.idBoard}
-          name={props.name}
-          position={props.position}
+          id={currentCard.id}
+          idList={currentCard.idList}
+          idBoard={currentCard.idBoard}
+          name={currentCard.name}
+          position={currentCard.pos}
           listCards={props.listCards}
           setListCards={props.setListCards}
           setCardEdit={setCardEdit}
@@ -104,13 +101,13 @@ const SingleCard = (props) => {
       ) : (
         // non-edit mode
         <div ref={ref} className="cards__card-wrapper">
-          <div className="cards__card" key={props.id}>
+          <div className="cards__card" key={currentCard.id}>
             <div
               className="cards__name"
-              onClick={() => props.showCard(props.currentCard)}
+              onClick={() => props.showCard(currentCard)}
               readOnly
             >
-              {props.name}
+              {currentCard.name}
             </div>
             {/* edit icons */}
             <button

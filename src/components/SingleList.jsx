@@ -26,7 +26,7 @@ const SingleList = (props) => {
         isOver: !!monitor.isOver(),
       }),
     }),
-    [context.cards]
+    [context.cards, listCards]
   );
   const [{ isDragging }, drag] = useDrag(
     () => ({
@@ -50,12 +50,10 @@ const SingleList = (props) => {
     })
     .sort((a, b) => a.pos - b.pos);
     
-    console.log('flitercards', filteredCards)
     setListCards(filteredCards);
   }, [context.cards]);
   
   const moveCard = async (id, idList, position) => {
-    console.log('move')
     try {
       // request
       const resp = await cardsAPI.updateCardPosition(
