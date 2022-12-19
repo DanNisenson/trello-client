@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useDrag } from "react-dnd";
 import { useAppContext } from "../context/context";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "../utils/ItemTypes";
@@ -11,6 +12,7 @@ import "../assets/css/Lists.css";
 
 const SingleList = (props) => {
   const context = useAppContext();
+  const ref = useRef();
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.CARD,
@@ -55,11 +57,23 @@ const SingleList = (props) => {
       })
       .sort((a, b) => a.pos - b.pos);
     setListCards(filteredCards);
-  }, [context.cards]);
+        }, [context.cards]);
+
+        const [{ isDragging }, drag] = useDrag(() => ({
+        type: ItemTypes.LIST,
+        item: {
+            listId: props.list.id,
+            pos: props.list.pos
+        },
+        collect: (monitor) => ({
+            isDragging: !!monitor.isDragging()
+        })
+    }), [context.lists]);
+    drag(drop(ref))
 
   return (
     <>
-      <div ref={drop} className="lists__list">
+      <div ref={ref} className="lists__list">
         <ListName name={props.list.name} listId={props.list.id} boardId={props.list.idBoard} />
         <Cards
           listCards={listCards}
