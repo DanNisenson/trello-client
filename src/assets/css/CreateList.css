@@ -2,11 +2,12 @@
     background-color: #EBECF0;
     border-radius: 4px;
     min-width: 200px;
-    height: 100%;
+    height: fit-content;
     padding: 10px;
 }
 
 .create-list > input {
+    padding: 5px;
     width: 180px;
 }
 
@@ -29,4 +30,12 @@
   padding: 0 .5rem;
   font-size: 1.5rem;
   transform: rotate(45deg);
+}
+
+.create-list__add-btn:hover {
+    background-color: #026fad;
+}
+
+.create-list__close-btn:hover {
+    color: #000000;
 }

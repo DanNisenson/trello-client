@@ -90,7 +90,11 @@ const SingleCard = (props) => {
         /> 
       ) : (
         // non-edit mode
+<<<<<<< HEAD
         <div ref={ref} className="cards__card" key={props.id}>
+=======
+        <div className="cards__card" key={props.id}>
+>>>>>>> main
           <div
             className="cards__name"
             onClick={() => props.showCard(props.currentCard)}

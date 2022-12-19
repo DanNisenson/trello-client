@@ -27,7 +27,9 @@
   background-color: #F4F5F6;
 }
 
+
 .cards__action-icon {
+  visibility: hidden;
   height: 31px;
   align-self: flex-start;
   margin: 2px 2px 0px 0 ;
@@ -38,11 +40,13 @@
   cursor:crosshair;
   padding: 10px;
   border-radius: 2px;
-  /* visibility: hidden; */
+}
+
+.cards__card:hover .cards__action-icon {
+  visibility: visible;
 }
 
 .cards__action-icon:hover {
-  /* visibility: visible; */
   color: #182A4E;
   background-color: #e3e3e7;
 }
