@@ -11,7 +11,7 @@ const AsideCard = (props) => {
     const context = useAppContext()
     const [toggleCheckList, setToggleCheckList] = useState(false)
     const [toggleDelete, setToggleDelete] = useState(false)
-    const [toggleMembers, setToggleMembers]= useState(false)
+    // const [toggleMembers, setToggleMembers]= useState(false)
     const [moveCard, setMoveCard] = useState(false)
     const [listName, setListName] = useState("");
     const [isArchived, setIsArchived] = useState(!props.payload.closed)
@@ -69,11 +69,7 @@ const AsideCard = (props) => {
     return (
         <>  
             {/* showMembers */}
-            <div className="card__aside card__aside__options" onClick={() => setToggleMembers(true)}>
-                <i className="fa-solid fa-user"></i>
-                <span className=" card__aside__options--title" >Members</span>
-            </div>
-            {toggleMembers && <Members members={props.members} setMembers={props.setMembers} setToggle={setToggleMembers}/>}
+            <Members members={props.members} setMembers={props.setMembers} currentCard={props.payload} setCurrentCard={props.setCurrentCard}/> 
             {/* New Checklist */}
             <div className="card__aside card__aside__options" onClick={() => setToggleCheckList(!toggleCheckList)}>
                 <i className="fa-solid fa-square-check fa-lg"></i>
