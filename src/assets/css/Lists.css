@@ -9,7 +9,7 @@
 .lists__list {
     background-color: #EBECF0;
     border-radius: 3px;
-    min-width: 270px;
+    width: 270px;
     height: fit-content;
     padding: 8px;
 }
