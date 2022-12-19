@@ -51,7 +51,7 @@
 .modal__warning__deleteBttn{
     color:#ffffff;
     background-color: var(--ds-background-danger-bold, #b04632);
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
     padding: 12px 6px;
 }

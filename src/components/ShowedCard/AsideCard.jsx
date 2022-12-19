@@ -2,16 +2,20 @@ import { useState } from "react"
 import { useAppContext } from "../../context/context";
 import MoveCard from "../MoveCard";
 import WarningAdvise from "./WarningAdvise";
+import Members from "./Members"
+import SelectDate from "./SelectDate";
 import "../../assets/css/Card/AsideCard.css";
 import cardsAPI from "../../services/cardsAPI";
 
 const AsideCard = (props) => {
     const context = useAppContext()
     const [toggleCheckList, setToggleCheckList] = useState(false)
+    const [toggleDelete, setToggleDelete] = useState(false)
+    // const [toggleMembers, setToggleMembers]= useState(false)
     const [moveCard, setMoveCard] = useState(false)
     const [listName, setListName] = useState("");
     const [isArchived, setIsArchived] = useState(!props.payload.closed)
-    const [toggleDelete, setToggleDelete] = useState(false)
+    
 
 
     const postNewCheckList = async () => {
@@ -63,37 +67,43 @@ const AsideCard = (props) => {
     };
 
     return (
-        <>
-            <p className="card__aside card__aside__options">Members</p>
-            <div>
-                <div className="card__aside card__aside__options" onClick={() => setToggleCheckList(!toggleCheckList)}>
-                    <i class="fa-regular fa-square-check fa-lg"></i>
-                    <span className=" card__aside__options--title" >Checklist</span>
-                </div>
-                {toggleCheckList &&
-                    <div className="card__aside aside__new__checklist">
-                        <div className="aside__new--window--background" onClick={() => setToggleCheckList(false)}>
-                        </div>
-                        <div className="aside__new__window window__checklist">
-                            <div className="aside__new__window--titlehead">
-                                <span className="aside__new__window--title">Add Checklist</span>
-                                <span><i class="fa-duotone fa-x" onClick={() => setToggleCheckList(false)}></i></span>
-                            </div>
-                            <div className="aside__new__window--section window__section__checklist">
-                                <p className="window__section--title " >titulo</p>
-                                <input className="window__section--inputtext " type="text" onChange={(event) => setListName(event.target.value)}>
-                                </input>
-                            </div>
-                            <button type="button" className="aside__new--button" onClick={postNewCheckList}>
-                                Add
-                            </button>
-                        </div>
-
-
-                    </div>}
+        <>  
+            {/* showMembers */}
+            <Members members={props.members} setMembers={props.setMembers} currentCard={props.payload} setCurrentCard={props.setCurrentCard}/> 
+            {/* New Checklist */}
+            <div className="card__aside card__aside__options" onClick={() => setToggleCheckList(!toggleCheckList)}>
+                <i className="fa-solid fa-square-check fa-lg"></i>
+                <span className=" card__aside__options--title" >Checklist</span>
             </div>
-            <p className="card__aside card__aside__options">Dates</p>
+            {toggleCheckList &&
+                <div className="card__aside aside__new__checklist">
+                    <div className="aside__new--window--background" onClick={() => setToggleCheckList(false)}>
+                    </div>
+                    <div className="aside__new__window window__checklist">
+                        <div className="aside__new__window--titlehead">
+                            <span className="aside__new__window--title">Add Checklist</span>
+                            <span><i className="fa-duotone fa-x" onClick={() => setToggleCheckList(false)}></i></span>
+                        </div>
+                        <div className="aside__new__window--section window__section__checklist">
+                            <p className="window__section--title " >titulo</p>
+                            <input className="window__section--inputtext " autoFocus type="text" 
+                                onChange={(event) => 
+                                    setListName(event.target.value)}>
+                            </input>
+                        </div>
+                        <button type="button" className="aside__new--button" onClick={postNewCheckList}>
+                            Add
+                        </button>
+                    </div>
 
+
+                </div>}
+            {/* dates */}
+            <SelectDate 
+                header={"aside"} 
+                id={props.payload.id}
+                setCurrentCard={props.setCurrentCard}/>
+            {/* archive and Delete */}
             {!isArchived ?
                 <>
                     <p className="card__aside card__aside__options" onClick={() => {
@@ -102,6 +112,7 @@ const AsideCard = (props) => {
                     }}>
                         Send to board
                     </p>
+                    {/* only show when card is archived */}
                     {!toggleDelete ?
                         <p className="card__aside card__aside__options card__aside__options--delete" onClick={() => setToggleDelete(true)} >
                             Delete</p> :
@@ -115,28 +126,27 @@ const AsideCard = (props) => {
                 </>
 
                 :
+                // archive Cardg
                 <div className="card__aside card__aside__options" onClick=
                     {() => {
                         setIsArchived(!isArchived);
                         archiveCard()
                     }}>
-                    <i class="fa-sharp fa-solid fa-box-archive fa-lg"></i>
+                    <i className="fa-sharp fa-solid fa-box-archive fa-lg"></i>
                     <span className=" card__aside__options--title">Archive</span>
                 </div>
-
-
             }
-
-
-
-
             <div>
                 <div className="card__aside card__aside__options" onClick={() => setMoveCard(true)}>
-                    <i class="fa-solid fa-arrow-right fa-lg"></i>
+                    <i className="fa-solid fa-arrow-right fa-lg"></i>
                     <span className=" card__aside__options--title" >Move</span>
                 </div>
                 {moveCard &&
-                    <MoveCard id={props.payload.id} setMoveCard={setMoveCard} setCardEdit={setMoveCard} idList={props.payload.idList} idBoard={props.payload.idBoard}/>
+                    <MoveCard id={props.payload.id} 
+                        setMoveCard={setMoveCard} 
+                        setCardEdit={setMoveCard} 
+                        idList={props.payload.idList} 
+                        idBoard={props.payload.idBoard}/>
                 }
             </div>
         </>
