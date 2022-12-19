@@ -2,7 +2,7 @@
     display: flex;
     gap: 10px;
     overflow: auto;
-    height: 100vh;
+    height: fit-content;
     padding: 10px;
 }
 
