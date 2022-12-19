@@ -21,7 +21,17 @@
     z-index: 2;
     border: 1px solid #000000;
     background-color: #ffffff;
-    /*box-shadow: 0 16px 24px 2px #000000;*/
+    border-radius: 3px;
+}
+
+.lists__menu-title {
+    color: #5E6C84;
+    text-align: center;
+    padding: 5px;
+}
+
+.lists__menu-title > hr {
+    margin-top: 5px;
 }
 
 .lists__menu-dropdown__options {
