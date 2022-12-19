@@ -1,14 +1,23 @@
 .create-list {
-    background-color: #EBECF0;
-    border-radius: 4px;
-    min-width: 200px;
-    height: fit-content;
-    padding: 10px;
+  background-color: #ebecf0;
+  border-radius: 4px;
+  min-width: 270px;
+  max-width: 270px;
+  height: fit-content;
+  padding: 10px;
 }
 
 .create-list > input {
-    padding: 5px;
-    width: 180px;
+  padding: 5px;
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 0px var(--ds-border-focused, #0079bf);
+  transition: box-shadow 0.2s;
+}
+.create-list > input:focus {
+  box-shadow: inset 0 0 0 2px var(--ds-border-focused, #0079bf);
+  outline: none;
 }
 
 .create-list__btns-container {
@@ -21,21 +30,21 @@
   padding: 10px;
   border: none;
   border-radius: 4px;
-  color: #FFF;
-  background-color: #0279C0;
+  color: #fff;
+  background-color: #0279c0;
 }
 
 .create-list__close-btn {
   color: #77787b;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   font-size: 1.5rem;
   transform: rotate(45deg);
 }
 
 .create-list__add-btn:hover {
-    background-color: #026fad;
+  background-color: #026fad;
 }
 
 .create-list__close-btn:hover {
-    color: #000000;
+  color: #000000;
 }
