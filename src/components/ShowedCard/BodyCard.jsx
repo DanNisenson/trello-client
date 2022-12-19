@@ -19,8 +19,8 @@ const BodyCard = (props) => {
     let date = (props.payload.due=== null) ? null :
         {
         day: finishDate.getDate(), 
-        month: finishDate.toLocaleString("en-GB",  {month: "short"}),
-        hours: finishDate.getHours(), 
+        month: finishDate.toLocaleString("es-ES",  {month: "short"}),
+        hours: finishDate.toLocaleString("es-ES", { hour: "2-digit" }), 
         minutes: ('0' + finishDate.getMinutes()).slice(-2)
     }
 
@@ -82,7 +82,7 @@ const BodyCard = (props) => {
             <div className="card__section">
                 <div className='card__section__headtitle'>
                     <div className='card__section__headtitle--maintitle'>
-                        <i class="fa-solid fa-bars" fa-lg></i>
+                        <i className="fa-solid fa-bars fa-lg" ></i>
                         <h3 className='card__section__headtitle--title'>
                             Descripción
                         </h3>
@@ -123,7 +123,7 @@ const BodyCard = (props) => {
                     <div className='card__section' key={i}>
                         <div className='card__section__headtitle'>
                             <div className='card__section__headtitle--maintitle'>
-                                <i class="fa-regular fa-square-check fa-xl"></i>
+                                <i className="fa-regular fa-square-check fa-xl"></i>
                                 <h3 className='card__section__headtitle--title'>
                                     {List.name}
                                 </h3>

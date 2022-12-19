@@ -91,12 +91,12 @@ const Checklist= (props) => {
                 <div className=" checklist__list__item" key={a.id} > 
                     <div className="checklist__list__item--main">
                         <div className="checklist__list__item--checkbox " onClick={() => changeCheckBox(a.id)}>
-                            {a.state === "complete" ? <i class="fa-solid fa-square-check fa-xl"></i> : <i class="fa-regular fa-square fa-xl" ></i>}
+                            {a.state === "complete" ? <i className="fa-solid fa-square-check fa-xl"></i> : <i className="fa-regular fa-square fa-xl" ></i>}
                         </div>
                         <p className="checklist__list__item--name">{a.name}</p>
                     </div>
                     <div className="checklist__list__item--edit " onClick={() => deleteItem(a.id)}>
-                        <i class="fa-sharp fa-solid fa-trash"></i>
+                        <i className="fa-sharp fa-solid fa-trash"></i>
                     </div>
                 </div>
             ) }

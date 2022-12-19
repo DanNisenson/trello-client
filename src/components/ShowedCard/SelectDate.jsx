@@ -5,6 +5,7 @@ import ReactDatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
 import "../../assets/css/Card/SelectDate.css";
 
+
 const SelectDate= (props)=> {
     const context= useAppContext()
     const [toggleDate, setToggleDate]= useState(false)
@@ -15,12 +16,13 @@ const SelectDate= (props)=> {
         try {
             const resp = (action=== "remove") ? 
                 await cardsAPI.updateDue(null, context.keys, props.id) 
-                : await cardsAPI.updateDue(date, context.keys, props.id)
+                : await cardsAPI.updateDue(date.toISOString(), context.keys, props.id)
             if (resp.status === 200) {
                 // update Card in current Card and context
                 const newCards = context.cards.map(card => card.id === props.id ? resp.data : card)
                 context.setCards(newCards)
                 props.setCurrentCard(resp.data)
+                console.log(resp.data)
             }
         }
         catch (error) {
@@ -29,13 +31,15 @@ const SelectDate= (props)=> {
         }
         setToggleDate(false)
     }
+    console.log(date)
+    
 
         
     return(
         // if Component is in AsideCard
         <>{props.header=== "aside" &&
             <div className="card__aside card__aside__options" onClick={()=> setToggleDate(!toggleDate)}>
-                <i class="fa-solid fa-clock"></i>
+                <i className="fa-solid fa-clock"></i>
                 <span className=" card__aside__options--title" >Dates</span>
             </div>
             }
@@ -45,8 +49,7 @@ const SelectDate= (props)=> {
                     <div className="card__finishdate">
                         <div className="card__finishdate--title"> Due time</div>
                         <div className="card__finishdate--date" onClick={() => setToggleDate(!toggleDate)}>
-                            <p>{`${props.date.day}-${props.date.month} at ${props.date.hours}:
-                            ${props.date.minutes} `}  </p><i class="fa-solid fa-chevron-down"></i>
+                            <p>{`${props.date.day}-${props.date.month} at ${props.date.hours}:${props.date.minutes}`}  </p><i className="fa-solid fa-chevron-down"></i>
                         </div>
                     </div>
                 </div>
@@ -59,7 +62,7 @@ const SelectDate= (props)=> {
                 <div className="modal__dates__main">
                     <div className="modal__dates__main--titlehead">
                         <span className="modal__dates__main--title">Dates</span>
-                        <span className="modal__dates__main--X" onClick={() => setToggleDate(false)}><i class="fa-duotone fa-x" ></i></span>
+                        <span className="modal__dates__main--X" onClick={() => setToggleDate(false)}><i className="fa-duotone fa-x" ></i></span>
                     </div>
                 
                     <div className="aside__new__modal--section modal__section__dates--calendar">
