@@ -1,4 +1,4 @@
-import { ItemTypes } from "../constants/Constants";
+import { ItemTypes } from "../utils/ItemTypes";
 import { useDrop } from "react-dnd";
 import { useAppContext } from "../context/context";
 import SingleList from "./SingleList";
