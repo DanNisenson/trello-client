@@ -22,6 +22,8 @@ const SingleCard = (props) => {
         if (!ref.current) {
           return;
         }
+        // item is the props that useDrag passes
+        //  in this case is the pos value of the dragged card
         const dragPos = item.position;
         const hoverPos = props.position;
         let newPosition;
@@ -30,7 +32,9 @@ const SingleCard = (props) => {
           return;
         }
         // get index of hovered card
-        const hoverIndex = props.listCards.findIndex((card) => card.pos === hoverPos);
+        const hoverIndex = props.listCards.findIndex(
+          (card) => card.pos === hoverPos
+        );
         // --Get mouse position--
         // Determine rectangle on screen
         const hoverBoundingRect = ref.current?.getBoundingClientRect();
@@ -42,10 +46,14 @@ const SingleCard = (props) => {
         // Get pixels to the top
         const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
-        // Determine new position (hoverClient checks if top or bottom half of card)
+        // Determine new position
+        //  hoverClient checks if mouse is over top or bottom half of card
         if (hoverIndex === 0 && hoverClientY < hoverMiddleY) {
           newPos.current = "top";
-        } else if (hoverIndex === props.listCards.length - 1 && hoverClientY > hoverMiddleY) {
+        } else if (
+          hoverIndex === props.listCards.length - 1 &&
+          hoverClientY > hoverMiddleY
+        ) {
           newPos.current = "bottom";
         } else if (hoverClientY < hoverMiddleY) {
           newPosition = (hoverPos + context.cards[hoverIndex - 1].pos) / 2;
@@ -71,8 +79,6 @@ const SingleCard = (props) => {
   );
   // make the ref accesible to both drag and drop
   drag(drop(ref));
-  
-
 
   return (
     <>
@@ -81,20 +87,16 @@ const SingleCard = (props) => {
         <EditCard
           id={props.id}
           idList={props.idList}
-            idBoard={props.idBoard}
+          idBoard={props.idBoard}
           name={props.name}
           position={props.position}
           listCards={props.listCards}
           setListCards={props.setListCards}
           setCardEdit={setCardEdit}
-        /> 
+        />
       ) : (
         // non-edit mode
-<<<<<<< HEAD
         <div ref={ref} className="cards__card" key={props.id}>
-=======
-        <div className="cards__card" key={props.id}>
->>>>>>> main
           <div
             className="cards__name"
             onClick={() => props.showCard(props.currentCard)}
