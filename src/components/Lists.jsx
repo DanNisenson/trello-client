@@ -1,7 +1,10 @@
 import { useEffect } from "react";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import { useAppContext } from "../context/context";
 import listsAPI from "../services/listsAPI";
 import cardsAPI from "../services/cardsAPI";
+import ListSpace from "./ListSpace";
 import SingleList from "./SingleList";
 import CreateList from "./CreateList";
 import "../assets/css/Lists.css";
@@ -37,16 +40,18 @@ const Lists = (props) => {
     }, [props.boardId]);
 
     return (
-        // iterate lists on selected board and render each, passing only the filtered cards that belong to each list
-        <div className="lists">
-            {/* list filter by current board */}
-            {context.lists
-                .filter(list => list.idBoard === props.boardId)
-                .map(list =>
-                    <SingleList key={list.id} list={list} />
-                )}
-            <CreateList boardId={props.boardId} />
-        </div>
+        <DndProvider backend={HTML5Backend}>
+            {/* iterate lists on selected board and render each, passing only the filtered cards that belong to each list */}
+            <div className="lists">
+                {/* list filter by current board */}
+                {context.lists
+                    .filter(list => list.idBoard === props.boardId)
+                    .map(list =>
+                        <ListSpace key={list.id} list={list} boardId={props.boardId}></ListSpace>
+                        )}
+                <CreateList boardId={props.boardId} />
+            </div>
+        </DndProvider>
     );
 };
 
