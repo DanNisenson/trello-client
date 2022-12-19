@@ -6,7 +6,7 @@ import Cards from "./Cards";
 import ModalCard from "./ShowedCard/ModalCard";
 import "../assets/css/Lists.css";
 import CreateCard from "./CreateCard";
-import { ItemTypes } from "../constants/Constants";
+import { ItemTypes } from "../utils/ItemTypes";
 
 const SingleList = (props) => {
     const context = useAppContext();
