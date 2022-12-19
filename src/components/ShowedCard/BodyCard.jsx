@@ -19,8 +19,8 @@ const BodyCard = (props) => {
     let date = (props.payload.due=== null) ? null :
         {
         day: finishDate.getDate(), 
-        month: finishDate.toLocaleString("es-ES",  {month: "short"}),
-        hours: finishDate.toLocaleString("es-ES", { hour: "2-digit" }), 
+        month: finishDate.toLocaleString("en-GB",  {month: "short"}),
+        hours: finishDate.toLocaleString("en-GB", { hour: "2-digit" }), 
         minutes: ('0' + finishDate.getMinutes()).slice(-2)
     }
 
