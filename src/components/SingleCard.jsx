@@ -7,7 +7,6 @@ import "../assets/css/SingleCard.css";
 
 const SingleCard = (props) => {
   const ref = useRef(null);
-  const newPos = useRef(null);
   const context = useAppContext();
   const [cardEdit, setCardEdit] = useState(false);
   const [{ handlerId }, drop] = useDrop(
@@ -16,52 +15,29 @@ const SingleCard = (props) => {
       collect: (monitor) => ({
         handlerId: monitor.getHandlerId(),
       }),
-      drop: (item, monitor) =>
-        props.moveCard(item.id, props.idList, newPos.current),
+      drop: (item, monitor) => {
+        // console.log('cards')
+        dropCard(item, monitor);
+        // props.moveCard(item.id, props.idList, newPos.current)},
+      },
       hover: (item, monitor) => {
-        if (!ref.current) {
-          return;
-        }
-        // item is the props that useDrag passes
-        //  in this case is the pos value of the dragged card
-        const dragPos = item.position;
-        const hoverPos = props.position;
-        let newPosition;
-        // Don't replace items with themselves
-        if (dragPos === hoverPos) {
-          return;
-        }
-        // get index of hovered card
-        const hoverIndex = props.listCards.findIndex(
-          (card) => card.pos === hoverPos
-        );
-        // --Get mouse position--
-        // Determine rectangle on screen
-        const hoverBoundingRect = ref.current?.getBoundingClientRect();
-        // Get vertical middle
-        const hoverMiddleY =
-          (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-        // Determine mouse position
-        const clientOffset = monitor.getClientOffset();
-        // Get pixels to the top
-        const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
-        // Determine new position
-        //  hoverClient checks if mouse is over top or bottom half of card
-        if (hoverIndex === 0 && hoverClientY < hoverMiddleY) {
-          newPos.current = "top";
-        } else if (
-          hoverIndex === props.listCards.length - 1 &&
-          hoverClientY > hoverMiddleY
-        ) {
-          newPos.current = "bottom";
-        } else if (hoverClientY < hoverMiddleY) {
-          newPosition = (hoverPos + context.cards[hoverIndex - 1].pos) / 2;
-          newPos.current = newPosition;
-        } else if (hoverClientY > hoverMiddleY) {
-          newPosition = (hoverPos + context.cards[hoverIndex + 1].pos) / 2;
-          newPos.current = newPosition;
-        }
+        // if (monitor.isOver) {
+        //   const hoverPos = props.position;
+        //   const hoverIndex = props.listCards.findIndex(
+        //     (card) => card.pos === hoverPos
+        //   );
+        //   // Determine rectangle on screen
+        //   const hoverBoundingRect = ref.current?.getBoundingClientRect();
+        //   // Get vertical middle
+        //   const hoverMiddleY =
+        //     (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+        //   // Determine mouse position
+        //   const clientOffset = monitor.getClientOffset();
+        //   // Get pixels to the top
+        //   const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+        //   const topOrBott = hoverClientY < hoverMiddleY;
+          console.log(props.position);
+        // }
       },
     }),
     [context.cards]
@@ -80,6 +56,63 @@ const SingleCard = (props) => {
   // make the ref accesible to both drag and drop
   drag(drop(ref));
 
+  const dropCard = (item, monitor) => {
+    if (!ref.current) {
+      return;
+    }
+    // item is the props that useDrag passes
+    //  in this case is the pos value of the dragged card
+    const dragPos = item.position;
+    const hoverPos = props.position;
+    let newPosition;
+    // Don't replace items with themselves
+    if (dragPos === hoverPos) {
+      return;
+    }
+    // get index of hovered card
+    const hoverIndex = props.listCards.findIndex(
+      (card) => card.pos === hoverPos
+    );
+    // --Get mouse position--
+    // Determine rectangle on screen
+    const hoverBoundingRect = ref.current?.getBoundingClientRect();
+    // Get vertical middle
+    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+    // Determine mouse position
+    const clientOffset = monitor.getClientOffset();
+    // Get pixels to the top
+    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+    const topOrBott = hoverClientY < hoverMiddleY;
+
+    // Determine new position
+    //  hoverClient checks if mouse is over top or bottom half of card
+    if (hoverIndex === 0 && hoverClientY < hoverMiddleY) {
+      // console.log("first");
+      newPosition = "top";
+    } else if (
+      hoverIndex === props.listCards.length - 1 &&
+      hoverClientY > hoverMiddleY
+    ) {
+      // console.log("second");
+      newPosition = "bottom";
+    } else if (hoverClientY < hoverMiddleY) {
+      newPosition = Math.floor(
+        (hoverPos + context.cards[hoverIndex - 1].pos) / 2
+      );
+      // console.log(hoverPos, context.cards[hoverIndex - 1].pos)
+      // newPos.current = newPosition;
+    } else if (hoverClientY > hoverMiddleY) {
+      newPosition = Math.floor(
+        (hoverPos + context.cards[hoverIndex + 1].pos) / 2
+      );
+      // console.log(hoverPos, context.cards[hoverIndex + 1].pos)
+      // newPos.current = newPosition;
+    }
+    // card update request
+    console.log(hoverPos, hoverIndex, topOrBott, props.listCards);
+    props.moveCard(item.id, props.idList, newPosition);
+  };
+
   return (
     <>
       {/* main card component */}
@@ -96,7 +129,7 @@ const SingleCard = (props) => {
         />
       ) : (
         // non-edit mode
-        <div ref={ref} className="cards__card-wrapper">
+        <div ref={ref} index={props.index} className="cards__card-wrapper">
           <div className="cards__card" key={props.id}>
             <div
               className="cards__name"
