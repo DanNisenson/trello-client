@@ -13,7 +13,11 @@ const Members = (props)=> {
                     </div>
                 <div className="aside__new__modal--section modal__section__members">
                     <p className="modal__section--title " >Board Members</p>
-                    {props.members.map(member => <div className="modal__section__member"> <i class="fa-sharp fa-solid fa-circle-user fa-2xl"></i> <p className="modal__section__member--text">{`${member.fullName} (${member.username})`}  </p></div>)}
+                    {props.members.map(member => 
+                            <div className="modal__section__member" key={member.id}> 
+                                <i class="fa-sharp fa-solid fa-circle-user fa-2xl"></i> 
+                                <p className="modal__section__member--text">{`${member.fullName} (${member.username})`} </p>
+                            </div>)}
                 </div>
             </div>
         </>

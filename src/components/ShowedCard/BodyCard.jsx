@@ -23,7 +23,6 @@ const BodyCard = (props) => {
         hours: finishDate.getHours(), 
         minutes: ('0' + finishDate.getMinutes()).slice(-2)
     }
-    console.log(date)
 
     const delCheckList = async (List) => {
         try {
@@ -188,8 +187,8 @@ const BodyCard = (props) => {
                     />
                 }
                 <div className="card__comments__list">
-                    {props.comments?.map((a, i) =>
-                        <div className='card__comment' key={i}>
+                    {props.comments?.map((a) =>
+                        <div className='card__comment' key={a.i}>
                             <div className='card__comments__head'>
                                 <p className='card__comments card__comments--name'>{a.memberCreator.fullName}</p>
                                 <p className='card__comments card__comments--date'>{a.date.slice(0, 10)}</p>
