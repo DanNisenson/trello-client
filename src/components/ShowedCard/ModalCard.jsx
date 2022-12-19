@@ -11,18 +11,32 @@ const ModalCard = (props) => {
     const [checkList, setCheckList] = useState([])
 
     const getComments = async () => {
-        const resp = await cardsAPI.getComments(context.keys, props.currentCard.id);
-        setComments(resp.data)
-        console.log(resp.data)
+        try{
+            const resp = await cardsAPI.getComments(context.keys, props.currentCard.id);     
+            if (resp.status===200){    
+                setComments(resp.data)
+            }
+        } catch (error) {
+            console.log(error);
+            console.log("error. failed to load data.");
+        }
     }
     const getChecklist = async () => {
-        const resp = await cardsAPI.getCheckL(context.keys, props.currentCard.id);
-        setCheckList(resp.data);
-        console.log(resp.data)
+        try{
+            const resp = await cardsAPI.getCheckL(context.keys, props.currentCard.id);
+            if (resp.status===200){    
+                setCheckList(resp.data)
+            };
+
+        } catch (error) {
+            console.log(error);
+            console.log("error. failed to load data.");
+        }
     }
+
     useEffect(() => {
-        getComments()
-        getChecklist()
+        getComments();
+        getChecklist();
     }
         , [])
 
@@ -35,24 +49,24 @@ const ModalCard = (props) => {
                         {props.currentCard.closed===true ?
                             <>
                                 <div className="card__head--archive card__head__title card__head--archivebackground">  
-                                    <i class="fa-sharp fa-solid fa-computer fa-2xl"></i>
+                                    <i className="fa-sharp fa-solid fa-computer fa-2xl"></i>
                                     <h2 className="card__head__title--title">
                                         This Card is archived
                                     </h2>
                                 </div>
-                                <div onClick={() => props.setCurrentCard(null)}>
-                                        <i class="fa-solid fa-xmark fa-2xl"></i>
+                                <div className="card__head--X" onClick={() => props.setCurrentCard(null)}>
+                                        <i className="fa-solid fa-xmark fa-2xl"></i>
                                 </div>
                             </>
                             :<>
                             <div className="card__head card__head__title">
-                                <i class="fa-sharp fa-solid fa-computer fa-2xl"></i>
+                                <i className="fa-sharp fa-solid fa-computer fa-2xl"></i>
                                 <h2 className="card__head__title--title">
                                     {props.currentCard.name}
                                 </h2>
                             </div>
-                                <div onClick={() => props.setCurrentCard(null)}>
-                                    <i class="fa-solid fa-xmark fa-2xl"></i>
+                                <div className="card__head--X" onClick={() => props.setCurrentCard(null)}>
+                                    <i className="fa-solid fa-xmark fa-2xl"></i>
                             </div></>
                         }
                     </div>
@@ -70,7 +84,8 @@ const ModalCard = (props) => {
                             <AsideCard payload={props.currentCard} 
                                 setCheckList={setCheckList} 
                                 checkList={checkList} 
-                                setCurrentCard={props.setCurrentCard}/>
+                                setCurrentCard={props.setCurrentCard}
+                               />
                         </div>
                     </div>
 

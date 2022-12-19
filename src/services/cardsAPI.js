@@ -88,6 +88,15 @@ class cardsAPI {
         return await axios.post(`${process.env.REACT_APP_BASE_URL}${url}`);
     }
 
+    static async getMembers(context, id) {
+        const url = `boards/${id}/members?key=${context.apiKey}&token=${context.token}`;
+        return await axios.get(`${process.env.REACT_APP_BASE_URL}${url}`);
+    }
+    static async updateDue(due, context, id) {
+        const url = `cards/${id}?due=${due}&key=${context.apiKey}&token=${context.token}`;
+        return await axios.put(`${process.env.REACT_APP_BASE_URL}${url}`);
+    }
+
 
 }
 

@@ -1,5 +1,5 @@
 .card__section {
-    padding: 20px;
+    padding: 10px;
     margin-left: 10px;
 }
 
@@ -19,7 +19,6 @@
     padding: 10px 14px;
     border: none;
     border-radius: 3px;
-    margin: 8px 4px 0 0;
     width: fit-content;
 }
 

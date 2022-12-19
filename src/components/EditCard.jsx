@@ -17,8 +17,7 @@ const EditCard = (props) => {
         context.keys.apiKey,
         context.keys.token,
         props.id,
-        props.cardTitle
-
+        textarea.current.value
       );
       if (resp.status === 200) {
         // recreate listCards array and replace modified card
@@ -59,6 +58,15 @@ const EditCard = (props) => {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Escape") {
+      props.setCardEdit(false);
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      updateCard();
+    }
+  };
+
   return (
     <>
       {/* modal background. if clicked -> toggle edit mode off */}
@@ -79,9 +87,10 @@ const EditCard = (props) => {
             className="cards__name cards__name--edit"
             defaultValue={props.name}
             ref={textarea}
+            onKeyDown={(e) => handleKeyPress(e)}
             // Focus on load and select all text
             autoFocus
-            onFocus={e => e.target.select()}
+            onFocus={(e) => e.target.select()}
           />
           {/* update card title button */}
           <button
@@ -101,7 +110,15 @@ const EditCard = (props) => {
             >
               <i className="fa-solid fa-arrow-right"></i> Move
             </button>
-            {moveCard && <MoveCard id={props.id} idList={props.idList} position={props.position} setMoveCard={setMoveCard} setCardEdit={props.setCardEdit} />}
+            {moveCard && (
+              <MoveCard
+                id={props.id}
+                idList={props.idList}
+                position={props.position}
+                setMoveCard={setMoveCard}
+                setCardEdit={props.setCardEdit}
+                idBoard={props.idBoard}/>
+            )}
             <button className="cards__edit-action-btn">
               <i className="fa-solid fa-trash"></i> Archive
             </button>

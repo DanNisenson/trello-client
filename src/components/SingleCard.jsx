@@ -1,27 +1,136 @@
-import { useState } from "react";
-import "../assets/css/SingleCard.css";
+import { useRef, useState } from "react";
+import { useAppContext } from "../context/context";
+import { useDrag, useDrop } from "react-dnd";
+import { ItemTypes } from "../utils/ItemTypes";
 import EditCard from "./EditCard";
+import "../assets/css/SingleCard.css";
 
 const SingleCard = (props) => {
-  // card title edit mode toggle
+  const ref = useRef(null);
+  const context = useAppContext();
   const [cardEdit, setCardEdit] = useState(false);
+  const [{ handlerId }, drop] = useDrop(
+    () => ({
+      accept: ItemTypes.CARD,
+      collect: (monitor) => ({
+        handlerId: monitor.getHandlerId(),
+      }),
+      drop: (item, monitor) => {
+        // console.log('cards')
+        dropCard(item, monitor);
+        // props.moveCard(item.id, props.idList, newPos.current)},
+      },
+      hover: (item, monitor) => {
+        // if (monitor.isOver) {
+        //   const hoverPos = props.position;
+        //   const hoverIndex = props.listCards.findIndex(
+        //     (card) => card.pos === hoverPos
+        //   );
+        //   // Determine rectangle on screen
+        //   const hoverBoundingRect = ref.current?.getBoundingClientRect();
+        //   // Get vertical middle
+        //   const hoverMiddleY =
+        //     (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+        //   // Determine mouse position
+        //   const clientOffset = monitor.getClientOffset();
+        //   // Get pixels to the top
+        //   const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+        //   const topOrBott = hoverClientY < hoverMiddleY;
+          console.log(props.position);
+        // }
+      },
+    }),
+    [context.cards]
+  );
+
+  const [{ isDragging }, drag] = useDrag(
+    () => ({
+      type: ItemTypes.CARD,
+      item: { name: props.name, id: props.id, position: props.position },
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging(),
+      }),
+    }),
+    [context.cards]
+  );
+  // make the ref accesible to both drag and drop
+  drag(drop(ref));
+
+  const dropCard = (item, monitor) => {
+    if (!ref.current) {
+      return;
+    }
+    // item is the props that useDrag passes
+    //  in this case is the pos value of the dragged card
+    const dragPos = item.position;
+    const hoverPos = props.position;
+    let newPosition;
+    // Don't replace items with themselves
+    if (dragPos === hoverPos) {
+      return;
+    }
+    // get index of hovered card
+    const hoverIndex = props.listCards.findIndex(
+      (card) => card.pos === hoverPos
+    );
+    // --Get mouse position--
+    // Determine rectangle on screen
+    const hoverBoundingRect = ref.current?.getBoundingClientRect();
+    // Get vertical middle
+    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+    // Determine mouse position
+    const clientOffset = monitor.getClientOffset();
+    // Get pixels to the top
+    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+    const topOrBott = hoverClientY < hoverMiddleY;
+
+    // Determine new position
+    //  hoverClient checks if mouse is over top or bottom half of card
+    if (hoverIndex === 0 && hoverClientY < hoverMiddleY) {
+      // console.log("first");
+      newPosition = "top";
+    } else if (
+      hoverIndex === props.listCards.length - 1 &&
+      hoverClientY > hoverMiddleY
+    ) {
+      // console.log("second");
+      newPosition = "bottom";
+    } else if (hoverClientY < hoverMiddleY) {
+      newPosition = Math.floor(
+        (hoverPos + context.cards[hoverIndex - 1].pos) / 2
+      );
+      // console.log(hoverPos, context.cards[hoverIndex - 1].pos)
+      // newPos.current = newPosition;
+    } else if (hoverClientY > hoverMiddleY) {
+      newPosition = Math.floor(
+        (hoverPos + context.cards[hoverIndex + 1].pos) / 2
+      );
+      // console.log(hoverPos, context.cards[hoverIndex + 1].pos)
+      // newPos.current = newPosition;
+    }
+    // card update request
+    console.log(hoverPos, hoverIndex, topOrBott, props.listCards);
+    props.moveCard(item.id, props.idList, newPosition);
+  };
 
   return (
     <>
       {/* main card component */}
       {cardEdit ? (
-          <EditCard
-            id={props.id}
-            idList={props.idList}
-            name={props.name}
-            position ={props.position}
-            listCards={props.listCards}
-            setListCards={props.setListCards}
-            setCardEdit={setCardEdit}
-          />
+        <EditCard
+          id={props.id}
+          idList={props.idList}
+          idBoard={props.idBoard}
+          name={props.name}
+          position={props.position}
+          listCards={props.listCards}
+          setListCards={props.setListCards}
+          setCardEdit={setCardEdit}
+        />
       ) : (
         // non-edit mode
-          <div className="cards__card" key={props.id} >
+        <div ref={ref} index={props.index} className="cards__card-wrapper">
+          <div className="cards__card" key={props.id}>
             <div
               className="cards__name"
               onClick={() => props.showCard(props.currentCard)}
@@ -30,13 +139,14 @@ const SingleCard = (props) => {
               {props.name}
             </div>
             {/* edit icons */}
-              <button
-                className="cards__edit-btn cards__action-icon"
-                onClick={() => setCardEdit(true)}
-              >
-                <i className="fa-solid fa-pencil"></i>
-              </button>
-            </div>
+            <button
+              className="cards__edit-btn cards__action-icon"
+              onClick={() => setCardEdit(true)}
+            >
+              <i className="fa-solid fa-pencil"></i>
+            </button>
+          </div>
+        </div>
       )}
     </>
   );

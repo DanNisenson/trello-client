@@ -31,6 +31,15 @@ const CreateCard = (props) => {
     setAddCard(false);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Escape") {
+      setAddCard(false);
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      postNewCard();
+    }
+  };
+
   return (
     <>
       {addCard ? (
@@ -41,6 +50,7 @@ const CreateCard = (props) => {
             id="new-card-title-input"
             className="create-card__title-input"
             placeholder="Enter a title for this card..."
+            onKeyDown={(e) => handleKeyPress(e)}
             onChange={(e) => setTitle(e.target.value)}
             autoFocus
           />

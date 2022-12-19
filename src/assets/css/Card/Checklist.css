@@ -4,7 +4,7 @@
     align-items: center;
     justify-content:space-between;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 3px;
 
 
 }
@@ -58,6 +58,7 @@
 }
 .card__section__checklist--button{
     background-color: #091e4212;
+    margin: 10px 35px;
 }
 
 .card__section__checklist--button:hover {

@@ -1,11 +1,11 @@
 .card__aside__options {
     margin-top: 8px;
-    width: 110px;
+    width: 170px;
     height: 32px;
     cursor: pointer;
     padding: 6px 12px;
     margin: 5px;
-    border-radius: 4px;
+    border-radius: 3px;
     background-color: #091e420a;
     color: #FFF;
 }

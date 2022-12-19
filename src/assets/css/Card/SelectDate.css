@@ -1,0 +1,131 @@
+.modal__dates__background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+}
+
+.modal__dates__main {
+    position: absolute;
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-color: #ffffff;
+    z-index: 5;
+    padding: 10px;
+    border-radius: 3px;
+    border: solid 1px rgba(186, 183, 183, 0.545)
+}
+
+.modal__dates__main--titlehead {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    color: #5e6c84;
+    border-bottom: 1px solid #5e6c8476;
+}
+
+.modal__dates__main--X {
+    margin-left: auto;
+}
+
+.modal__dates__main--title {
+    margin-top: 4px;
+    margin-left: auto;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.modal__dates__main--section {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.modal__dates__savebttn, .modal__dates__removebttn {
+    color: #ffffff;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 10px 6px;
+    margin-bottom: 8px;
+    transition-property: background-color;
+    transition-duration: 0.4s;
+}
+.modal__section__dates--calendar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+    align-items: center;
+}
+
+.modal__dates__savebttn{
+    background-color: #0279C0;
+    color: #ffffff;
+}
+.modal__dates__removebttn{
+    background-color: rgba(9, 30, 66, 0.116);
+    color: grey;
+    transition-property: background-color;
+    transition-duration: 0.4s;
+}
+.modal__dates__savebttn:hover {
+    background-color: #01629a;
+}
+.modal__dates__removebttn:hover  {
+    background-color: rgba(9, 30, 66, 0.182)
+}
+
+.modal__section--title{
+    margin-left : 0px;
+    color: #0079bf;
+}
+
+
+.modal__section__dates--input{
+    width: 110px;
+    padding: 10px;
+    color:var(--ds-text, #172b4d);
+    box-shadow: inset 0 0 0 2px #0079bf;
+    height: fit-content;
+    border:none ;
+    margin-bottom: 10px;
+    margin-left: 6px;
+    font-size: medium;
+}
+.modal__section__dates--input:focus{
+    border:none
+}
+
+.card__finishdate {
+    width: fit-content;
+    margin-left: 10px;
+}
+
+.card__finishdate--title {
+    font-size: small;
+    color: #5e6c84;
+}
+
+.card__finishdate--date {
+    background-color: #091e420a;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 3px;
+    padding: 7px;
+    border-radius: 3px;
+    align-items: flex-end;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 115%;
+
+}
+
+.card__finishdate--date:hover {
+    background-color: #DADBE3;
+}

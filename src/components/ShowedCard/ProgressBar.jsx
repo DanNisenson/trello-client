@@ -1,7 +1,6 @@
 import "../../assets/css/Card/ProgressBar.css";
 const ProgressBar= (props)=> {
-    
-    let width = props.actual=== null ? 0 : parseInt((props.actual * 100) / props.target)
+    let width = props.target== 0 ? 0 : parseInt((props.actual * 100) / props.target)
 
     return(
     <div className="progress__bar">
