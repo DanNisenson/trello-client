@@ -5,6 +5,7 @@ const Cards = (props) => {
     <div className="cards">
       {/* iterate and print all cards on board */}
       {props.listCards.map((card, i) => {
+        console.log(card.pos)
         return (
           <SingleCard
             id={card.id}

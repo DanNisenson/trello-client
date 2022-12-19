@@ -16,9 +16,7 @@ const SingleCard = (props) => {
         handlerId: monitor.getHandlerId(),
       }),
       drop: (item, monitor) => {
-        // console.log('cards')
         dropCard(item, monitor);
-        // props.moveCard(item.id, props.idList, newPos.current)},
       },
       hover: (item, monitor) => {
         // if (monitor.isOver) {
@@ -73,7 +71,7 @@ const SingleCard = (props) => {
     const hoverIndex = props.listCards.findIndex(
       (card) => card.pos === hoverPos
     );
-    // --Get mouse position--
+    // --Get mouse position (top or bottom of hovered element)--
     // Determine rectangle on screen
     const hoverBoundingRect = ref.current?.getBoundingClientRect();
     // Get vertical middle
@@ -82,34 +80,28 @@ const SingleCard = (props) => {
     const clientOffset = monitor.getClientOffset();
     // Get pixels to the top
     const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-    const topOrBott = hoverClientY < hoverMiddleY;
+    const isOverTopHalf = hoverClientY < hoverMiddleY;
 
     // Determine new position
     //  hoverClient checks if mouse is over top or bottom half of card
-    if (hoverIndex === 0 && hoverClientY < hoverMiddleY) {
-      // console.log("first");
+    if (hoverIndex === 0 && isOverTopHalf) {
       newPosition = "top";
     } else if (
       hoverIndex === props.listCards.length - 1 &&
-      hoverClientY > hoverMiddleY
+      !isOverTopHalf
     ) {
-      // console.log("second");
       newPosition = "bottom";
-    } else if (hoverClientY < hoverMiddleY) {
+    } else if (isOverTopHalf) {
       newPosition = Math.floor(
         (hoverPos + context.cards[hoverIndex - 1].pos) / 2
       );
-      // console.log(hoverPos, context.cards[hoverIndex - 1].pos)
-      // newPos.current = newPosition;
-    } else if (hoverClientY > hoverMiddleY) {
+    } else if (!isOverTopHalf) {
       newPosition = Math.floor(
         (hoverPos + context.cards[hoverIndex + 1].pos) / 2
       );
-      // console.log(hoverPos, context.cards[hoverIndex + 1].pos)
-      // newPos.current = newPosition;
     }
     // card update request
-    console.log(hoverPos, hoverIndex, topOrBott, props.listCards);
+    console.log('drop', dragPos, hoverIndex, isOverTopHalf, newPosition);
     props.moveCard(item.id, props.idList, newPosition);
   };
 

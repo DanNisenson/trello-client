@@ -45,15 +45,17 @@ const SingleList = (props) => {
   
   useEffect(() => {
     const filteredCards = context.cards
-      .filter((card) => {
-        return props.list.id === card.idList;
-      })
-      .sort((a, b) => a.pos - b.pos);
+    .filter((card) => {
+      return props.list.id === card.idList;
+    })
+    .sort((a, b) => a.pos - b.pos);
+    
+    console.log('flitercards', filteredCards)
     setListCards(filteredCards);
   }, [context.cards]);
   
   const moveCard = async (id, idList, position) => {
-    // let position = calculatePosition();
+    console.log('move')
     try {
       // request
       const resp = await cardsAPI.updateCardPosition(
