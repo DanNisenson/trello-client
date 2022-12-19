@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useAppContext } from "../context/context";
-import listsAPI from "../services/listsAPI";
+import moveList from "../utils/moveList";
 import "../assets/css/ListMove.css";
 
 const ListMove = props => {
     const context = useAppContext();
     const boardLists = context.lists.filter(list => list.idBoard === props.boardId);
     const currentPosition = boardLists.filter(list => list.id === props.listId)[0].pos;
-    const [newPosition, setNewPosition] = useState(currentPosition);
+    const [targetPosition, setTargetPosition] = useState(currentPosition);
 
     const generateOptions = () => 
         boardLists.map((list, index) => 
@@ -15,42 +15,10 @@ const ListMove = props => {
                 {index + 1}{list.id === props.listId && " (current)"}
             </option>)
 
-    const generateCallPosition = targetPosition => {
-        let targetIndex = -1;
-        for (let i = 0; i < boardLists.length; i++) {
-            if (boardLists[i].pos === targetPosition) {
-                targetIndex = i;
-                break;
-            }
-        }
-        if (targetIndex === 0)
-            return ("top");
-        if (targetIndex === boardLists.length - 1)
-            return ("bottom");
-        if (targetPosition > currentPosition)
-            return ((boardLists[targetIndex].pos + boardLists[targetIndex + 1].pos) / 2);
-        return ((boardLists[targetIndex].pos + boardLists[targetIndex - 1].pos) / 2);
-    }
-
-    const handleMove = async () => {
-        if (newPosition !== currentPosition)
-        {
-            const callPosition = generateCallPosition(newPosition);
-            try {
-                const response = await listsAPI.updateListPosition(context.keys.apiKey, context.keys.token, props.listId, callPosition);
-                if (response.status === 200) {
-                    const newLists = context.lists.map(list => {
-                        list.pos = list.id === props.listId ? response.data.pos : list.pos
-                        return list}
-                    ).sort((a , b) => a.pos - b.pos);
-                    context.setLists(newLists);
-                }
-            }
-            catch (error) {
-                console.log(error.message);
-                alert("Unable to update list position");
-            }
-        }
+    const handleMoveClick = async () => {
+        await moveList(currentPosition, targetPosition, 
+                props.listId, props.boardId, context.keys.apiKey, 
+                context.keys.token, context.lists, context.setLists);
         props.setToggleMove(false);
     }
 
@@ -69,11 +37,11 @@ const ListMove = props => {
                 <label>Position:</label>
                 <select className="lists__move-options" 
                     defaultValue={currentPosition}
-                    onChange={event => setNewPosition(parseFloat(event.target.value))}>
+                    onChange={event => setTargetPosition(parseFloat(event.target.value))}>
                     {generateOptions()}
                 </select>
             </div>
-            <button className="lists__move-btn" onClick={handleMove}>Move</button>
+            <button className="lists__move-btn" onClick={handleMoveClick}>Move</button>
         </div>
     );
 }
