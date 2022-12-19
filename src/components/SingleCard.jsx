@@ -18,27 +18,8 @@ const SingleCard = (props) => {
       drop: (item, monitor) => {
         dropCard(item, monitor);
       },
-      hover: (item, monitor) => {
-        // if (monitor.isOver) {
-        //   const hoverPos = props.position;
-        //   const hoverIndex = props.listCards.findIndex(
-        //     (card) => card.pos === hoverPos
-        //   );
-        //   // Determine rectangle on screen
-        //   const hoverBoundingRect = ref.current?.getBoundingClientRect();
-        //   // Get vertical middle
-        //   const hoverMiddleY =
-        //     (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-        //   // Determine mouse position
-        //   const clientOffset = monitor.getClientOffset();
-        //   // Get pixels to the top
-        //   const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-        //   const topOrBott = hoverClientY < hoverMiddleY;
-          console.log(props.position);
-        // }
-      },
     }),
-    [context.cards]
+    [context.cards, props.position]
   );
 
   const [{ isDragging }, drag] = useDrag(
@@ -49,7 +30,7 @@ const SingleCard = (props) => {
         isDragging: !!monitor.isDragging(),
       }),
     }),
-    [context.cards]
+    [context.cards,  props.position]
   );
   // make the ref accesible to both drag and drop
   drag(drop(ref));
@@ -92,16 +73,17 @@ const SingleCard = (props) => {
     ) {
       newPosition = "bottom";
     } else if (isOverTopHalf) {
+      console.log('first')
       newPosition = Math.floor(
-        (hoverPos + context.cards[hoverIndex - 1].pos) / 2
-      );
-    } else if (!isOverTopHalf) {
+        (hoverPos + props.listCards[hoverIndex - 1].pos) / 2
+        );
+      } else if (!isOverTopHalf) {
+      console.log('sec')
       newPosition = Math.floor(
-        (hoverPos + context.cards[hoverIndex + 1].pos) / 2
+        (hoverPos + props.listCards[hoverIndex + 1].pos) / 2
       );
     }
     // card update request
-    console.log('drop', dragPos, hoverIndex, isOverTopHalf, newPosition);
     props.moveCard(item.id, props.idList, newPosition);
   };
 
@@ -121,7 +103,7 @@ const SingleCard = (props) => {
         />
       ) : (
         // non-edit mode
-        <div ref={ref} index={props.index} className="cards__card-wrapper">
+        <div ref={ref} className="cards__card-wrapper">
           <div className="cards__card" key={props.id}>
             <div
               className="cards__name"

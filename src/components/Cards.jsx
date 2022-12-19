@@ -9,7 +9,6 @@ const Cards = (props) => {
         return (
           <SingleCard
             id={card.id}
-            index={i}
             idList={card.idList}
             name={card.name}
             position={card.pos}
