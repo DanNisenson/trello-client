@@ -11,7 +11,7 @@ const AsideCard = (props) => {
     const context = useAppContext()
     const [toggleCheckList, setToggleCheckList] = useState(false)
     const [toggleDelete, setToggleDelete] = useState(false)
-    const [toggleMembers, setToggleMembers]= useState(false)
+    // const [toggleMembers, setToggleMembers]= useState(false)
     const [moveCard, setMoveCard] = useState(false)
     const [listName, setListName] = useState("");
     const [isArchived, setIsArchived] = useState(!props.payload.closed)
@@ -69,14 +69,10 @@ const AsideCard = (props) => {
     return (
         <>  
             {/* showMembers */}
-            <div className="card__aside card__aside__options" onClick={() => setToggleMembers(true)}>
-                <i class="fa-solid fa-user"></i>
-                <span className=" card__aside__options--title" >Members</span>
-            </div>
-            {toggleMembers && <Members members={props.members} setMembers={props.setMembers} setToggle={setToggleMembers}/>}
+            <Members members={props.members} setMembers={props.setMembers} currentCard={props.payload} setCurrentCard={props.setCurrentCard}/> 
             {/* New Checklist */}
             <div className="card__aside card__aside__options" onClick={() => setToggleCheckList(!toggleCheckList)}>
-                <i class="fa-solid fa-square-check fa-lg"></i>
+                <i className="fa-solid fa-square-check fa-lg"></i>
                 <span className=" card__aside__options--title" >Checklist</span>
             </div>
             {toggleCheckList &&
@@ -86,7 +82,7 @@ const AsideCard = (props) => {
                     <div className="aside__new__window window__checklist">
                         <div className="aside__new__window--titlehead">
                             <span className="aside__new__window--title">Add Checklist</span>
-                            <span><i class="fa-duotone fa-x" onClick={() => setToggleCheckList(false)}></i></span>
+                            <span><i className="fa-duotone fa-x" onClick={() => setToggleCheckList(false)}></i></span>
                         </div>
                         <div className="aside__new__window--section window__section__checklist">
                             <p className="window__section--title " >titulo</p>
@@ -136,13 +132,13 @@ const AsideCard = (props) => {
                         setIsArchived(!isArchived);
                         archiveCard()
                     }}>
-                    <i class="fa-sharp fa-solid fa-box-archive fa-lg"></i>
+                    <i className="fa-sharp fa-solid fa-box-archive fa-lg"></i>
                     <span className=" card__aside__options--title">Archive</span>
                 </div>
             }
             <div>
                 <div className="card__aside card__aside__options" onClick={() => setMoveCard(true)}>
-                    <i class="fa-solid fa-arrow-right fa-lg"></i>
+                    <i className="fa-solid fa-arrow-right fa-lg"></i>
                     <span className=" card__aside__options--title" >Move</span>
                 </div>
                 {moveCard &&

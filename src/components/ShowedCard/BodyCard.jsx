@@ -20,7 +20,7 @@ const BodyCard = (props) => {
         {
         day: finishDate.getDate(), 
         month: finishDate.toLocaleString("en-GB",  {month: "short"}),
-        hours: finishDate.getHours(), 
+        hours: finishDate.toLocaleString("en-GB", { hour: "2-digit" }), 
         minutes: ('0' + finishDate.getMinutes()).slice(-2)
     }
 
@@ -82,7 +82,7 @@ const BodyCard = (props) => {
             <div className="card__section">
                 <div className='card__section__headtitle'>
                     <div className='card__section__headtitle--maintitle'>
-                        <i class="fa-solid fa-bars" fa-lg></i>
+                        <i className="fa-solid fa-bars fa-lg" ></i>
                         <h3 className='card__section__headtitle--title'>
                             Descripción
                         </h3>
@@ -119,11 +119,11 @@ const BodyCard = (props) => {
             {!props.checkList.length
                 ? null
                 :
-                props.checkList?.map((List, i) =>
-                    <div className='card__section' key={i}>
+                props.checkList?.map((List) =>
+                    <div className='card__section' key={List.id}>
                         <div className='card__section__headtitle'>
                             <div className='card__section__headtitle--maintitle'>
-                                <i class="fa-regular fa-square-check fa-xl"></i>
+                                <i className="fa-regular fa-square-check fa-xl"></i>
                                 <h3 className='card__section__headtitle--title'>
                                     {List.name}
                                 </h3>
@@ -188,7 +188,7 @@ const BodyCard = (props) => {
                 }
                 <div className="card__comments__list">
                     {props.comments?.map((a) =>
-                        <div className='card__comment' key={a.i}>
+                        <div className='card__comment' key={a.id}>
                             <div className='card__comments__head'>
                                 <p className='card__comments card__comments--name'>{a.memberCreator.fullName}</p>
                                 <p className='card__comments card__comments--date'>{a.date.slice(0, 10)}</p>
