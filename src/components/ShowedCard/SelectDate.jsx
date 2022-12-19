@@ -22,7 +22,6 @@ const SelectDate= (props)=> {
                 const newCards = context.cards.map(card => card.id === props.id ? resp.data : card)
                 context.setCards(newCards)
                 props.setCurrentCard(resp.data)
-                console.log(resp.data)
             }
         }
         catch (error) {
@@ -31,7 +30,6 @@ const SelectDate= (props)=> {
         }
         setToggleDate(false)
     }
-    console.log(date)
     
 
         
