@@ -26,7 +26,7 @@ const SingleList = (props) => {
         isOver: !!monitor.isOver(),
       }),
     }),
-    [context.cards]
+    [context.cards, listCards]
   );
   const [{ isDragging }, drag] = useDrag(
     () => ({
@@ -45,15 +45,15 @@ const SingleList = (props) => {
   
   useEffect(() => {
     const filteredCards = context.cards
-      .filter((card) => {
-        return props.list.id === card.idList;
-      })
-      .sort((a, b) => a.pos - b.pos);
+    .filter((card) => {
+      return props.list.id === card.idList;
+    })
+    .sort((a, b) => a.pos - b.pos);
+    
     setListCards(filteredCards);
   }, [context.cards]);
   
   const moveCard = async (id, idList, position) => {
-    // let position = calculatePosition();
     try {
       // request
       const resp = await cardsAPI.updateCardPosition(

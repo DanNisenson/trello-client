@@ -13,21 +13,22 @@ const MoveCard = (props) => {
   const [cardPositions, setCardPositions] = useState([]);
 
   useEffect(() => {
-    // filter all cards by selected list
     const listCards = context.cards.filter(
       (card, i) => card.idList === targetListId
     );
-    // update state with array containing card position values
     const positions = listCards.map((card, i) => card.pos);
     setCardPositions(positions);
   }, [targetListId]);
 
   const cardPositionOptions = () => {
-    // check if there are card in list
-    // render option elements for new "card position"
     let cardOrder = [];
+    // check if there are cards in list
+    //  & render option elements for new "card position"
     if (cardPositions.length) {
-      for (let i = 0; i <= cardPositions.length; i++) {
+      // for same list -> give 1 less option
+      const listLength = props.idList !== targetListId ? cardPositions.length + 1 : cardPositions.length;
+
+      for (let i = 0; i < listLength; i++) {
         cardOrder.push(
           <option value={i} key={i}>
             {parseInt(i) + 1}
@@ -47,11 +48,12 @@ const MoveCard = (props) => {
 
   const calculatePosition = () => {
     let targPosInt = parseInt(targetPosition.current.value);
+    const listLength = props.idList !== targetListId ? cardPositions.length : cardPositions.length -1;
     let position;
 
     if (targPosInt === 0) {
       position = "top";
-    } else if (targPosInt === cardPositions.length) {
+    } else if (targPosInt === listLength) {
       position = "bottom";
     } else if (targPosInt > 0 && targPosInt < cardPositions.length + 1) {
       // calculate mean
