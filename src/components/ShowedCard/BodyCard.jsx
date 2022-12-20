@@ -189,17 +189,23 @@ const BodyCard = (props) => {
                 <div className="card__comments__list">
                     {props.comments?.map((a) =>
                         <div className='card__comment' key={a.id}>
-                            <div className='card__comments__head'>
-                                <p className='card__comments card__comments--name'>{a.memberCreator.fullName}</p>
-                                <p className='card__comments card__comments--date'>{a.date.slice(0, 10)}</p>
-                            </div>
-                            <input type="text" className="card__section__comm--text" value={a.data.text} readOnly />
-                            <div className='card__comments__options'>
-                                    <a className='card__comments__options--delete'
-                                        onClick={() => setToggleDelete(a.id)} >
-                                        Delete
-                                     </a>
-                                
+                            <div className='card__comments--icon'><i className="fa-sharp fa-solid fa-circle-user fa-2xl"></i></div> 
+                            <div className='card__comments__main'>
+                                <div className='card__comments__head'>
+                                    <p className='card__comments card__comments--name'>{a.memberCreator.fullName}</p>
+                                    <p className='card__comments card__comments--date'>
+                                        {a.date.slice(0, 10)}
+                                        {"  "+ a.date.slice(11, 16)}
+                                    </p>
+                                </div>
+                                <input type="text" className="card__section__comm--text" value={a.data.text} readOnly />
+                                <div className='card__comments__options'>
+                                        <a className='card__comments__options--delete'
+                                            onClick={() => setToggleDelete(a.id)} >
+                                            Delete
+                                        </a>
+                                    
+                                </div>
                             </div>
                         </div>
                     )

@@ -63,13 +63,6 @@
     min-width: 160px;
 }
 
-
-.card__comments__options {
-    width: auto;
-    display: flex;
-    justify-content: left;
-}
-
 .options__element {
     font-size: small;
     font-style: italic;
@@ -97,17 +90,6 @@
 
 textarea {
     resize: none;
-}
-
-.card__comments__head {
-    display: flex;
-    flex-direction: row;
-}
-
-.card__comments--name,
-.card__comments--date {
-    margin: 5px;
-    font-size: smaller;
 }
 
 

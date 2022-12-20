@@ -8,7 +8,7 @@ const WarningAdvise= (props)=>{
             <div className="modal__warning__main">
                     <div className="modal__warning__main--titlehead">
                         <span className="modal__warning__main--title">{props.title}</span>
-                        <span className="modal__warning__main--X"><i class="fa-duotone fa-x" onClick={() => props.setToggle(false)}></i></span>
+                        <span className="modal__warning__main--X"><i className="fa-duotone fa-x" onClick={() => props.setToggle(false)}></i></span>
                     </div>
                 <div className="modal__warning__main--section ">
                     <p className="modal__warning__section--text " >{props.text}</p>

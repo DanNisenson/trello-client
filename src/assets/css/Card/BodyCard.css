@@ -48,6 +48,9 @@
 
 }
 
+.card__comments__options--delete:hover{
+    text-decoration: underline;    
+}
 
 .card__section__headtitle--button {
     background-color: #091e420a;
@@ -61,7 +64,10 @@
 .card__section__desc--button {
     background-color: #0279C0;
     color: #FFF;
+}
 
+.card__section__comm--button{
+    margin-bottom: 10px;
 }
 
 .card__section__headtitle--maintitle {
@@ -91,4 +97,40 @@
     font-weight: 400;
     border-style: none;
     border-radius: 3px;
+}
+
+.card__comment{
+    display:flex ;
+
+}
+.card__comments__head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card__comments--icon{
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.card__comments--date {
+    margin: 5px;
+    font-size: smaller;
+}
+
+.card__comments--name{
+    margin: 5px;
+    font-weight: 700;
+}
+
+.card__comments__options {
+    width: auto;
+    display: flex;
+    justify-content: left;
+}
+
+.card__comments__main{
+    width: 100%;
+    margin-bottom: 15px;
 }
