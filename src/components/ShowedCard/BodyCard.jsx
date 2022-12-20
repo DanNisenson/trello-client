@@ -84,7 +84,7 @@ const BodyCard = (props) => {
                     <div className='card__section__headtitle--maintitle'>
                         <i className="fa-solid fa-bars fa-lg" ></i>
                         <h3 className='card__section__headtitle--title'>
-                            Descripción
+                            Description
                         </h3>
                     </div>
                     {/* Button change to text area and reset value of Desc when close with itself */}
@@ -142,13 +142,16 @@ const BodyCard = (props) => {
                             setCheckList={props.setCheckList} 
                             />
                     </div>)}
-
+                
 
             <div className="card__section">
-                <div className='card__section__headtitle'>
-                    <h3 className='card__section__headtitle--title'>
-                        Comentarios
-                    </h3>
+                    <div className='card__section__headtitle'>
+                    <div className='card__section__headtitle--maintitle'>
+                        <i class="fa-solid fa-bars-staggered fa-xl"></i>
+                        <h3 className='card__section__headtitle--title'>
+                            Comments
+                        </h3>
+                    </div>
                     {/* setNewComment reset content when close with button*/}
                     <button type="button" className="card__section__headtitle--button options--button"
                         onClick={() => { 
