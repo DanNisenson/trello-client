@@ -91,9 +91,14 @@ const Checklist= (props) => {
                 <div className=" checklist__list__item" key={a.id} > 
                     <div className="checklist__list__item--main">
                         <div className="checklist__list__item--checkbox " onClick={() => changeCheckBox(a.id)}>
-                            {a.state === "complete" ? <i className="fa-solid fa-square-check fa-xl"></i> : <i className="fa-regular fa-square fa-xl" ></i>}
+                            {a.state === "complete" ? 
+                                <i className="fa-solid fa-square-check fa-xl greenicon"></i> 
+                                : <i className="fa-regular fa-square fa-xl" ></i>}
                         </div>
-                        <p className="checklist__list__item--name">{a.name}</p>
+                        <p style={a.state === "complete" ? 
+                                    { textDecoration: "line-through" } : null } className="checklist__list__item--name" >
+                            {a.name}
+                        </p>
                     </div>
                     <div className="checklist__list__item--edit " onClick={() => deleteItem(a.id)}>
                         <i className="fa-sharp fa-solid fa-trash"></i>
