@@ -24,7 +24,6 @@ const CreateCard = (props) => {
         context.setCards([...context.cards, resp.data]);
       }
     } catch (error) {
-      console.log(error);
       console.log("error. failed to post new card.");
     }
     // toggle card creation mode

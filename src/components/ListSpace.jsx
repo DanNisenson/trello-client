@@ -18,7 +18,7 @@ const ListSpace = props => {
 
     return (
         <div ref={drop}>
-            <SingleList list={props.list}></SingleList>);
+            <SingleList list={props.list}></SingleList>
         </div>
     );
 }
