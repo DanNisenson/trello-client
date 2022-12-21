@@ -30,7 +30,6 @@
 }
 .checklist__list__item--edit:hover {
     background-color: #091e4226
-  
 }
 
 .checklist__list__item--checkbox{
@@ -58,7 +57,7 @@
 }
 .card__section__checklist--button{
     background-color: #091e4212;
-    margin: 10px 35px;
+    margin: 10px 5px;
 }
 
 .card__section__checklist--button:hover {

@@ -14,7 +14,7 @@
 .card__total {
     height: fit-content;
     position: relative;
-    margin: 100px 200px;
+    margin-top: 60px;
     border-radius: 3px;
     background-color: #ebecf0;
     display: flex;
@@ -50,6 +50,7 @@
 
 .card__body {
     width: 550px;
+    margin-left : 16px;
     display: flex;
     flex-direction: column;
 }

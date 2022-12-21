@@ -96,7 +96,7 @@ const Checklist= (props) => {
                                 : <i className="fa-regular fa-square fa-xl" ></i>}
                         </div>
                         <p style={a.state === "complete" ? 
-                                    { textDecoration: "line-through" } : null } className="checklist__list__item--name" >
+                                    { textDecoration: "line-through" } : null }     className="checklist__list__item--name" >
                             {a.name}
                         </p>
                     </div>
@@ -107,7 +107,7 @@ const Checklist= (props) => {
             ) }
             {toggleNewItem ?
                  <>
-                    <textarea className="card__options--textarea" placeholder="Add an element" autoFocus
+                    <textarea className="card__options--textarea" placeholder="Add an Item" autoFocus
                          onChange={event => 
                             setNewItem(event.target.value)}
                     >
