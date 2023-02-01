@@ -2,8 +2,23 @@
   display: flex;
   gap: 10px;
   overflow: auto;
-  min-height: 270px;
+  min-height: calc(100vh - 57px);
   padding: 10px;
+}
+
+.lists::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.lists::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+/* Handle */
+.lists::-webkit-scrollbar-thumb {
+  background: #88888888;
+  border-radius: 20px;
 }
 
 .lists__list {

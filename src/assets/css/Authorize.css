@@ -1,7 +1,10 @@
 .authorize {
-    color: #fff;
+    color: #182a4e;
+    background-color: #ebecf0f8;
+    border-radius: 3px;
+    max-width: 700px;
     height: 40vh;
-    margin: 5vh;
+    margin: 5vh auto;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
