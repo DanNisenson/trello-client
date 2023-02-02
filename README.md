@@ -9,7 +9,7 @@ This is a project done with [@eduardpeters](https://github.com/eduardpeters) and
 This was our first serious React project 😎
 The task was to create a front-end MVP with Trello's basic features, making use of their open API to handle the back-end.
 
-![trello-gif-start](https://i.postimg.cc/Q9s3XBFc/trello-gif-start.gif)
+![trello-gif-start](gifs/trello-gif-start.gif)
 
 ### Challenges
 
@@ -21,7 +21,7 @@ But we knew that to make it work we needed a couple of basic ideas to work:
 - Perform CRUD operations with lists, cards, comments, checklists, etc
 - Make it look pretty 💋
 
-![trello-gif-checklists](https://i.postimg.cc/1g1xHgcb/trello-gif-checklist.gif)
+![trello-gif-checklists](gifs/trello-gif-checklist.gif)
 
 ### How did it feel then
 
@@ -34,4 +34,4 @@ There was a lot of going back and forth since we had to figure out the architect
 There was quite a bit of state management if we had more time I think we could have looked into Redux and try to optimize there. We left out SO MUCH of what the API allows you to do and I would have loved to continue working on it, but it was time to move on and let our baby go.
 At the end of the day, it was an awesome project and we all improved our front-end skills 500%.
 
-![I ❤️ TRELLO](https://i.postimg.cc/BPKcMvCw/Screenshot-2023-02-02-at-16-40-19.png)
+![I ❤️ TRELLO](gifs/I-love-trello.png)
