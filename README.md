@@ -34,4 +34,4 @@ There was a lot of going back and forth since we had to figure out the architect
 There was quite a bit of state management if we had more time I think we could have looked into Redux and try to optimize there. We left out SO MUCH of what the API allows you to do and I would have loved to continue working on it, but it was time to move on and let our baby go.
 At the end of the day, it was an awesome project and we all improved our front-end skills 500%.
 
-![I ❤️ TRELLO](https://i.postimg.cc/BPKcMvCw/Screenshot-2023-02-02-at-16-40-19.png)
+![I ❤️ TRELLO](gifs/I-love-trello.png)
