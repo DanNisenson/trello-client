@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Trello Front-end Client Recreation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a project done with [@eduardpeters](https://github.com/eduardpeters) and [@carlosisen](https://github.com/carlosisen) for [The Bridge](https://www.thebridge.tech/).
 
-## Available Scripts
+[Click here to try it out!👾](https://trello-client-project.vercel.app/)
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+This was our first serious React project 😎
+The task was to create a front-end MVP with Trello's basic features, making use of their open API to handle the back-end.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![trello-gif-start](https://i.postimg.cc/Q9s3XBFc/trello-gif-start.gif)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Challenges
 
-### `npm test`
+Pretty much everything appart from basic state management was new to us so it was all a challange!
+But we knew that to make it work we needed a couple of basic ideas to work:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Make auth as straight-forward as possible
+- Display user boards and load content
+- Perform CRUD operations with lists, cards, comments, checklists, etc
+- Make it look pretty 💋
 
-### `npm run build`
+![trello-gif-checklists](https://i.postimg.cc/1g1xHgcb/trello-gif-checklist.gif)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### How did it feel then
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+First, a big accomplishment. It is always beautiful to MAKE something.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+There was a lot of going back and forth since we had to figure out the architecture on the fly as we had never worked with that amount of data (and dynamic as it is). First figuring out our first big boys API. Then, where and when to call it. Only to realize we NEEDED context and migrating all the data there. Then trying to keep re-renders at a minimum. Implementing "react-dnd" and trying not to break everything😅
 
-### `npm run eject`
+### How it feels now
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+There was quite a bit of state management if we had more time I think we could have looked into Redux and try to optimize there. We left out SO MUCH of what the API allows you to do and I would have loved to continue working on it, but it was time to move on and let our baby go.
+At the end of the day, it was an awesome project and we all improved our front-end skills 500%.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![I ❤️ TRELLO](https://i.postimg.cc/BPKcMvCw/Screenshot-2023-02-02-at-16-40-19.png)
